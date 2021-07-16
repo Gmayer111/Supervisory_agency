@@ -27,10 +27,10 @@ ob_start()
         </tr>
         </tbody>
     </table>
-</div>'
+</div>
 
 <?php
 $content = ob_get_clean();
-$title = 'Détail des mission';
+$title = 'Liste des mission';
 echo require_once 'Vues/layout.php';
 ?>

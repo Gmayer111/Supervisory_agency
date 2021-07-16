@@ -14,8 +14,8 @@
         <ul class="navbar">
             <li><a href="index.php">Accueil</a></li>
             <li><a href="?action=List">Missions</a></li>
-            <li><a href="?action=Mission">Mission en cours</a></li>
-            <li><a href="?action=Login"><button>Connexion</button></a></li>
+            <li><a href="?action=Detail">Mission en cours</a></li>
+            <li><a href="?action=Login">Connexion</a></li>
         </ul>
     </nav>
 </header>

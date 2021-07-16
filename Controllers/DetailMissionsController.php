@@ -4,7 +4,7 @@
 namespace Controllers;
 
 
-class DetailMissions
+class DetailMissionsController
 {
 
     public function DetailMissionVue()

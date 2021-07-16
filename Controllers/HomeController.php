@@ -1,1 +1,0 @@
-<?phpnamespace Controllers;use Vues\Home\HomeVue;use Vues\RenderGlobalVue;class HomeController extends RenderGlobalVue{    public function home()    {        ?><style><?php include_once 'Public/Css/home.css'?></style><?php        $vue = new HomeVue();        $vue->render();    }}
