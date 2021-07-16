@@ -1,0 +1,1 @@
+<?phpnamespace Controllers;use Vues\Login\LoginVue;class LoginController{    public function login()    {        ?><style><?php include_once 'Public/Css/login.css'?></style><?php        ?><script><?php include_once 'Public/Javascript/login.js'?></script><?php        $vue = new LoginVue();        $vue->render();    }}

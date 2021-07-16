@@ -1,0 +1,19 @@
+.container-connexion {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+    padding: 1rem;
+    background-color: #928f8f;
+    color: white;
+}
+
+.btn {
+    display: flex;
+    justify-content: start;
+}
+
+button {
+    margin: 2rem;
+    font-size: 1em;
+    padding: 0.5rem;
+}

@@ -1,0 +1,44 @@
+.image-home {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    width: 850px;
+    height: 300px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.homeText {
+    width: 1000px;
+    text-align: center;
+}
+
+
+.container-missions {
+    display: flex;
+    justify-content: center;
+}
+
+.link-mission {
+    width: 850px;
+    background-color: #02002C;
+    margin: 1rem;
+}
+
+.link{
+    text-align: center;
+    color: azure;
+    font-size: 1.5em;
+    outline: none;
+    text-decoration: none;
+}
+

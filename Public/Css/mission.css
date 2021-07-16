@@ -1,0 +1,22 @@
+table, th, tr, td {
+    margin: 2rem;
+    border: 1px solid black;
+}
+
+table {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+th {
+    background-color: #8E8181;
+}
+
+td {
+    background-color: #F4D9D9;
+}
+
+
+
+

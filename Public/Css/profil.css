@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 2rem;
+    background-color: lightgray;
+}
+
+img {
+    width: 200px;
+    height: 300px;
+}
+
+form {
+    margin: 1rem;
+}

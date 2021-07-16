@@ -1,0 +1,51 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Futura, serif;
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: [start] auto [end];
+    grid-template-rows: [start] auto [spacing-left] auto [spacing-right] auto [end];
+    grid-template-areas:
+        "header"
+        "section"
+        "footer";
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #5863DB;
+    margin: 0;
+    height: 50px;
+}
+
+header ul {
+    display: flex;
+    align-content: space-between;
+    list-style-type: none;
+
+}
+
+header li {
+    margin: 0 50px;
+}
+
+header li a {
+    color: white;
+}
+
+footer {
+    width: 100%;
+    height: auto;
+    background-color: #5863DB;
+    text-align: center;
+}
+
+
+

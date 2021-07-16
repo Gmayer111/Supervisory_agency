@@ -1,0 +1,47 @@
+Vidéo 15min
+
+Modeles :
+
+Ce qui représente notre BDD
+Ici je vais créer les classes qui vont intéragir avec la BDD et renvoyer les résultats sous forme de tableau
+peut intéragir avec les api...
+Ici on créé les tables
+
+Controleurs :
+
+Va permettre de choisir quoi faire en fonction de l'url
+Permet de faire la jonction entre les modèles et les vues
+Par exemple un controleur qui s'occupe des articles, un autre qui s'occupe des catégories ...
+Une série de méthode quiv a correspondre à une url (une url qui liste des voiture, une url qui s'occupe de la page d'accueil...)
+
+Vues :
+
+Ce que voit l'user / le code html et les variables en php
+
+Assets :
+
+Ici les fichiers css et js
+
+Autoloader :
+
+Permet un chargement dynamique des différentes classes
+A chaque fois que l'on instancie une classe dans notre projet il va la charger tout seul,
+il fait le bon require au bon moment grâce au namespace
+Permet de ne plus utiliser les require
+
+On déclare la fonction en static car on à pas besoin d'instancier notre class
+
+Il suffit ensuite d'appeler la fonction : Autoloader::autoload
+
+Index :
+
+Ce fichier et le point d'entrée
+qui va servir de router pour récupérer grâce à la variable globale get un élément qui est dans l'url, et si cette
+élément existe on va dire redirige moi vers cette fonction ou cette fonction
+
+Par ex : localhost/?action=car$car=1
+si action existe et que sa valeur est car alors redirige moi vers tel controleur et c'est les controleur qui décidé des données que l'on va entrer dans vue
+
+
+Ini_set : Ligne debase pour afficher les erreurs
+grâce à l'autoloader : Lorsque l'on instancie avec new... nous pourrons utiliser la class
