@@ -5,8 +5,8 @@ namespace Controllers;
 
 class ListMissions
 {
-    public function ListMissions()
+    public function ListMissionsVue()
     {
-        echo require_once 'Vues/Missions/Detail-Mission-Vue.php';
+        echo require_once 'Vues/Missions/DetailMissionVue.php';
     }
 }
