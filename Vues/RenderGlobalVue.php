@@ -16,7 +16,7 @@ class RenderGlobalVue
 
     public function print($content)
     {
-        ?> <style> <?php include_once 'Public/Css/header.css' ?></style><?php
+        ?> <style> <?php include_once 'Public/Css/layout.css' ?></style><?php
         $this->renderHeader();
         echo $content;
         $this->renderFooter();
