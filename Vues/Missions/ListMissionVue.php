@@ -3,6 +3,7 @@
 ob_start()
 ?>
 <style><?php echo include_once 'Public/Css/mission.css'?></style>
+<style><?php echo include_once 'Public/Css/layout.css'?></style>
 <div class="container">
     <table>
         <thead>

@@ -3,6 +3,7 @@ ob_start()
 ?>
 
 <style><?php echo include_once 'Public/Css/profil.css'?></style>
+<style><?php echo include_once 'Public/Css/layout.css'?></style>
 <div class="container">
     <div>
         <img src="Public/images/profil.jpg" alt="Image du profil">
@@ -17,7 +18,7 @@ ob_start()
         </ul>
     </div>
     <div>
-        <form>
+        <form action="?action=Form" method="POST">
             <label for="action-selector">Action :</label>
             <select name="action-selector" id="action-selector">
                 <option value="">Selectionnez votre action</option>

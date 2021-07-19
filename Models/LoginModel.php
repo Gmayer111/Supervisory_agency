@@ -1,10 +1,7 @@
 <?php
 
+namespace Models;
 
-namespace Login;
-
-
-use Models\AdminsModel;
 use PDO;
 
 class LoginModel
