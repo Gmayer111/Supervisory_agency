@@ -61,6 +61,6 @@ ob_start()
 <?php
 
 $content = ob_get_clean();
-$title = 'Détail des mission';
+$title = 'Détail des missions';
 echo require_once 'Vues/layout.php';
 ?>

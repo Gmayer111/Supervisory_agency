@@ -7,29 +7,16 @@ body {
     padding: 0;
     font-family: Futura, serif;
     min-height: 100%;
-    display: grid;
-    grid-template-columns: [start] auto [end];
-    grid-template-rows: [start] auto [spacing-left] auto [spacing-right] auto [end];
-    grid-template-areas:
-        "header"
-        "section"
-        "footer";
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background: #5863DB;
     margin: 0;
     height: 50px;
 }
 
-header ul {
-    display: flex;
-    align-content: space-between;
+ul.navbar {
     list-style-type: none;
-
 }
 
 header li {
@@ -38,6 +25,7 @@ header li {
 
 header li a {
     color: white;
+
 }
 
 footer {

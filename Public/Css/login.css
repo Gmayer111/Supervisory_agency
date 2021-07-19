@@ -7,6 +7,10 @@
     color: white;
 }
 
+h1 {
+    text-align: center;
+}
+
 .btn {
     display: flex;
     justify-content: start;
