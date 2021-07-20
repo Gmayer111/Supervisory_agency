@@ -9,6 +9,8 @@ class LoginModel
 
     public function login(): bool
     {
+        session_start();
+
         $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
         $stmt = $pdo->prepare('SELECT * FROM intelligence_agency.Admins WHERE codeName = :codeName AND password = :password');
         $stmt->bindValue(':codeName', $_POST['CodeName']);
@@ -20,7 +22,9 @@ class LoginModel
                 $password = $user->getPassword();
                 $codeName = $user->getCodeName();
                 if ($password === $_POST['password'] && $codeName === $_POST['CodeName']) {
+                    $_SESSION['codeName'] = 'Gaël';
                     return true;
+
                 }
             }
         }
