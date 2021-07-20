@@ -11,14 +11,6 @@
     <nav>
         <ul>
             <li><a href="index.php">Accueil</a></li>
-            <?php
-            if (isset($_POST['submit'])) {
-               echo '<li><a href="?action=Profil">Profil</a></li>';
-            }else {
-                //Problème avec la page
-
-            }
-            ?>
             <li><a href="?action=List">Missions</a></li>
             <li><a href="?action=Detail">Mission en cours</a></li>
             <button><a href="?action=Login" id="btn-login">Connexion</a></button>
