@@ -10,10 +10,19 @@
 <header>
     <nav>
         <ul>
-            <li><a href="index.php">Accueil</a></li>
-            <li><a href="?action=List">Missions</a></li>
-            <li><a href="?action=Detail">Mission en cours</a></li>
-            <button><a href="?action=Login" id="btn-login">Connexion</a></button>
+            <?php if (isset($_SESSION['CodeName'])): ?>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="?action=Profil">Profil</a></li>
+                <li><a href="?action=List">Missions</a></li>
+                <li><a href="?action=Detail">Mission en cours</a></li>
+                <button><a href="?action=Login" id="btn-login">Deconnexion</a></button>
+            <?php endif; ?>
+            <?php if (!isset($_SESSION['CodeName'])): ?>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="?action=List">Missions</a></li>
+                <li><a href="?action=Detail">Mission en cours</a></li>
+                <button><a href="?action=Login" id="btn-login">Connexion</a></button>
+            <?php endif; ?>
         </ul>
     </nav>
 </header>

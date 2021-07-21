@@ -10,6 +10,8 @@ class LoginModel
     public function login(): bool
     {
 
+        session_start();
+
 
         function validData($data)
         {
@@ -37,7 +39,7 @@ class LoginModel
                 $password = $user->getPassword();
                 $codeName = $user->getCodeName();
                 if ($password === $_POST['password'] && $codeName === $_POST['CodeName']) {
-                    $_SESSION['codeName'] = 'Gaël';
+                    $_SESSION['CodeName'] = 'Gaël';
                     return true;
 
                 }

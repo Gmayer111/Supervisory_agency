@@ -1,5 +1,6 @@
 <?php
-ob_start()
+ob_start();
+session_start();
 ?>
 
 <style><?php echo include_once 'Public/Css/profil.css'?></style>
@@ -13,7 +14,7 @@ ob_start()
             <li><p>Prénom : Gaël</p></li>
             <li><p>Nom : MAYER</p></li>
             <li><p>Nationalité : française</p></li>
-            <li><p>Nom de code : HUNT</p></li>
+            <li><p>Nom de code : <?php echo $_SESSION['CodeName'] ?></p></li>
             <li><p>Mail : gael-mayer@asf.fr</p></li>
         </ul>
     </div>
