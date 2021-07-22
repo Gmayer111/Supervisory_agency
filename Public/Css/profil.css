@@ -19,3 +19,9 @@ img {
 form {
     margin: 1rem;
 }
+
+.btn {
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+}

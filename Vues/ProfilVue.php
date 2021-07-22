@@ -1,6 +1,6 @@
 <?php
-ob_start();
 session_start();
+ob_start();
 ?>
 
 <style><?php echo include_once 'Public/Css/profil.css'?></style>
@@ -29,8 +29,8 @@ session_start();
                 <option value="rep4">Créer une cible</option>
                 <option value="rep5">Créer une planque</option>
             </select>
-            <div>
-                <input type="submit" value="" id="submit" name="submit">
+            <div class="btn">
+                <input type="submit" id="submit" name="submit" value="Afficher">
             </div>
         </form>
     </div>

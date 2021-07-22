@@ -1,6 +1,6 @@
 <?php
 
-namespace Mission;
+namespace Models;
 
 use Agent\AgentsModel;
 use DateTime;
@@ -22,6 +22,7 @@ class MissionsModel
     private array $competence;
     private DateTime $startDate;
     private DateTime $endDate;
+
 
     /**
      * @return int

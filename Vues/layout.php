@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="Public/Css/layout.css">
     <title><?php echo $title; ?></title>
 </head>
 <body>
 <header>
     <nav>
-        <ul>
+        <ul id="liste">
             <?php if (isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="?action=Profil">Profil</a></li>
                 <li><a href="?action=List">Missions</a></li>
                 <li><a href="?action=Detail">Mission en cours</a></li>
-                <button><a href="?action=Login" id="btn-login">Deconnexion</a></button>
+                <button id="btn-login"><a href="?action=Logout">Deconnexion</a></button>
             <?php endif; ?>
             <?php if (!isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="?action=List">Missions</a></li>
                 <li><a href="?action=Detail">Mission en cours</a></li>
-                <button><a href="?action=Login" id="btn-login">Connexion</a></button>
+                <button id="btn-login"><a href="?action=Login">Connexion</a></button>
             <?php endif; ?>
         </ul>
     </nav>
@@ -39,5 +38,6 @@
         <h3>ASF</h3>
     </div>
 </footer>
+
 </body>
 </html>

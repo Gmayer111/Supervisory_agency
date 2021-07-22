@@ -21,3 +21,8 @@ button {
     font-size: 1em;
     padding: 0.5rem;
 }
+
+.btnBack {
+    display: flex;
+    justify-content: center;
+}

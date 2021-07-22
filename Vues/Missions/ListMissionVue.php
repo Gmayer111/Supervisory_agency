@@ -1,6 +1,6 @@
 <?php
-
-ob_start()
+session_start();
+ob_start();
 ?>
 <style><?php echo include_once 'Public/Css/mission.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
