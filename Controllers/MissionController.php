@@ -1,12 +1,22 @@
 <?php
 
+
 namespace Controllers;
 
 
-class ListMissionsController
+class MissionController
 {
+
     public function ListMissionsVue()
     {
         echo require_once 'Vues/Missions/ListMissionVue.php';
     }
+
+    public function DetailMissionVue()
+    {
+        echo require_once 'Vues/Missions/DetailMissionVue.php';
+    }
+
+
+
 }

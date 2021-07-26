@@ -3,12 +3,14 @@
 namespace Models;
 
 use Agent\AgentsModel;
+use Contact\ContactsModel;
 use DateTime;
 use SafeHouse\SafeHousesModel;
 use Target\TargetsModel;
 
 class MissionsModel
 {
+
     private int $id;
     private string $title;
     private string $description;
@@ -17,11 +19,26 @@ class MissionsModel
     private AgentsModel $agent;
     private TargetsModel $target;
     private SafeHousesModel $safeHouse;
+    private ContactsModel $contact;
     private array $type;
     private array $state;
     private array $competence;
     private DateTime $startDate;
     private DateTime $endDate;
+
+
+
+
+    public function hydrate(array $data)
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->method($value);
+            }
+        }
+
+    }
 
 
     /**
@@ -174,6 +191,22 @@ class MissionsModel
         $this->safeHouse = $safeHouse;
 
         return $this;
+    }
+
+    /**
+     * @return ContactsModel
+     */
+    public function getContact(): ContactsModel
+    {
+        return $this->contact;
+    }
+
+    /**
+     * @param ContactsModel $contact
+     */
+    public function setContact(ContactsModel $contact): void
+    {
+        $this->contact = $contact;
     }
 
     /**

@@ -1,0 +1,13 @@
+h1 {
+    text-align: center;
+}
+
+
+form {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    background-color: #cbc2c2;
+    margin: 3rem;
+    padding: 2rem;
+}

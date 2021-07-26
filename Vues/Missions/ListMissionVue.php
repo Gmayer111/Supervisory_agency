@@ -9,13 +9,15 @@ ob_start();
         <thead>
         <tr>
             <th>TITRE</th>
+        </tr>
+        <tr>
             <th>CODE</th>
+        </tr>
             <th>PAYS</th>
             <th>DEBUT</th>
             <th>FIN</th>
             <th>ETAT</th>
         </tr>
-
         </thead>
         <tbody>
         <tr>
