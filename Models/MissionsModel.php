@@ -2,60 +2,57 @@
 
 namespace Models;
 
-use Agent\AgentsModel;
-use Contact\ContactsModel;
-use DateTime;
-use SafeHouse\SafeHousesModel;
-use Target\TargetsModel;
 
 class MissionsModel
 {
 
-    private int $id;
+    private string $codeName;
     private string $title;
     private string $description;
     private string $country;
-    private string $codeName;
-    private AgentsModel $agent;
-    private TargetsModel $target;
-    private SafeHousesModel $safeHouse;
-    private ContactsModel $contact;
-    private array $type;
-    private array $state;
-    private array $competence;
-    private DateTime $startDate;
-    private DateTime $endDate;
+    private string $agent; // penser à typer AgentModel
+    private string $target; // penser à typer TargetModel
+    private string $safeHouse; // penser à typer SafeHouseModel
+    private string $contact; // penser à typer COntactModel
+    private string $type;
+    private string $state;
+    private string $competence;
+    private string $startDate;
+    private string $endDate;
 
 
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
 
 
-    public function hydrate(array $data)
+    public function hydrate(array $data): void
     {
         foreach ($data as $key => $value) {
             $method = 'set'.ucfirst($key);
             if (method_exists($this, $method)) {
-                $this->method($value);
+                $this->$method($value); //this->setId...
             }
         }
 
     }
 
-
     /**
-     * @return int
+     * @return string
      */
-    public function getId(): int
+    public function getCodeName(): string
     {
-        return $this->id;
+        return $this->codeName;
     }
 
     /**
-     * @param int $id
+     * @param string $codeName
      * @return MissionsModel
      */
-    public function setId(int $id): self
+    public function setCodeName(string $codeName): self
     {
-        $this->id = $id;
+        $this->codeName = $codeName;
 
         return $this;
     }
@@ -120,35 +117,16 @@ class MissionsModel
     /**
      * @return string
      */
-    public function getCodeName(): string
-    {
-        return $this->codeName;
-    }
-
-    /**
-     * @param string $codeName
-     * @return MissionsModel
-     */
-    public function setCodeName(string $codeName): self
-    {
-        $this->codeName = $codeName;
-
-        return $this;
-    }
-
-    /**
-     * @return AgentsModel
-     */
-    public function getAgent(): AgentsModel
+    public function getAgent(): string
     {
         return $this->agent;
     }
 
     /**
-     * @param AgentsModel $agent
+     * @param string $agent
      * @return MissionsModel
      */
-    public function setAgent(AgentsModel $agent): self
+    public function setAgent(string $agent): self
     {
         $this->agent = $agent;
 
@@ -156,18 +134,18 @@ class MissionsModel
     }
 
     /**
-     * @return TargetsModel
+     * @return string
      */
-    public function getTarget(): TargetsModel
+    public function getTarget(): string
     {
         return $this->target;
     }
 
     /**
-     * @param TargetsModel $target
+     * @param string $target
      * @return MissionsModel
      */
-    public function setTarget(TargetsModel $target): self
+    public function setTarget(string $target): self
     {
         $this->target = $target;
 
@@ -175,18 +153,18 @@ class MissionsModel
     }
 
     /**
-     * @return SafeHousesModel
+     * @return string
      */
-    public function getSafeHouse(): SafeHousesModel
+    public function getSafeHouse(): string
     {
         return $this->safeHouse;
     }
 
     /**
-     * @param SafeHousesModel $safeHouse
+     * @param string $safeHouse
      * @return MissionsModel
      */
-    public function setSafeHouse(SafeHousesModel $safeHouse): self
+    public function setSafeHouse(string $safeHouse): self
     {
         $this->safeHouse = $safeHouse;
 
@@ -194,34 +172,34 @@ class MissionsModel
     }
 
     /**
-     * @return ContactsModel
+     * @return string
      */
-    public function getContact(): ContactsModel
+    public function getContact(): string
     {
         return $this->contact;
     }
 
     /**
-     * @param ContactsModel $contact
+     * @param string $contact
      */
-    public function setContact(ContactsModel $contact): void
+    public function setContact(string $contact): void
     {
         $this->contact = $contact;
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getType(): array
+    public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * @param array $type
+     * @param string $type
      * @return MissionsModel
      */
-    public function setType(array $type): self
+    public function setType(string $type): self
     {
         $this->type = $type;
 
@@ -229,18 +207,18 @@ class MissionsModel
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getState(): array
+    public function getState(): string
     {
         return $this->state;
     }
 
     /**
-     * @param array $state
+     * @param string $state
      * @return MissionsModel
      */
-    public function setState(array $state): self
+    public function setState(string $state): self
     {
         $this->state = $state;
 
@@ -248,18 +226,18 @@ class MissionsModel
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getCompetence(): array
+    public function getCompetence(): string
     {
         return $this->competence;
     }
 
     /**
-     * @param array $competence
+     * @param string $competence
      * @return MissionsModel
      */
-    public function setCompetence(array $competence): self
+    public function setCompetence(string $competence): self
     {
         $this->competence = $competence;
 
@@ -267,18 +245,18 @@ class MissionsModel
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getStartDate(): DateTime
+    public function getStartDate(): string
     {
         return $this->startDate;
     }
 
     /**
-     * @param DateTime $startDate
+     * @param string $startDate
      * @return MissionsModel
      */
-    public function setStartDate(DateTime $startDate): self
+    public function setStartDate(string $startDate): self
     {
         $this->startDate = $startDate;
 
@@ -286,18 +264,18 @@ class MissionsModel
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getEndDate(): DateTime
+    public function getEndDate(): string
     {
         return $this->endDate;
     }
 
     /**
-     * @param DateTime $endDate
+     * @param string $endDate
      * @return MissionsModel
      */
-    public function setEndDate(DateTime $endDate): self
+    public function setEndDate(string $endDate): self
     {
         $this->endDate = $endDate;
 

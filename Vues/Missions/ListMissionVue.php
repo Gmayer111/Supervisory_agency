@@ -1,7 +1,19 @@
 <?php
+
+use Managers\MissionManager;
+
 session_start();
 ob_start();
-?>
+
+$manager = new MissionManager();
+$missions = $manager->getAll();
+
+foreach ($missions as $mission): ?>
+
+
+
+
+<?php endforeach; ?>
 <style><?php echo include_once 'Public/Css/mission.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
 <div class="container">

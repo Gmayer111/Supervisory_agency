@@ -5,23 +5,24 @@ namespace SafeHouse;
 
 class SafeHousesModel
 {
-    private int $code;
+    private string $code;
     private string $address;
     private string $country;
-    private array $type;
+    private string $type;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCode(): int
+    public function getCode(): string
     {
         return $this->code;
     }
 
     /**
-     * @param int $code
+     * @param string $code
+     * @return SafeHousesModel
      */
-    public function setCode(int $code): self
+    public function setCode(string $code): self
     {
         $this->code = $code;
 
@@ -38,6 +39,7 @@ class SafeHousesModel
 
     /**
      * @param string $address
+     * @return SafeHousesModel
      */
     public function setAddress(string $address): self
     {
@@ -56,6 +58,7 @@ class SafeHousesModel
 
     /**
      * @param string $country
+     * @return SafeHousesModel
      */
     public function setCountry(string $country): self
     {
@@ -65,17 +68,18 @@ class SafeHousesModel
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getType(): array
+    public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * @param array $type
+     * @param string $type
+     * @return SafeHousesModel
      */
-    public function setType(array $type): self
+    public function setType(string $type): self
     {
         $this->type = $type;
 

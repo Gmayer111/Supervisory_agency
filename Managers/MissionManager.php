@@ -1,8 +1,7 @@
 <?php
-
+//stop 40:34
 
 namespace Managers;
-
 
 use Models\MissionsModel;
 use PDO;
@@ -10,88 +9,126 @@ use PDO;
 class MissionManager
 {
 
-    private $db;
+    private $pdo;
 
     public function __construct()
     {
-        $this->db = $db;
+        $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
     }
 
-    // ici j'insère les données 
-    public function add(MissionsModel $mission)
+    /**
+     * @return mixed
+     */
+    public function getPdo()
     {
-        $stmt = $this->db->prepare('
-    INSERT INTO intelligence_agency.Missions
-        (id, title, description, country, codeName, agent, target, safeHouse, type, state, competence, startDate, endDate) 
-        VALUES 
-    (:id, :title, :description, :country, :codeName, :agent, :target, :safeHouse, :type, :state, :competence, :startDate, :endDate)');
-        $stmt->bindValue(':id', $mission->getId());
-        $stmt->bindValue(':title', $mission->getTitle());
-        $stmt->bindValue(':description', $mission->getDescription());
-        $stmt->bindValue(':country', $mission->getCountry());
-        $stmt->bindValue(':codeName', $mission->getCodeName());
-        $stmt->bindValue(':agent', $mission->getAgent());
-        $stmt->bindValue(':target', $mission->getTarget());
-        $stmt->bindValue(':safeHouse', $mission->getSafeHouse());
-        $stmt->bindValue(':type', $mission->getType());
-        $stmt->bindValue(':state', $mission->getState());
-        $stmt->bindValue(':competence', $mission->getCompetence());
-        $stmt->bindValue(':startDate', $mission->getStartDate());
-        $stmt->bindValue(':endDate', $mission->getEndDate());
-        $stmt->execute();
+        return $this->pdo;
     }
 
-    public function delete(MissionsModel $mission)
+    /**
+     * @param mixed $pdo
+     */
+    public function setPdo($pdo): void
     {
-        $this->db->exec('DELETE FROM intelligence_agency.Missions WHERE id = '.$mission->getId());
+        $this->pdo = $pdo;
     }
 
-    public function getMissions($id)
+
+    public function create(MissionsModel $mission)
     {
 
-        $id = (int) $id;
-
-        $stmt = $this->db->prepare('SELECT * FROM intelligence_agency.Missions WHERE id = '.$id);
-        if ($stmt->execute()) {
-            $data = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                return new MissionsModel($data);
-            }
+        function validDatas($data)
+        {
+            // Enlève espace inutile
+            $data = trim($data);
+            // Supprime les antislashs
+            $data = stripcslashes($data);
+            // Echappe caractères type < >
+            $data = htmlspecialchars($data);
+            return $data;
         }
+        $codeName = validDatas($_POST['codeName']);
+        $title = validDatas($_POST['title']);
+        $description = validDatas($_POST['description']);
+        $country = validDatas($_POST['country']);
+        $agent = validDatas($_POST['agent']);
+        $target = validDatas($_POST['target']);
+        $safehouse = validDatas($_POST['safehouse']);
+        $contact = validDatas($_POST['contact']);
+        $type = validDatas($_POST['type']);
+        $state = validDatas($_POST['state']);
+        $competence = validDatas($_POST['competence']);
+        $startDate = validDatas($_POST['startDate']);
+        $endDate = validDatas($_POST['endDate']);
+        $req = $this->pdo->prepare("
+INSERT INTO intelligence_agency.Missions 
+    (codeName, title, description, country, agent, target, safeHouse, type, state, competence, startDate, endDate, contact) 
+    VALUES 
+           ('$codeName', '$title', '$description', '$country', '$agent', '$target', '$safehouse', '$type', '$state', '$competence', '$startDate', '$endDate', '$contact')");
+        $req->bindValue(':codeName', $mission->getCodeName(), PDO::PARAM_STR);
+        $req->bindValue(':title', $mission->getTitle(), PDO::PARAM_STR);
+        $req->bindValue(':description', $mission->getDescription(), PDO::PARAM_STR);
+        $req->bindValue(':country', $mission->getCountry(), PDO::PARAM_STR);
+        $req->bindValue(':agent', $mission->getAgent(), PDO::PARAM_STR);
+        $req->bindValue(':target', $mission->getTarget(), PDO::PARAM_STR);
+        $req->bindValue(':safeHouse', $mission->getSafeHouse(), PDO::PARAM_STR);
+        $req->bindValue(':type', $mission->getType(), PDO::PARAM_STR);
+        $req->bindValue(':state', $mission->getState(), PDO::PARAM_STR);
+        $req->bindValue(':competence', $mission->getCompetence(), PDO::PARAM_STR);
+        $req->bindValue(':startDate', $mission->getStartDate(), PDO::PARAM_STR);
+        $req->bindValue(':endDate', $mission->getEndDate(), PDO::PARAM_STR);
+        $req->bindValue(':contact', $mission->getContact(), PDO::PARAM_STR);
+        $req->execute();
     }
 
-    public function getMissions()
+    public function uptdate(MissionsModel $mission)
     {
-        $mission = [];
-
-        $stmt = $this->db->prepare('SELECT * FROM intelligence_agency.Missions ORDER BY title');
-        if ($stmt->execute()) {
-
-            while($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $mission[] = new MissionsModel($data);
-            }
-        }
-        return $mission;
-    }
-
-    public function update(MissionsModel $mission)
-    {
-        $stmt = $this->db->prepare('
+        $req = $this->pdo->prepare('
 UPDATE 
     intelligence_agency.Missions 
 SET 
-    title = :title, description = :description, country = :country, codeName = :codeName, agent = :agent, target = :target, safeHouse = :safeHouse, type = :type, state = :state, competence = :competence, startDate = :startDate, endDate = :endDate');
-        $stmt->bindValue(':title', $mission->getTitle(), PDO::PARAM_STR);
-        $stmt->bindValue(':description', $mission->getDescription(), PDO::PARAM_STR);
-        $stmt->bindValue(':country', $mission->getCountry(), PDO::PARAM_STR);
-        $stmt->bindValue(':codeName', $mission->getCodeName(), PDO::PARAM_STR);
-        $stmt->bindValue(':agent', $mission->getAgent());
-        $stmt->bindValue(':target', $mission->getTarget());
-        $stmt->bindValue(':safeHouse', $mission->getSafeHouse() );
-        $stmt->bindValue(':type', $mission->getType(), PDO::PARAM_STR);
-        $stmt->bindValue(':state', $mission->getState(), PDO::PARAM_STR);
-        $stmt->bindValue(':competence', $mission->getCompetence(), PDO::PARAM_STR);
-        $stmt->bindValue(':startDate', $mission->getStartDate(), PDO::PARAM_STR);
-        $stmt->bindValue(':endDate', $mission->getEndDate(), PDO::PARAM_STR);
-        $stmt->execute();
+    title = :title, description = :description, country = :country, agent = :agent, target = :target, safeHouse = :safeHouse, type = :type, state = :state, competence = :competence, startDate = :startDate, endDate = :endDate, contact = :contact
+WHERE codeName = :codeName
+    ');
+/*        $req->bindValue(':codeName', $mission->getCodeName(), PDO::PARAM_STR);    */
+        $req->bindValue(':title', $mission->getTitle(), PDO::PARAM_STR);
+        $req->bindValue(':description', $mission->getDescription(), PDO::PARAM_STR);
+        $req->bindValue(':country', $mission->getCountry(), PDO::PARAM_STR);
+        $req->bindValue(':agent', $mission->getAgent(), PDO::PARAM_STR);
+        $req->bindValue(':target', $mission->getTarget(), PDO::PARAM_STR);
+        $req->bindValue(':safeHouse', $mission->getSafeHouse(), PDO::PARAM_STR);
+        $req->bindValue(':type', $mission->getType(), PDO::PARAM_STR);
+        $req->bindValue(':state', $mission->getState(), PDO::PARAM_STR);
+        $req->bindValue(':competence', $mission->getCompetence(), PDO::PARAM_STR);
+        $req->bindValue(':startDate', $mission->getStartDate(), PDO::PARAM_STR);
+        $req->bindValue(':endDate', $mission->getEndDate());
+        $req->bindValue(':contact', $mission->getContact());
+        $req->execute();
+    }
+
+    public function delete(string $codeName)
+    {
+        $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Missions WHERE codeName = :codeName');
+        $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
+        $req->execute();
+    }
+
+    public function getByCodeName(string $codeName): MissionsModel
+    {
+        $codeName = (string)$codeName;
+        $req = $this->pdo->prepare('SELECT * FROM intelligence_agency.Missions WHERE codeName = :codeName');
+        $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
+        $data = $req->fetch();
+        return new MissionsModel($data);
+    }
+
+    public function getAll(): array
+    {
+
+        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY codeName DESC ');
+        $article = array();
+        foreach ($req->fetchAll() as $data) {
+            $article[] = new MissionsModel($data);
+        }
+        return $article;
     }
 }

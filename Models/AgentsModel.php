@@ -3,7 +3,7 @@
 namespace Agent;
 
 use DateTime;
-use Mission\MissionsModel;
+use Models\MissionsModel;
 
 class AgentsModel
 {
@@ -12,7 +12,9 @@ class AgentsModel
     private string $lastname;
     private DateTime $dateOfBirth;
     private string $nationality;
-    private array $competences;
+    private string $competenceOne;
+    private string $competenceTwo;
+    private string $competenceThree;
     private string $password;
     private MissionsModel $mission;
     private string $codeName;
@@ -108,21 +110,53 @@ class AgentsModel
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getCompetences(): array
+    public function getCompetenceOne(): string
     {
-        return $this->competences;
+        return $this->competenceOne;
     }
 
     /**
-     * @param array $competences
+     * @param string $competenceOne
      */
-    public function setCompetences(array $competences): self
+    public function setCompetenceOne(string $competenceOne): self
     {
-        $this->competences = $competences;
+        $this->competenceOne = $competenceOne;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompetenceTwo(): string
+    {
+        return $this->competenceTwo;
+    }
+
+    /**
+     * @param string $competenceTwo
+     */
+    public function setCompetenceTwo(string $competenceTwo): void
+    {
+        $this->competenceTwo = $competenceTwo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCompetenceThree(): string
+    {
+        return $this->competenceThree;
+    }
+
+    /**
+     * @param string $competenceThree
+     */
+    public function setCompetenceThree(string $competenceThree): void
+    {
+        $this->competenceThree = $competenceThree;
     }
 
     /**

@@ -7,29 +7,28 @@ use DateTime;
 
 class TargetsModel
 {
-    private int $id;
+    private string $codeName;
     private string $firstname;
     private string $lastname;
     private DateTime $dateOfBirth;
-    private string $codeName;
     private string $nationality;
     private string $localisation;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getId(): int
+    public function getCodeName(): string
     {
-        return $this->id;
+        return $this->codeName;
     }
 
     /**
-     * @param int $id
+     * @param string $codeName
      * @return TargetsModel
      */
-    public function setId(int $id): self
+    public function setCodeName(string $codeName): self
     {
-        $this->id = $id;
+        $this->codeName = $codeName;
 
         return $this;
     }
@@ -91,24 +90,7 @@ class TargetsModel
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getCodeName(): string
-    {
-        return $this->codeName;
-    }
 
-    /**
-     * @param string $codeName
-     * @return TargetsModel
-     */
-    public function setCodeName(string $codeName): self
-    {
-        $this->codeName = $codeName;
-
-        return $this;
-    }
 
     /**
      * @return string

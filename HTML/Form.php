@@ -6,7 +6,7 @@ class Form
 {
 
     private $data;
-    public $surorund = 'div';
+    public $surround = 'div';
 
 
     public function __construct($data = array())
@@ -16,12 +16,12 @@ class Form
 
     public function surround($html)
     {
-        return "<{$this->surorund}>$html</{$this->surorund}>";
+        return "<{$this->surround}>$html</{$this->surround}>";
     }
 
     private function getValue($index)
     {
-        return isset($this->data($index)) ? $this->data($index) : null;
+        return isset($this->$data($index)) ? $this->$data($index) : null;
     }
 
     public function input($name) {

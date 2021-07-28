@@ -17,6 +17,13 @@ class MissionController
         echo require_once 'Vues/Missions/DetailMissionVue.php';
     }
 
+    public function formMissionVue()
+    {
+        echo require_once 'Vues/Forms/FormMissionVue.php';
+    }
+
+
+
 
 
 }
