@@ -12,6 +12,23 @@ class AdminsModel
     private string $password;
     private string $codeName;//login VARCHAR(entre 20 et 50)NOT NULL UNIQUE
 
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
+
+
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value); //this->setId...
+            }
+        }
+
+    }
+
     /**
      * @return int
      */

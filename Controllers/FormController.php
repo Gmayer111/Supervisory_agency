@@ -9,27 +9,19 @@ class FormController
     public function formCreate()
     {
 
-        $mission = new MissionController();
-        $agent = new AgentController();
-        $contact = new ContactController();
-        $safeHouse = new SafeHouseController();
-        $target = new TargetController();
-        $admin = new AdminController();
-
-
         if (isset($_POST['create'])) {
             if (isset($_POST['creation-selector']) && $_POST['creation-selector'] === 'rep1') {
-                $agent->formAgentVue();
+                header('Location: ?action=AgentForm');
             }elseif (isset($_POST['creation-selector']) && $_POST['creation-selector'] === 'rep2') {
-                $mission->formMissionVue();
+                header('Location: ?action=MissionForm');
             }elseif (isset($_POST['creation-selector']) && $_POST['creation-selector'] === 'rep3') {
-                $contact->formContactVue();
+                header('Location: ?action=ContactForm');
             }elseif (isset($_POST['creation-selector']) && $_POST['creation-selector'] === 'rep4') {
-                $target->formTargetVue();
+                header('Location: ?action=TargetForm');
             }elseif (isset($_POST['creation-selector']) && $_POST['creation-selector'] === 'rep5') {
-                $safeHouse->FormSafeHouseVue();
+                header('Location: ?action=SafeHouseForm');
             }elseif (isset($_POST['creation-selector']) && $_POST['creation-selector'] === 'rep6') {
-                $admin->FormAdminVue();
+                header('Location: ?action=AdminForm');
             }
         }else {
             echo 'erreur à la création';

@@ -10,16 +10,15 @@ class MissionsModel
     private string $title;
     private string $description;
     private string $country;
-    private string $agent; // penser à typer AgentModel
-    private string $target; // penser à typer TargetModel
-    private string $safeHouse; // penser à typer SafeHouseModel
-    private string $contact; // penser à typer COntactModel
     private string $type;
     private string $state;
     private string $competence;
     private string $startDate;
     private string $endDate;
-
+    private ?string $codeName_Agent = null; // penser à typer AgentModel
+    private ?string $codeName_Target = null; // penser à typer TargetModel
+    private ?string $code_SafeHouse = null; // penser à typer SafeHouseModel
+    private ?string $codeName_Contact = null; // penser à typer COntactModel
 
     public function __construct(array $data)
     {
@@ -117,79 +116,6 @@ class MissionsModel
     /**
      * @return string
      */
-    public function getAgent(): string
-    {
-        return $this->agent;
-    }
-
-    /**
-     * @param string $agent
-     * @return MissionsModel
-     */
-    public function setAgent(string $agent): self
-    {
-        $this->agent = $agent;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTarget(): string
-    {
-        return $this->target;
-    }
-
-    /**
-     * @param string $target
-     * @return MissionsModel
-     */
-    public function setTarget(string $target): self
-    {
-        $this->target = $target;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSafeHouse(): string
-    {
-        return $this->safeHouse;
-    }
-
-    /**
-     * @param string $safeHouse
-     * @return MissionsModel
-     */
-    public function setSafeHouse(string $safeHouse): self
-    {
-        $this->safeHouse = $safeHouse;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContact(): string
-    {
-        return $this->contact;
-    }
-
-    /**
-     * @param string $contact
-     */
-    public function setContact(string $contact): void
-    {
-        $this->contact = $contact;
-    }
-
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
@@ -280,6 +206,72 @@ class MissionsModel
         $this->endDate = $endDate;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeName_Agent(): ?string
+    {
+        return $this->codeName_Agent;
+    }
+
+    /**
+     * @param string $agent
+     */
+    public function setCodeName_Agent(string $agent): void
+    {
+        $this->codeName_Agent = $agent;
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeName_Target(): ?string
+    {
+        return $this->codeName_Target;
+    }
+
+    /**
+     * @param string $target
+     */
+    public function setCodeName_Target(string $target): void
+    {
+        $this->codeName_Target = $target;
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode_SafeHouse(): ?string
+    {
+        return $this->code_SafeHouse;
+    }
+
+    /**
+     * @param string $safeHouse
+     */
+    public function setCode_SafeHouse(string $safeHouse): void
+    {
+        $this->code_SafeHouse = $safeHouse;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeName_Contact(): ?string
+    {
+        return $this->codeName_Contact;
+    }
+
+    /**
+     * @param string $contact
+     */
+    public function setCodeName_Contact(string $contact): void
+    {
+        $this->codeName_Contact = $contact;
     }
 
 

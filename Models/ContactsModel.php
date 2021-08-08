@@ -1,17 +1,32 @@
 <?php
 
 
-namespace Contact;
-
-use DateTime;
+namespace Models;
 
 class ContactsModel
 {
     private string $codeName;
     private string $firstname;
     private string $lastname;
-    private DateTime $dateOfBirth;
+    private string $dateOfBirth;
     private string $nationality;
+
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
+
+
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value); //this->setId...
+            }
+        }
+
+    }
 
     /**
      * @return string
@@ -71,18 +86,18 @@ class ContactsModel
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getDateOfBirth(): DateTime
+    public function getDateOfBirth(): string
     {
         return $this->dateOfBirth;
     }
 
     /**
-     * @param DateTime $dateOfBirth
+     * @param string $dateOfBirth
      * @return ContactsModel
      */
-    public function setDateOfBirth(DateTime $dateOfBirth): self
+    public function setDateOfBirth(string $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
 

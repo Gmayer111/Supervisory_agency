@@ -19,7 +19,7 @@ ob_start();
         </ul>
     </div>
     <div>
-        <form action="?action=Form" method="get">
+        <form action="?action=Form" method="post">
             <label for="creation-selector">Création :</label>
             <select name="creation-selector" id="creation-selector">
                 <option value="">Selectionnez votre action</option>

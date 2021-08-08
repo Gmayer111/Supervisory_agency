@@ -8,7 +8,7 @@ ob_start();
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
 <div class="container">
     <div class="container">
-        <form action="?action=Create" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
+        <form action="?action=CreateTarget" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
             <div class="container1">
                 <div>
                     <label for="codeName">Nom de code</label>
@@ -38,7 +38,7 @@ ob_start();
                     <label for="dateOfBirth">Date de naissance</label>
                 </div>
                 <div>
-                    <input type="date" id="dateOfBirth" name="startDate" placeholder="Entrez la date de naissance" required>
+                    <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Entrez la date de naissance" required>
                 </div>
                 <div>
                     <label for="Localisation">Localisation</label>

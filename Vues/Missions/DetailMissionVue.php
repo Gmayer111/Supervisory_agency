@@ -1,4 +1,5 @@
 <?php
+
 use Managers\MissionManager;
 
 session_start();
@@ -17,7 +18,8 @@ foreach ($missions as $mission): ?>
     <table>
         <tr>
             <th>Titre</th>
-            <td><?php echo $mission->getTitle() ?></td>
+            <td><?php echo $mission->getTitle() ?>
+            </td>
         </tr>
         <tr>
             <th>Description</th>
@@ -33,15 +35,39 @@ foreach ($missions as $mission): ?>
         </tr>
         <tr>
             <th>Agent(s)</th>
-            <td><?php echo $mission->getAgent() ?></td>
+            <td><?php echo $mission->getCodeName_Agent() ?>
+                <div>
+                    <button><a href="#">Agent supprimé</a></button>
+                    <button><a href="#">Changement d'agent</a></button>
+                </div>
+            </td>
         </tr>
         <tr>
             <th>ContactsModel(s)</th>
-            <td><?php echo $mission->getContact() ?></td>
+            <td class="actionBtn"><?php echo $mission->getCodeName_Contact() ?>
+                <div>
+                    <button><a href="#">Contact supprimé</a></button>
+                    <button><a href="#">Changement de contact</a></button>
+                </div>
+            </td>
         </tr>
         <tr>
             <th>Cibles(s)</th>
-            <td><?php echo $mission->getTarget() ?></td>
+            <td class="actionBtn"><?php echo $mission->getCodeName_Target() ?>
+                <div>
+                    <button><a href="#">Cible supprimée</a></button>
+                    <button><a href="#">Changement de cible</a></button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Planque</th>
+            <td class="actionBtn"><?php echo $mission->getCode_SafeHouse(); ?>
+                <div>
+                    <button><a href="#">Planque détruite</a></button>
+                    <button><a href="#">Changement de plangue</a></button>
+                </div>
+            </td>
         </tr>
         <tr>
             <th>Type de mission</th>
@@ -51,10 +77,7 @@ foreach ($missions as $mission): ?>
             <th>Statut de la mission</th>
             <td><?php echo $mission->getState() ?></td>
         </tr>
-        <tr>
-            <th>Planque</th>
-            <td><?php echo $mission->getSafeHouse() ?></td>
-        </tr>
+
         <tr>
             <th>Spécialités</th>
             <td><?php echo $mission->getCompetence() ?></td>

@@ -1,19 +1,34 @@
 <?php
 
 
-namespace Target;
-
-use DateTime;
+namespace Models;
 
 class TargetsModel
 {
     private string $codeName;
     private string $firstname;
     private string $lastname;
-    private DateTime $dateOfBirth;
+    private string $dateOfBirth;
     private string $nationality;
     private string $localisation;
 
+
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
+
+
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value); //this->setId...
+            }
+        }
+
+    }
     /**
      * @return string
      */
@@ -72,18 +87,18 @@ class TargetsModel
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getDateOfBirth(): DateTime
+    public function getDateOfBirth(): string
     {
         return $this->dateOfBirth;
     }
 
     /**
-     * @param DateTime $dateOfBirth
+     * @param string $dateOfBirth
      * @return TargetsModel
      */
-    public function setDateOfBirth(DateTime $dateOfBirth): self
+    public function setDateOfBirth(string $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
 

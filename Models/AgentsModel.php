@@ -1,41 +1,61 @@
 <?php
 
-namespace Agent;
+namespace Models;
 
-use DateTime;
-use Models\MissionsModel;
 
 class AgentsModel
 {
-    private int $id;
+
+    private string $codeName;
     private string $firstname;
     private string $lastname;
-    private DateTime $dateOfBirth;
     private string $nationality;
     private string $competenceOne;
     private string $competenceTwo;
     private string $competenceThree;
-    private string $password;
-    private MissionsModel $mission;
-    private string $codeName;
+    private string $dateOfBirth;
+
+
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+
+    }
+
+
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value); //this->setId...
+            }
+        }
+
+    }
+
 
     /**
-     * @return int
+     * @return string
      */
-    public function getId(): int
+    public function getCodeName(): string
     {
-        return $this->id;
+        return $this->codeName;
     }
 
     /**
-     * @param int $id
+     * @param string $codeName
+     * @return AgentsModel
      */
-    public function setId(int $id): self
+    public function setCodeName(string $codeName): self
     {
-        $this->id = $id;
+        $this->codeName = $codeName;
 
         return $this;
     }
+
+
+
 
     /**
      * @return string
@@ -47,6 +67,7 @@ class AgentsModel
 
     /**
      * @param string $firstname
+     * @return AgentsModel
      */
     public function setFirstname(string $firstname): self
     {
@@ -65,6 +86,7 @@ class AgentsModel
 
     /**
      * @param string $lastname
+     * @return AgentsModel
      */
     public function setLastname(string $lastname): self
     {
@@ -74,17 +96,18 @@ class AgentsModel
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getDateOfBirth(): DateTime
+    public function getDateOfBirth(): string
     {
         return $this->dateOfBirth;
     }
 
     /**
-     * @param DateTime $dateOfBirth
+     * @param string $dateOfBirth
+     * @return AgentsModel
      */
-    public function setDateOfBirth(DateTime $dateOfBirth): self
+    public function setDateOfBirth(string $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
 
@@ -101,6 +124,7 @@ class AgentsModel
 
     /**
      * @param string $nationality
+     * @return AgentsModel
      */
     public function setNationality(string $nationality): self
     {
@@ -157,60 +181,6 @@ class AgentsModel
     public function setCompetenceThree(string $competenceThree): void
     {
         $this->competenceThree = $competenceThree;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @return MissionsModel
-     */
-    public function getMission(): MissionsModel
-    {
-        return $this->mission;
-    }
-
-    /**
-     * @param MissionsModel $mission
-     */
-    public function setMission(MissionsModel $mission): self
-    {
-        $this->mission = $mission;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodeName(): string
-    {
-        return $this->codeName;
-    }
-
-    /**
-     * @param string $codeName
-     */
-    public function setCodeName(string $codeName): self
-    {
-        $this->codeName = $codeName;
-
-        return $this;
     }
 
 

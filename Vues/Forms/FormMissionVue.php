@@ -1,14 +1,19 @@
 <?php
+
 session_start();
 ob_start();
 
-?>
+use Managers\AgentManager;
+use Managers\ContactManager;
+use Managers\SafeHouseManager;
+use Managers\TargetManager;
 
+?>
 <style><?php echo include_once 'Public/Css/form.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
 <div class="container">
     <div class="container">
-        <form action="?action=Create" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
+        <form action="?action=CreateMission" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
             <div class="container1">
                 <div>
                     <label for="codeName">Nom de code</label>
@@ -39,35 +44,69 @@ ob_start();
                 <div>
                     <input type="text" id="country"  name="country" placeholder="Entrez le pays" required>
                 </div>
-
+            </div>
+            <div class="containerSelect">
                 <div>
-                    <label for="agent">Agent</label>
+                    <label for="creation-selector">Séléctionnez un agent :</label>
                 </div>
                 <div>
-                    <input type="text" id="agent"  name="agent" placeholder="Entrez le nom de l'agent" required>
+                    <select name="agent" id="agent" multiple size="5">
+                        <optgroup label="Indiqués le ou les agents">
+                            <?php
+                            $manager = new AgentManager();
+                            $agents = $manager->getAll();
+                            foreach ($agents as $agent): ?>
+                                <option value="<?php echo $agent->getCodeName() ?>"><?php echo $agent->getCodeName() ?></option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    </select>
+
+                </div>
+                <div>
+                    <label for="creation-selector">Séléctionnez une cible :</label>
+                </div>
+                <div>
+                    <select name="target" id="target">
+                        <option>Selectionnez votre action</option>
+                        <?php
+                        $manager = new TargetManager();
+                        $targets = $manager->getAll();
+                        foreach ($targets as $target): ?>
+                            <option value="<?php echo $target->getCodeName() ?>"><?php echo $target->getCodeName() ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div>
+                    <label for="creation-selector">Séléctionnez une planque :</label>
+                </div>
+                <div>
+                    <select name="safeHouse" id="safeHouse">
+                        <option>Selectionnez votre action</option>
+                        <?php
+                        $manager = new SafeHouseManager();
+                        $safeHouses = $manager->getAll();
+                        foreach ($safeHouses as $safeHouse): ?>
+                            <option value="<?php echo $safeHouse->getCode() ?>"><?php echo $safeHouse->getCode() ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div>
+                    <label for="creation-selector">Séléctionnez un contact :</label>
+                </div>
+                <div>
+                    <select name="contact" id="contact">
+                        <option>Selectionnez votre action</option>
+                        <?php
+                        $manager = new ContactManager();
+                        $contacts = $manager->getAll();
+                        foreach ($contacts as $contact): ?>
+                            <option value="<?php echo $contact->getCodeName() ?>"><?php echo $contact->getCodeName() ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
             </div>
-            <div class="container2">
-                <div>
-                    <label for="target">Cible</label>
-                </div>
-                <div>
-                    <input type="text" id="target"  name="target" placeholder="Entrez le nom de la cible" required>
-                </div>
-                <div>
-                    <label for="safehouse">Planque</label>
-                </div>
-                <div>
-                    <input type="text" id="safehouse" name="safehouse" placeholder="Entrez le nom de la planque" required>
-                </div>
-                <div>
-                    <label for="contact">Contact</label>
-                </div>
-                <div>
-                    <input type="text" id="contact" name="contact" placeholder="Entrez le nom du contact" required>
-                </div>
 
-
+            <div class="container3">
                 <div>
                     <label for="type">Type de mission</label>
                 </div>
@@ -85,10 +124,10 @@ ob_start();
                 <div>
                     <select name="state" id="state">
                         <option value="">Selectionnez votre action</option>
-                        <option value="inProgress">En préparation</option>
-                        <option value="inProcess">En cours</option>
-                        <option value="finish">Terminée</option>
-                        <option value="failure">Echec</option>
+                        <option value="En préparation">En préparation</option>
+                        <option value="En cours">En cours</option>
+                        <option value="Terminée">Terminée</option>
+                        <option value="Echec">Echec</option>
                     </select>
                 </div>
                 <div>
@@ -103,6 +142,7 @@ ob_start();
                 <div>
                     <input type="date" id="startDate" name="startDate" placeholder="Entrez la date de début de mission" required>
                 </div>
+
                 <div>
                     <label for="endDate">Fin de la mission</label>
                 </div>

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SafeHouse;
+namespace Models;
 
 class SafeHousesModel
 {
@@ -10,6 +10,22 @@ class SafeHousesModel
     private string $country;
     private string $type;
 
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
+    }
+
+
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set'.ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value); //this->setId...
+            }
+        }
+
+    }
     /**
      * @return string
      */
