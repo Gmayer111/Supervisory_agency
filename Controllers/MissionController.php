@@ -26,15 +26,15 @@ class MissionController
     public function createForm()
     {
         $mission = new MissionManager();
-        $post = $_POST;
-        var_dump($post);
-/*        $missionModel = new MissionsModel($_POST);
+        $missionModel = new MissionsModel($_POST);
+
         if ($mission->create($missionModel) === true) {
-            header('Location: ?action=Profil');
-            var_dump($_POST);
+            header('Location: ?action=AgentForm');
         }else {
             header('Location: ?action=MissionForm');
-            var_dump($_POST);
-        }*/
+        }
     }
+
+
+
 }

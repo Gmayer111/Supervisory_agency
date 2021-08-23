@@ -14,6 +14,7 @@ class AgentsModel
     private string $competenceTwo;
     private string $competenceThree;
     private string $dateOfBirth;
+    private ?string $agent_Mission = null;
 
 
     public function __construct(array $data)
@@ -128,9 +129,10 @@ class AgentsModel
      */
     public function setNationality(string $nationality): self
     {
-        $this->nationality = $nationality;
+            $this->nationality = $nationality;
 
-        return $this;
+            return $this;
+
     }
 
     /**
@@ -182,6 +184,23 @@ class AgentsModel
     {
         $this->competenceThree = $competenceThree;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getAgentMission(): ?string
+    {
+        return $this->agent_Mission;
+    }
+
+    /**
+     * @param string|null $agent_Mission
+     */
+    public function setAgentMission(?string $agent_Mission): void
+    {
+        $this->agent_Mission = $agent_Mission;
+    }
+
 
 
 }

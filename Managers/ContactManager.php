@@ -35,6 +35,10 @@ class ContactManager
     public function create(ContactsModel $contact) :bool
     {
 
+        $missionManager = new MissionManager();
+
+        $origin = $missionManager->getData()[4];
+        $codeNameMission = $missionManager->getData()[0];
 
         function validDatas($data)
         {
@@ -51,21 +55,33 @@ class ContactManager
         $codeName = validDatas($_POST['codeName']);
         $firstname = validDatas($_POST['firstName']);
         $lastname = validDatas($_POST['lastName']);
+        if ($origin !== $_POST['nationality']) {
+            echo '<script>
+                    $let = confirm("Nationalité différente du pays de la mission")
+                       if ($let) {
+                           document.location.href = "http://localhost/intelligence-agency/?action=ContactForm"
+                       }                     
+                  </script>';
+            die();
+        }
         $nationality = validDatas($_POST['nationality']);
         $dateOfBirth = validDatas($_POST['dateOfBirth']);
+        $contact_Mission = $codeNameMission;
         $req = $this->pdo->prepare("
 INSERT INTO intelligence_agency.Contacts 
-    (codeName, firstname, lastname, nationality, dateOfBirth)
+    (codeName, firstname, lastname, nationality, dateOfBirth, contact_Mission)
     VALUES 
-           ('$codeName', '$firstname', '$lastname', '$nationality', '$dateOfBirth')");
+           ('$codeName', '$firstname', '$lastname', '$nationality', '$dateOfBirth', '$contact_Mission')");
         $req->bindValue($codeName, $contact->getCodeName(), PDO::PARAM_STR);
         $req->bindValue($firstname, $contact->getFirstname(), PDO::PARAM_STR);
         $req->bindValue($lastname, $contact->getLastname(), PDO::PARAM_STR);
         $req->bindValue($nationality, $contact->getNationality(), PDO::PARAM_STR);
         $req->bindValue($dateOfBirth, $contact->getDateOfBirth(), PDO::PARAM_STR);
-        $req->execute();
-
-        return true;
+        if ($req->execute()) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public function uptdate(ContactsModel $contact)

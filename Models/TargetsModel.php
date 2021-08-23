@@ -11,6 +11,7 @@ class TargetsModel
     private string $dateOfBirth;
     private string $nationality;
     private string $localisation;
+    private ?string $target_Mission = null;
 
 
     public function __construct(array $data)
@@ -122,7 +123,6 @@ class TargetsModel
     public function setNationality(string $nationality): self
     {
         $this->nationality = $nationality;
-
         return $this;
     }
 
@@ -144,6 +144,25 @@ class TargetsModel
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getTargetMission(): ?string
+    {
+        return $this->target_Mission;
+    }
+
+    /**
+     * @param string|null $target_Mission
+     */
+    public function setTargetMission(?string $target_Mission): void
+    {
+        $this->target_Mission = $target_Mission;
+    }
+
+
+
 
 
 }

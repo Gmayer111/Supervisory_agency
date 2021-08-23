@@ -10,6 +10,7 @@ class ContactsModel
     private string $lastname;
     private string $dateOfBirth;
     private string $nationality;
+    private ?string $contact_Mission = null;
 
     public function __construct(array $data)
     {
@@ -124,6 +125,24 @@ class ContactsModel
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getContactMission(): ?string
+    {
+        return $this->contact_Mission;
+    }
+
+    /**
+     * @param string|null $contact_Mission
+     */
+    public function setContactMission(?string $contact_Mission): void
+    {
+        $this->contact_Mission = $contact_Mission;
+    }
+
+
 
 
 }

@@ -21,10 +21,14 @@ class SafeHouseController
         $safeHouseModel = new SafeHousesModel($_POST);
 
         if ($safeHouse->create($safeHouseModel) === true) {
+            if ($_POST['next'] === 'Suivant') {
             header('Location: ?action=Profil');
+            }else {
+                header('Location: ?action=SafeHouseForm');
+            }
         }else {
-            echo 'erreur';
-            header('Location: ?action=MissionForm');
+        ?> <script>alert('Erreur')</script> <?php
+        echo 'erreur';
         }
     }
 }

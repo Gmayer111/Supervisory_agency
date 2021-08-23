@@ -19,12 +19,20 @@ class AgentController
     {
         $agentManager = new AgentManager();
         $agentModel = new AgentsModel($_POST);
+        
         if ($agentManager->create($agentModel) === true) {
-            header('Location: ?action=Profil');
+            if ($_POST['next'] === 'Suivant') {
+                header('Location: ?action=TargetForm');
+            }else {
+                header('Location: ?action=AgentForm');
+            }
         }else {
-            header('Location: ?action=AgentForm');
+            ?> <script>alert('Erreur')</script> <?php
+            echo 'erreur';
         }
     }
+
+
 
     public function deleteAgent() {
 

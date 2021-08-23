@@ -12,15 +12,16 @@
             <?php if (isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="?action=Profil">Profil</a></li>
+                <li><a href="?action=MissionForm">Créer mission</a></li>
                 <li><a href="?action=List">Missions</a></li>
-                <li><a href="?action=Detail">Mission en cours</a></li>
-                <button id="btn-login"><a href="?action=Logout">Deconnexion</a></button>
+                <li><a href="?action=Detail">Détail Mission</a></li>
+                <a href="?action=Logout"><button id="btn-login">Deconnexion</button></a>
             <?php endif; ?>
             <?php if (!isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="?action=List">Missions</a></li>
                 <li><a href="?action=Detail">Mission en cours</a></li>
-                <button id="btn-login"><a href="?action=Login">Connexion</a></button>
+            <a href="?action=Login"><button id="btn-login">Connexion</button></a>
             <?php endif; ?>
         </ul>
     </nav>

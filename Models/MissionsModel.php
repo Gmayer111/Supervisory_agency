@@ -15,10 +15,6 @@ class MissionsModel
     private string $competence;
     private string $startDate;
     private string $endDate;
-    private ?string $codeName_Agent = null; // penser à typer AgentModel
-    private ?string $codeName_Target = null; // penser à typer TargetModel
-    private ?string $code_SafeHouse = null; // penser à typer SafeHouseModel
-    private ?string $codeName_Contact = null; // penser à typer COntactModel
 
     public function __construct(array $data)
     {
@@ -207,73 +203,4 @@ class MissionsModel
 
         return $this;
     }
-
-    /**
-     * @return string
-     */
-    public function getCodeName_Agent(): ?string
-    {
-        return $this->codeName_Agent;
-    }
-
-    /**
-     * @param string $agent
-     */
-    public function setCodeName_Agent(string $agent): void
-    {
-        $this->codeName_Agent = $agent;
-
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodeName_Target(): ?string
-    {
-        return $this->codeName_Target;
-    }
-
-    /**
-     * @param string $target
-     */
-    public function setCodeName_Target(string $target): void
-    {
-        $this->codeName_Target = $target;
-
-    }
-
-    /**
-     * @return string
-     */
-    public function getCode_SafeHouse(): ?string
-    {
-        return $this->code_SafeHouse;
-    }
-
-    /**
-     * @param string $safeHouse
-     */
-    public function setCode_SafeHouse(string $safeHouse): void
-    {
-        $this->code_SafeHouse = $safeHouse;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCodeName_Contact(): ?string
-    {
-        return $this->codeName_Contact;
-    }
-
-    /**
-     * @param string $contact
-     */
-    public function setCodeName_Contact(string $contact): void
-    {
-        $this->codeName_Contact = $contact;
-    }
-
-
-
 }

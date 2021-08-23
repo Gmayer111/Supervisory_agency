@@ -21,10 +21,14 @@ class ContactController
         $contactModel = new ContactsModel($_POST);
 
         if ($contactManager->create($contactModel) === true) {
-            header('Location: ?action=Profil');
+        if ($_POST['next'] === 'Suivant') {
+            header('Location: ?action=SafeHouseForm');
         }else {
-            echo 'erreur';
             header('Location: ?action=ContactForm');
+        }
+            }else {
+        ?> <script>alert('Erreur')</script> <?php
+        echo 'erreur';
         }
     }
 }

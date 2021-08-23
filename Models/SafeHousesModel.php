@@ -9,6 +9,7 @@ class SafeHousesModel
     private string $address;
     private string $country;
     private string $type;
+    private ?string $sf_Mission = null;
 
     public function __construct(array $data)
     {
@@ -101,6 +102,24 @@ class SafeHousesModel
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getSfMission(): ?string
+    {
+        return $this->sf_Mission;
+    }
+
+    /**
+     * @param string|null $sf_Mission
+     */
+    public function setSfMission(?string $sf_Mission): void
+    {
+        $this->sf_Mission = $sf_Mission;
+    }
+
+
 
 
 

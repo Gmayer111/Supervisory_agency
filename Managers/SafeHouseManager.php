@@ -35,6 +35,11 @@ class SafeHouseManager
     public function create(SafeHousesModel $safeHouse) :bool
     {
 
+        $missionManager = new MissionManager();
+
+        $localisation = $missionManager->getData()[4];
+        $codeNameMission = $missionManager->getData()[0];
+
 
         function validDatas($data)
         {
@@ -49,14 +54,24 @@ class SafeHouseManager
 
 
         $code = validDatas($_POST['code']);
+        if ($localisation !== $_POST['country']) {
+            echo '<script>
+                    $let = confirm("La planque doit se trouver dans le pays de la mission")
+                       if ($let) {
+                           document.location.href = "http://localhost/intelligence-agency/?action=SafeHouseForm"
+                       }
+                  </script>';
+            die();
+        }
         $country = validDatas($_POST['country']);
         $type = validDatas($_POST['type']);
         $address = validDatas($_POST['address']);
+        $shMission = $codeNameMission;
         $req = $this->pdo->prepare("
 INSERT INTO intelligence_agency.Safe_houses
-    (code, address, country, type)
+    (code, address, country, type, sf_Mission)
     VALUES 
-           ('$code', '$address', '$country', '$type')");
+           ('$code', '$address', '$country', '$type', '$shMission')");
         $req->bindValue($code, $safeHouse->getCode(), PDO::PARAM_STR);
         $req->bindValue($country, $safeHouse->getCountry(), PDO::PARAM_STR);
         $req->bindValue($type, $safeHouse->getType(), PDO::PARAM_STR);

@@ -20,10 +20,14 @@ class TargetController
         $targetModel = new TargetsModel($_POST);
 
         if ($target->create($targetModel) === true) {
-            header('Location: ?action=Profil');
+            if ($_POST['next'] === 'Suivant') {
+                header('Location: ?action=ContactForm');
+            }else {
+                header('Location: ?action=TargetForm');
+            }
         }else {
-            echo 'erreur';
-            header('Location: ?action=TargetForm');
+        ?> <script>alert('Erreur')</script> <?php
+        echo 'erreur';
         }
     }
 

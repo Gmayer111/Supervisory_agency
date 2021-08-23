@@ -1,12 +1,15 @@
 <?php
+use Managers\MissionManager;
 
 session_start();
 ob_start();
-
 ?>
-
 <style><?php echo include_once 'Public/Css/form.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
+<?php
+$missionManager = new MissionManager();
+$missions = $missionManager->getAll();
+?>
 <div class="container">
     <div class="container">
         <form action="?action=CreateAgent" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
@@ -103,7 +106,10 @@ ob_start();
                     <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Entrez la date de naissance" required>
                 </div>
                 <div class="btn">
-                    <input type="submit" id="submit" name="submit" value="Créer">
+                    <input type="submit" id="next" name="next" value="Suivant">
+                </div>
+                <div class="btn">
+                    <input type="submit" id="create" name="create" value="Créer un autre agent">
                 </div>
         </form>
     </div>

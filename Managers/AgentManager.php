@@ -35,6 +35,8 @@ class AgentManager
     public function create(AgentsModel $agent) :bool
     {
 
+        $missionManager = new MissionManager();
+        $codeNameMission = $missionManager->getData()[0];
 
         function validDatas($data)
         {
@@ -55,11 +57,12 @@ class AgentManager
         $competenceTwo = validDatas($_POST['competenceTwo']);
         $competenceThree = validDatas($_POST['competenceThree']);
         $dateOfBirth = validDatas($_POST['dateOfBirth']);
+        $agent_Mission = $codeNameMission;
         $req = $this->pdo->prepare("
 INSERT INTO intelligence_agency.Agents 
-    (codeName, firstname, lastname, nationality, competenceOne, competenceTwo, competenceThree, dateOfBirth)
+    (codeName, firstname, lastname, nationality, competenceOne, competenceTwo, competenceThree, dateOfBirth, agent_Mission)
     VALUES 
-           ('$codeName', '$firstname', '$lastname', '$nationality', '$competenceOne', '$competenceTwo', '$competenceThree', '$dateOfBirth')");
+           ('$codeName', '$firstname', '$lastname', '$nationality', '$competenceOne', '$competenceTwo', '$competenceThree', '$dateOfBirth', '$agent_Mission')");
         $req->bindValue($codeName, $agent->getCodeName(), PDO::PARAM_STR);
         $req->bindValue($firstname, $agent->getFirstname(), PDO::PARAM_STR);
         $req->bindValue($lastname, $agent->getLastname(), PDO::PARAM_STR);
@@ -71,10 +74,8 @@ INSERT INTO intelligence_agency.Agents
         if ($req->execute()) {
             return true;
         }else {
-            $err = $req->errorInfo();
             return false;
         }
-
     }
 
     public function uptdate(AgentsModel $agent)
@@ -122,5 +123,12 @@ SET
             $agent[] = new AgentsModel($data);
         }
         return $agent;
+    }
+
+    public function getData(): array
+    {
+        $stmt = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
+        $r = $stmt->query('SELECT * FROM intelligence_agency.Agents ORDER BY id DESC ');
+        return $r->fetch();
     }
 }

@@ -1,4 +1,7 @@
 <?php
+
+use Managers\MissionManager;
+
 session_start();
 ob_start();
 
@@ -6,7 +9,12 @@ ob_start();
 
 <style><?php echo include_once 'Public/Css/form.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
+<?php
+$missionManager = new MissionManager();
+$missions = $missionManager->getAll();
+?>
 <div class="container">
+    <h1>Création d'une planque</h1>
     <div class="container">
         <form action="?action=CreateSafeHouse" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
             <div class="container1">
@@ -14,19 +22,19 @@ ob_start();
                     <label for="code">Code de la planque</label>
                 </div>
                 <div>
-                    <input type="text" id="code"  name="code" placeholder="Entrez le code de la planque" required>
+                    <input type="text" id="code"  name="code" placeholder="Entrez le code de la planque">
                 </div>
                 <div>
                     <label for="address">Adresse de la planque</label>
                 </div>
                 <div>
-                    <input type="text" id="address"  name="address" placeholder="Entrez l'adresse de la planque" required>
+                    <input type="text" id="address"  name="address" placeholder="Entrez l'adresse de la planque">
                 </div>
                 <div>
                     <label for="country">Pays de la planque</label>
                 </div>
                 <div>
-                    <input type="text" id="country"  name="country" placeholder="Entrez le pays de la planque" required>
+                    <input type="text" id="country"  name="country" placeholder="Entrez le pays de la planque">
                 </div>
                 <div>
                     <label for="type">Type de planque</label>
@@ -41,9 +49,12 @@ ob_start();
                         <option value="hotel">Hôtel</option>
                     </select>
                 </div>
-            <div class="btn">
-                <input type="submit" id="submit" name="submit" value="Créer">
-            </div>
+                <div class="btn">
+                    <input type="submit" id="next" name="next" value="Suivant">
+                </div>
+                <div class="btn">
+                    <input type="submit" id="create" name="create" value="Créer une autre planque">
+                </div>
         </form>
     </div>
 </div>
