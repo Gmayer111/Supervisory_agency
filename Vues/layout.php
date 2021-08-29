@@ -8,7 +8,7 @@
 <body>
 <header>
     <nav>
-        <ul id="liste">
+        <ul class="liste">
             <?php if (isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="?action=Profil">Profil</a></li>
