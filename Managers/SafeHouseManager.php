@@ -96,11 +96,15 @@ SET
         $req->execute();
     }
 
-    public function delete(string $code)
+    public function delete(string $code):bool
     {
         $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Safe_houses WHERE code = :code');
-        $req->bindValue(':codeName', $code, PDO::PARAM_STR);
-        $req->execute();
+        $req->bindValue(':code', $code, PDO::PARAM_STR);
+        if ($req->execute()) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public function getByCodeName(string $code): SafeHousesModel

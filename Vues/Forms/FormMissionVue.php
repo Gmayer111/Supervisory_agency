@@ -5,31 +5,35 @@ use Managers\MissionManager;
 session_start();
 ob_start();
 ?>
-<style><?php echo include_once 'Public/Css/form.css'?></style>
+<style><?php echo include_once 'Public/Css/formMission.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
 <?php
 $manager = new MissionManager();
 $missions = $manager->getAll();?>
-<div class="container">
+<div>
     <h1>Création d'une mission</h1>
-    <div class="container">
+    <div>
         <form action="?action=CreateMission" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
-            <div class="container1">
+            <div class="container blockOne">
                 <div>
                     <label for="codeName">Nom de code</label>
                 </div>
+
                 <div>
                     <input type="text" id="codeName"  name="codeName" placeholder="Entrez le nom de code" required>
                 </div>
+
                 <div>
                     <label for="title">Titre</label>
                 </div>
+
                 <div>
                     <input type="text" name="title" placeholder="Entrez le titre" required>
                 </div>
                 <div>
                     <label for="description">Description</label>
                 </div>
+
                 <div>
                 <textarea
                     name="description"
@@ -38,6 +42,7 @@ $missions = $manager->getAll();?>
                     required>
                 </textarea>
                 </div>
+
                 <div>
                     <label for="country">Pays</label>
                 </div>
@@ -45,11 +50,10 @@ $missions = $manager->getAll();?>
                     <input type="text" id="country"  name="country" placeholder="Entrez le pays" required>
                 </div>
             </div>
-            <div class="container3">
+
+            <div class="container blockTwo">
                 <div>
                     <label for="type">Type de mission</label>
-                </div>
-                <div>
                     <select name="type" id="type">
                         <option value="">Sélectionnez votre action</option>
                         <option value="Surveillance">Surveillance</option>
@@ -59,8 +63,6 @@ $missions = $manager->getAll();?>
                 </div>
                 <div>
                     <label for="state">Etat de la mission</label>
-                </div>
-                <div>
                     <select name="state" id="state">
                         <option value="">Sélectionnez votre action</option>
                         <option value="En préparation">En préparation</option>
@@ -71,28 +73,23 @@ $missions = $manager->getAll();?>
                 </div>
                 <div>
                     <label for="competence">Compétences requises</label>
-                </div>
-                <div>
                     <input type="text" id="competence" name="competence" placeholder="Entrez le nom de la planque" required>
                 </div>
                 <div>
                     <label for="startDate">Début de la mission</label>
-                </div>
-                <div>
                     <input type="date" id="startDate" name="startDate" placeholder="Entrez la date de début de mission" required>
                 </div>
-
                 <div>
                     <label for="endDate">Fin de la mission</label>
-                </div>
-                <div>
                     <input type="date" id="endDate" name="endDate" placeholder="Entrez la date de fin de mission" required>
                 </div>
-                <div>
+
+                <div class="btn">
                     <input type="submit" id="submit" name="submit" value="Suivant">
                 </div>
             </div>
-            <div class="container4">
+
+            <div class="container">
                 <table>
                     <thead>
                         <tr>

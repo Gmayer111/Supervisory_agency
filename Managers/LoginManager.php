@@ -36,7 +36,6 @@ class LoginManager
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, LoginModel::class);
         if ($stmt->execute()) {
-            var_dump($stmt);
             $users = $stmt->fetchAll();
             foreach ($users as $user) {
                 $password = $user->getPassword();

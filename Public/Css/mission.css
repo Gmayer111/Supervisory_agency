@@ -2,26 +2,83 @@ h1 {
     text-align: center;
 }
 
+th {
+    /*Border radius haut / bas gauche*/
+    border-radius: 10px 10px 10px 10px;
+}
+
+td {
+    border-radius: 0 10px 10px 0;
+}
 
 table, th, tr, td {
-    margin: 2rem;
-    padding: 0.5rem;
-    border: 1px solid black;
+    margin: 0.5rem;
+    padding: 0.8rem;
+    font-weight: normal;
 }
 
 
 th {
-    background-color: #8E8181;
+    background-color: cornflowerblue;
     width: 400px;
 }
 
 td {
-    background-color: #F4D9D9;
-    width: 100vw;
+    background-color: lightblue;
+    width: 90vw;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.ledExt {
+    display: flex;
+    justify-content: center;
+}
+
+.led {
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+    background: rgb(255,255,255);
     text-align: center;
 }
 
+.ledP {
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(213,241,11,1) 0%, rgba(255,255,255,1) 100%);
+}
 
+.ledO {
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%,rgba(9,217,43,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.ledF {
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(11,101,241,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.ledD {
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,0,1,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.bledI {
+    display: flex;
+    justify-content: center;
+}
+
+.ledI {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2px;
+    padding: 10px;
+    background-color: darkblue;
+    border: 10px solid black;
+    width: 450px;
+    color: #F4D9D9;
+}
+
+.ledI > div {
+    margin-left: 25px;
+}
 
 
 

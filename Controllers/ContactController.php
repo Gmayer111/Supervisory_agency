@@ -31,4 +31,14 @@ class ContactController
         echo 'erreur';
         }
     }
+
+    public function deleteContact()
+    {
+        $contactManager = new ContactManager();
+        if ($contactManager->delete($_POST['dtc']) === true) {
+            header('Location: ?action=Detail');
+        }else {
+            header('Location: ?action=Detail');
+        }
+    }
 }

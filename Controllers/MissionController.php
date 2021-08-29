@@ -35,6 +35,13 @@ class MissionController
         }
     }
 
+    public function updateMission()
+    {
+        $mission = new MissionManager();
+/*        $mission->uptdate($_POST['state']);*/
+        var_dump($_POST);
+    }
+
 
 
 }

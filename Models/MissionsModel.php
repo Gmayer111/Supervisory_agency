@@ -171,6 +171,7 @@ class MissionsModel
      */
     public function getStartDate(): string
     {
+
         return $this->startDate;
     }
 

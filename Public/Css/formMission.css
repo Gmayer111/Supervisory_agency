@@ -5,27 +5,33 @@ h1 {
 form {
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: space-around;
     background-color: #cbc2c2;
-    padding: 1rem;
-}
-
-.container {
-    padding: 1rem;
-}
-
-.agentInfo {
-    flex-direction: column;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-p {
-    background-color: #F4D9D9;
+    padding: 2rem;
 }
 
 .btn {
     padding: 2rem;
+    margin-top: 10px;
+}
+
+.blockTwo, .blockOne {
+    background-color: #F4D9D9;
+}
+
+.blockOne {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+}
+
+.container.blockTwo > label, select, label, input {
+    margin: 1rem;
+}
+
+select, option, input {
+    margin-left: 10px;
 }
 
 

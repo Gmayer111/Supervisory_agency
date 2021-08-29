@@ -31,4 +31,14 @@ class TargetController
         }
     }
 
+    public function deleteTarget()
+    {
+        $targetManager = new TargetManager();
+        if ($targetManager->delete($_POST['dtt']) === true) {
+            header('Location: ?action=Detail');
+        }else {
+            header('Location: ?action=Detail');
+        }
+    }
+
 }

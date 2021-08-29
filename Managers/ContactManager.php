@@ -101,11 +101,15 @@ SET
         $req->execute();
     }
 
-    public function delete(string $codeName)
+    public function delete(string $codeName):bool
     {
         $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Contacts WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
-        $req->execute();
+        if ($req->execute()) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public function getByCodeName(string $codeName): ContactsModel

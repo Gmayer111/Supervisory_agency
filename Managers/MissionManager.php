@@ -78,15 +78,20 @@ INSERT INTO intelligence_agency.Missions
         }
     }
 
-    public function uptdate(MissionsModel $mission)
+    public function uptdate(string $state):bool
     {
-        $req = $this->pdo->prepare('
+
+
+        $state = validDatas($_POST['state']);
+        $codeName =
+
+        $req = $this->pdo->prepare("
 UPDATE 
     intelligence_agency.Missions 
 SET 
-    title = :title, description = :description, country = :country, type = :type, state = :state, competence = :competence, startDate = :startDate, endDate = :endDate
+    state = '$state'
 WHERE codeName = :codeName
-    ');
+    ");
         $req->bindValue(':title', $mission->getTitle(), PDO::PARAM_STR);
         $req->bindValue(':description', $mission->getDescription(), PDO::PARAM_STR);
         $req->bindValue(':country', $mission->getCountry(), PDO::PARAM_STR);
@@ -124,18 +129,45 @@ WHERE codeName = :codeName
 
     public function getAllDatas():array
     {
-        $req = $this->pdo->query('
-SELECT * FROM intelligence_agency.Missions 
-    LEFT JOIN intelligence_agency.Agents AS Agent 
-        ON Missions.codeName = Agent.agent_Mission 
-    LEFT JOIN intelligence_agency.Contacts AS Contact 
-        ON Missions.codeName = Contact.contact_Mission 
-    LEFT JOIN intelligence_agency.Targets AS Target 
-        ON Missions.codeName = Target.target_Mission 
-    LEFT JOIN intelligence_agency.Safe_houses AS SafeHouse 
-        ON Missions.codeName = SafeHouse.sf_Mission 
+            $stmt = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
+            $req = $stmt->query('
+SELECT  
+       Missions.*,
+       AgentCodeName,
+       TargetCodeName,
+       ContactCodeName,
+       ShCodeName
+FROM 
+     intelligence_agency.Missions
+    LEFT JOIN 
+         (SELECT  
+               agent_Mission, GROUP_CONCAT(codeName) AS AgentCodeName
+         FROM intelligence_agency.Agents
+             GROUP BY agent_Mission) as amACN 
+ON Missions.codeName = agent_Mission
+
+    LEFT JOIN 
+         (SELECT  
+               target_Mission, GROUP_CONCAT(codeName) AS TargetCodeName
+         FROM intelligence_agency.Targets
+             GROUP BY target_Mission) as tMACN 
+ON Missions.codeName = target_Mission
+
+    LEFT JOIN 
+         (SELECT  
+               contact_Mission, GROUP_CONCAT(codeName) AS ContactCodeName
+         FROM intelligence_agency.Contacts
+             GROUP BY contact_Mission) as cMACN 
+ON Missions.codeName = contact_Mission
+
+    LEFT JOIN 
+         (SELECT  
+               sf_Mission, GROUP_CONCAT(code) AS ShCodeName
+         FROM intelligence_agency.Safe_houses
+             GROUP BY sf_Mission) as sMACN 
+ON Missions.codeName = sf_Mission
         ');
-        return $req->fetchAll();
+            return $req->fetchAll();
     }
 
     }

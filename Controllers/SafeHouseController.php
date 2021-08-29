@@ -31,4 +31,17 @@ class SafeHouseController
         echo 'erreur';
         }
     }
+
+    public function deleteSh()
+    {
+        $safeHouseManager = new SafeHouseManager();
+        if ($safeHouseManager->delete($_POST['dtsh']) === true) {
+            header('Location: ?action=Detail');
+        }else {
+            header('Location: ?action=Detail');
+        }
+    }
+
+
+
 }

@@ -34,7 +34,15 @@ class AgentController
 
 
 
-    public function deleteAgent() {
+    public function deleteAgent()
+    {
+        $agentManager = new AgentManager();
+
+        if ($agentManager->delete($_POST['dta']) === true) {
+            header('Location: ?action=Detail');
+        }else {
+            header('Location: ?action=Detail');
+        }
 
     }
 
