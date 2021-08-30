@@ -52,7 +52,6 @@ class MissionManager
         $description = addslashes(validDatas($_POST['description'])) ;
         $country = validDatas($_POST['country']);
         $type = validDatas($_POST['type']);
-        $state = validDatas($_POST['state']);
         $competence = validDatas($_POST['competence']);
         $startDate = validDatas($_POST['startDate']);
         $endDate = validDatas($_POST['endDate']);
@@ -60,13 +59,13 @@ class MissionManager
 INSERT INTO intelligence_agency.Missions 
     (codeName, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
-           ('$codeName', '$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
+           ('$codeName', '$title', '$description', '$country', '$type', 'En préparation', '$competence', '$startDate', '$endDate')");
         $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
         $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
         $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
         $req->bindValue($country, $mission->getCountry(), PDO::PARAM_STR);
         $req->bindValue($type, $mission->getType(), PDO::PARAM_STR);
-        $req->bindValue($state, $mission->getState(), PDO::PARAM_STR);
+        $req->bindValue('En préparation', $mission->getState(), PDO::PARAM_STR);
         $req->bindValue($competence, $mission->getCompetence(), PDO::PARAM_STR);
         $req->bindValue($startDate, $mission->getStartDate(), PDO::PARAM_STR);
         if ($req->execute()) {
@@ -78,29 +77,25 @@ INSERT INTO intelligence_agency.Missions
         }
     }
 
-    public function uptdate(string $state):bool
+    public function uptdate(MissionsModel $mission):bool
     {
 
-
-        $state = validDatas($_POST['state']);
-        $codeName =
+        $state = $_POST['uM'];
+        $codeName = $_GET['codeName'];
 
         $req = $this->pdo->prepare("
-UPDATE 
-    intelligence_agency.Missions 
-SET 
-    state = '$state'
-WHERE codeName = :codeName
+                UPDATE 
+                    intelligence_agency.Missions 
+                SET 
+                    state = '$state'
+                WHERE codeName = '$codeName'
     ");
-        $req->bindValue(':title', $mission->getTitle(), PDO::PARAM_STR);
-        $req->bindValue(':description', $mission->getDescription(), PDO::PARAM_STR);
-        $req->bindValue(':country', $mission->getCountry(), PDO::PARAM_STR);
-        $req->bindValue(':type', $mission->getType(), PDO::PARAM_STR);
-        $req->bindValue(':state', $mission->getState(), PDO::PARAM_STR);
-        $req->bindValue(':competence', $mission->getCompetence(), PDO::PARAM_STR);
-        $req->bindValue(':startDate', $mission->getStartDate(), PDO::PARAM_STR);
-        $req->bindValue(':endDate', $mission->getEndDate());
-        $req->execute();
+        $req->bindValue($state, $mission->getState(), PDO::PARAM_STR);
+        if ($req->execute()) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public function delete(string $codeName)
@@ -127,10 +122,12 @@ WHERE codeName = :codeName
         return $req->fetch();
     }
 
-    public function getAllDatas():array
+    public function getAllDatas(string $codeName):array
     {
+
+
             $stmt = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-            $req = $stmt->query('
+            $req = $stmt->query("
 SELECT  
        Missions.*,
        AgentCodeName,
@@ -166,8 +163,10 @@ ON Missions.codeName = contact_Mission
          FROM intelligence_agency.Safe_houses
              GROUP BY sf_Mission) as sMACN 
 ON Missions.codeName = sf_Mission
-        ');
-            return $req->fetchAll();
+
+WHERE codeName = '$codeName'
+        ");
+            return $req->fetch();
     }
 
     }

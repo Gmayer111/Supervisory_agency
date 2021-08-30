@@ -3,17 +3,18 @@
     justify-content: center;
     margin: 2rem;
     padding: 1rem;
-    background-color: #928f8f;
+    background-color: #c19595;
     color: white;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px #353535;
 }
 
 h1 {
     text-align: center;
 }
 
-.btn {
-    display: flex;
-    justify-content: start;
+header {
+    visibility: hidden;
 }
 
 button {
@@ -22,7 +23,30 @@ button {
     padding: 0.5rem;
 }
 
-.btnBack {
+.btnCR {
     display: flex;
     justify-content: center;
 }
+
+.btnReturn {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    border: 5px solid black;
+    border-radius: 100%;
+    width: 300px;
+}
+
+p {
+    background: -webkit-linear-gradient(180deg, rgb(81, 17, 17) 0%, rgb(5, 56, 191) 47%, rgb(48, 53, 2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 80px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btnH {
+    visibility: hidden;
+}
+

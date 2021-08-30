@@ -44,5 +44,5 @@ ob_start();
 <?php
 $content = ob_get_clean();
 $title = 'Formulaire d\'action';
-echo require_once 'Vues/layout.php';
+require_once 'Vues/layout.php';
 ?>

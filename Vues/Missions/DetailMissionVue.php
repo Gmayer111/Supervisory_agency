@@ -1,10 +1,7 @@
 <?php
 
-use Managers\AgentManager;
-use Managers\ContactManager;
+use Controllers\MissionController;
 use Managers\MissionManager;
-use Managers\SafeHouseManager;
-use Managers\TargetManager;
 
 session_start();
 ob_start();
@@ -12,45 +9,36 @@ ob_start();
 <style><?php echo include_once 'Public/Css/mission.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
 <?php
-$agentManager = new AgentManager();
-$agents = $agentManager->getAll();
-$contactManager = new ContactManager();
-$contacts = $contactManager->getAll();
-$targetManager = new TargetManager();
-$targets = $targetManager->getAll();
-$shManager = new SafeHouseManager();
-$shs = $shManager->getAll();
-
-
-
+$controller = new MissionController();
+$codeName = $controller->DetailMissionVue();
 $manager = new MissionManager();
-$res = $manager->getAllDatas();
-foreach ($res as $re):?>
+$res = $manager->getAllDatas($codeName);?>
+<h2>Nom de code mission : <?php echo ucfirst(strtolower($res['codeName'])) ?></h2>
     <table>
         <tr>
             <th>Titre</th>
-            <td><?php echo $re['title'] ?></td>
+            <td><?php echo $res['title'] ?></td>
         </tr>
         <tr>
             <th>Description</th>
-            <td><?php echo $re['description'] ?></td>
+            <td><?php echo $res['description'] ?></td>
 
         </tr>
         <tr>
             <th>Nom de code</th>
-            <td><?php echo ucfirst(strtolower($re['codeName'])) ?></td>
+            <td><?php echo ucfirst(strtolower($res['codeName'])) ?></td>
 
         </tr>
         <tr>
             <th>Pays</th>
-            <td><?php echo $re['country'] ?></td>
+            <td><?php echo $res['country'] ?></td>
 
         </tr>
         <tr>
 
             <th>Agent(s)
                 <?php
-                $data = ucfirst(strtolower($re['AgentCodeName']));
+                $data = ucfirst(strtolower($res['AgentCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
                 if (isset($_SESSION['CodeName'])): ?>
@@ -88,7 +76,7 @@ foreach ($res as $re):?>
             <th>
                 Contact(s)
                 <?php
-                $data = ucfirst(strtolower($re['ContactCodeName']));
+                $data = ucfirst(strtolower($res['ContactCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
                 if (isset($_SESSION['CodeName'])): ?>
@@ -124,7 +112,7 @@ foreach ($res as $re):?>
             <th>
                 Cible(s)
                 <?php
-                $data = ucfirst(strtolower($re['TargetCodeName']));
+                $data = ucfirst(strtolower($res['TargetCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
                 if (isset($_SESSION['CodeName'])): ?>
@@ -160,7 +148,7 @@ foreach ($res as $re):?>
             <th>
                 Planque
                 <?php
-                $data = ucfirst(strtolower($re['ShCodeName']));
+                $data = ucfirst(strtolower($res['ShCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
                 if (isset($_SESSION['CodeName'])): ?>
@@ -194,29 +182,45 @@ foreach ($res as $re):?>
         </tr>
         <tr>
             <th>Type de mission</th>
-            <td><?php echo $re['type'] ?></td>
+            <td><?php echo $res['type'] ?></td>
         </tr>
         <tr>
-            <th>Statut de la mission</th>
-            <td><?php echo $re['state'] ?></td>
+            <th>
+                Statut de la mission
+                <?php if (isset($_SESSION['CodeName'])): ?>
+                <form action="?action=UpdateMission&codeName=<?php echo $res['codeName']; ?>" method="post">
+                    <label for="uM"></label>
+                    <select name="uM" id="uM">
+                        <option value="">Mettre à jour la mission</option>
+                        <option value="En préparation">En préparation</option>
+                        <option value="En cours">En cours</option>
+                        <option value="Terminée">Terminée</option>
+                        <option value="Echec">Echec</option>
+                    </select>
+                    <div>
+                        <input type="submit" id="submit" name="submit" value="Confirmer">
+                    </div>
+                </form>
+                <?php endif; ?>
+            </th>
+            <td><?php echo $res['state'] ?></td>
         </tr>
         <tr>
             <th>Spécialités</th>
-            <td><?php echo $re['competence'] ?></td>
+            <td><?php echo $res['competence'] ?></td>
         </tr>
         <tr>
             <th>Date de début</th>
-            <td><?php echo substr($re['startDate'], 0, -9) ?></td>
+            <td><?php echo substr($res['startDate'], 0, -9) ?></td>
         </tr>
         <tr>
             <th>Date de fin</th>
-            <td><?php echo substr($re['endDate'], 0, -9) ?></td>
+            <td><?php echo substr($res['endDate'], 0, -9) ?></td>
         </tr>
     </table>
 <?php
-endforeach;
 
 $content = ob_get_clean();
 $title = 'Détail des missions';
-echo require_once 'Vues/layout.php';
+require_once 'Vues/layout.php';
 ?>

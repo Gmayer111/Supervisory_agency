@@ -61,7 +61,7 @@ $missions = $manager->getAll();?>
                         <option value="Reconnaissance">Reconnaissance</option>
                     </select>
                 </div>
-                <div>
+<!--                <div>
                     <label for="state">Etat de la mission</label>
                     <select name="state" id="state">
                         <option value="">Sélectionnez votre action</option>
@@ -70,7 +70,7 @@ $missions = $manager->getAll();?>
                         <option value="Terminée">Terminée</option>
                         <option value="Echec">Echec</option>
                     </select>
-                </div>
+                </div>-->
                 <div>
                     <label for="competence">Compétences requises</label>
                     <input type="text" id="competence" name="competence" placeholder="Entrez le nom de la planque" required>
@@ -111,5 +111,5 @@ $missions = $manager->getAll();?>
 <?php
 $content = ob_get_clean();
 $title = 'Formulaire d\'action';
-echo require_once 'Vues/layout.php';
+require_once 'Vues/layout.php';
 ?>

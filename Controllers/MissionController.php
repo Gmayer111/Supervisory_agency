@@ -10,17 +10,18 @@ class MissionController
 
     public function ListMissionsVue()
     {
-        echo require_once 'Vues/Missions/ListMissionVue.php';
+        require_once 'Vues/Missions/ListMissionVue.php';
     }
 
     public function DetailMissionVue()
     {
-        echo require_once 'Vues/Missions/DetailMissionVue.php';
+        require_once 'Vues/Missions/DetailMissionVue.php';
+        return $_GET['codeName'];
     }
 
     public function formMissionVue()
     {
-        echo require_once 'Vues/Forms/FormMissionVue.php';
+        require_once 'Vues/Forms/FormMissionVue.php';
     }
 
     public function createForm()
@@ -38,8 +39,13 @@ class MissionController
     public function updateMission()
     {
         $mission = new MissionManager();
-/*        $mission->uptdate($_POST['state']);*/
-        var_dump($_POST);
+        $missionModel = new MissionsModel($_POST);
+
+        if ($mission->uptdate($missionModel) === true) {
+            require_once 'Vues/Missions/DetailMissionVue.php';
+        }else {
+            echo 'erreur';
+        }
     }
 
 

@@ -11,7 +11,7 @@ class MissionsModel
     private string $description;
     private string $country;
     private string $type;
-    private string $state;
+    private ?string $state = null;
     private string $competence;
     private string $startDate;
     private string $endDate;
@@ -129,22 +129,20 @@ class MissionsModel
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getState(): string
+    public function getState(): ?string
     {
         return $this->state;
     }
 
     /**
-     * @param string $state
-     * @return MissionsModel
+     * @param string|null $state
      */
-    public function setState(string $state): self
+    public function setState(?string $state): void
     {
         $this->state = $state;
 
-        return $this;
     }
 
     /**

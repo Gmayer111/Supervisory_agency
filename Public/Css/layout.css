@@ -26,6 +26,12 @@ header {
     height: 50px;
 }
 
+.liste li a {
+    list-style: none;
+    text-decoration: none;
+    line-height: 1em;
+}
+
 header ul {
     display: flex;
     align-content: space-between;
@@ -36,9 +42,64 @@ header li {
     margin: 0 50px;
 }
 
-header li a {
+li, a {
     color: white;
 }
+
+.dropBtn {
+    font-family: Futura, serif;
+    font-size: 1em;
+    color: white;
+    text-decoration: none;
+    border: none;
+    display: inline-block;
+    background-color: #5863DB;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+/*Pour position le contenu de la liste déorulante*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/*Caché par défaut*/
+.dropContent {
+    display: none;
+    position: absolute;
+    background-color: #5863DB;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/*Liens à l'intérieur du menu déroulant*/
+.dropContent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/*Changer la couleur des liens au passage*/
+.dropContent a:hover {background-color: #f1f1f1;}
+
+/*Montre le menu déroulant au passage hover*/
+.dropdown:hover .dropContent {
+    display: block;
+}
+
+/*Change la couleur du texte du bouton lorsque le menu est ouvert*/
+.dropdown:hover .dropBtn {
+    color: #928f8f;
+}
+
+.btnLogin {
+    margin-left: 150px;
+}
+
+
 
 footer {
     width: 100%;

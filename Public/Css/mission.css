@@ -1,15 +1,11 @@
-h1 {
+h1, h2 {
     text-align: center;
 }
 
-th {
-    /*Border radius haut / bas gauche*/
-    border-radius: 10px 10px 10px 10px;
+h2 {
+    color: darkred;
 }
 
-td {
-    border-radius: 0 10px 10px 0;
-}
 
 table, th, tr, td {
     margin: 0.5rem;
@@ -39,48 +35,53 @@ td {
     width: 20px;
     height: 20px;
     border-radius: 100px;
-    background: rgb(255,255,255);
     text-align: center;
 }
 
 .ledP {
+    background: rgb(255,255,255);
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(213,241,11,1) 0%, rgba(255,255,255,1) 100%);
 }
 
 .ledO {
+    background: rgb(255,255,255);
     background: radial-gradient(circle, rgba(255,255,255,1) 0%,rgba(9,217,43,1) 0%, rgba(255,255,255,1) 100%);
 }
 
 .ledF {
+    background: rgb(255,255,255);
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(11,101,241,1) 0%, rgba(255,255,255,1) 100%);
 }
 
 .ledD {
+    background: rgb(255,255,255);
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,0,1,1) 0%, rgba(255,255,255,1) 100%);
 }
 
 .bledI {
     display: flex;
     justify-content: center;
+    margin-right: 23px;
+    margin-bottom: 20px;
+
 }
 
 .ledI {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 2px;
-    padding: 10px;
-    background-color: darkblue;
-    border: 10px solid black;
+    background-color: #341f97;
+    border-radius: 10px 10px 10px 10px;
+    padding-top: 2px;
     width: 450px;
     color: #F4D9D9;
+    font-size: small;
 }
 
 .ledI > div {
     margin-left: 25px;
 }
 
-
-
-
-
+form {
+    margin-top: 10px;
+}
