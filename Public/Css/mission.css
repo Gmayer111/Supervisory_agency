@@ -26,7 +26,32 @@ td {
     font-size: 1.1em;
 }
 
-.ledExt {
+.ledContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.ledSubContain {
+    display: flex;
+    justify-content: space-around;
+    background-color: #341f97;
+    border-radius: 5px;
+    padding-top: 2px;
+    width: 450px;
+    color: #F4D9D9;
+    font-size: small;
+    text-align: center;
+}
+
+.ledSubContain > div > div {
+    margin-left: 10px;
+}
+
+.ledM {
+    margin-left: 20px;
+}
+
+.ledDivTable {
     display: flex;
     justify-content: center;
 }
@@ -34,52 +59,25 @@ td {
 .led {
     width: 20px;
     height: 20px;
+    margin-top: 10px;
     border-radius: 100px;
     text-align: center;
 }
 
 .ledP {
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(213,241,11,1) 0%, rgba(255,255,255,1) 100%);
+    background: radial-gradient(circle, rgb(238, 201, 4) 0%, rgb(232, 248, 1) 0%, rgb(238, 201, 4) 100%);
 }
 
 .ledO {
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%,rgba(9,217,43,1) 0%, rgba(255,255,255,1) 100%);
+    background: radial-gradient(circle, rgb(9, 217, 43) 0%, rgb(1, 248, 229) 0%, rgb(9, 217, 43) 100%);
 }
 
 .ledF {
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(11,101,241,1) 0%, rgba(255,255,255,1) 100%);
+    background: radial-gradient(circle, rgb(57, 79, 215) 0%, rgb(130, 202, 202) 0%, rgb(57, 79, 215) 100%);
 }
 
 .ledD {
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,0,1,1) 0%, rgba(255,255,255,1) 100%);
-}
-
-.bledI {
-    display: flex;
-    justify-content: center;
-    margin-right: 23px;
-    margin-bottom: 20px;
-
-}
-
-.ledI {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: #341f97;
-    border-radius: 10px 10px 10px 10px;
-    padding-top: 2px;
-    width: 450px;
-    color: #F4D9D9;
-    font-size: small;
-}
-
-.ledI > div {
-    margin-left: 25px;
+    background: radial-gradient(circle, rgb(255, 0, 1) 0%, rgb(246, 117, 120) 0%, rgb(255, 0, 1) 100%);
 }
 
 form {

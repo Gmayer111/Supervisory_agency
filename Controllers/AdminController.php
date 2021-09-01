@@ -18,12 +18,12 @@ class AdminController
     {
         $admin = new AdminManager();
         $adminModel = new AdminsModel($_POST);
-
-        if ($admin->create($adminModel) === true) {
+        $admin->create($adminModel);
+/*        if ($admin->create($adminModel) === true) {
             header('Location: ?action=Profil');
         }else {
             echo 'erreur';
             header('Location: ?action=MissionForm');
-        }
+        }*/
     }
 }

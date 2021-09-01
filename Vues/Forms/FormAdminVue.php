@@ -8,7 +8,7 @@ ob_start();
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
 <div class="container">
     <div class="container">
-        <form action="?action=Create" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
+        <form action="?action=CreateAdmin" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
             <div class="container1">
                 <div>
                     <label for="codeName">Nom de code</label>

@@ -1,16 +1,17 @@
 .container-connexion {
     display: flex;
     justify-content: center;
-    margin: 2rem;
     padding: 1rem;
     background-color: #c19595;
     color: white;
     border-radius: 10px;
     box-shadow: 10px 5px 5px #353535;
+    width: 400px;
 }
 
-h1 {
-    text-align: center;
+.formContainer{
+    display: flex;
+    justify-content: center;
 }
 
 header {
@@ -48,5 +49,9 @@ p {
 
 .btnH {
     visibility: hidden;
+}
+
+.image-bann {
+    display: none;
 }
 

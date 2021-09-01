@@ -2,8 +2,10 @@
 
 namespace Managers;
 
-use Models\LoginModel;
+use Models\AdminsModel;
 use PDO;
+use ReflectionClass;
+use ReflectionException;
 
 class LoginManager
 {
@@ -12,7 +14,6 @@ class LoginManager
     {
 
         session_start();
-
 
         function validData($data)
         {
@@ -26,29 +27,29 @@ class LoginManager
         }
 
         $codeName = validData($_POST['CodeName']);
-        $password = validData($_POST['password']);
 
         $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-        $stmt = $pdo->prepare('SELECT * FROM intelligence_agency.Admins WHERE codeName = :codeName AND password = :password');
+        $stmt = $pdo->prepare('SELECT * FROM intelligence_agency.Admins WHERE codeName = :codeName');
         $stmt->bindValue(':codeName', $codeName);
-        $stmt->bindValue(':password', $password);
-
-
-        $stmt->setFetchMode(PDO::FETCH_CLASS, LoginModel::class);
         if ($stmt->execute()) {
-            $users = $stmt->fetchAll();
-            foreach ($users as $user) {
-                $password = $user->getPassword();
-                $codeName = $user->getCodeName();
-                if ($password === $_POST['password'] && $codeName === $_POST['CodeName']) {
-                    $_SESSION['CodeName'] = 'Gaël';
-                    return true;
+            $reflector = new ReflectionClass(AdminsModel::class);
+            try {
+                // Je crée une instance de ma classe admin en ignorant le constructeur
+                $instance = $reflector->newInstanceWithoutConstructor();
+                while ($user = $stmt->fetchObject(get_class($instance))) {
+                    $password = $user->getPassword();
+                    if (password_verify(validData($_POST['password']), $password)) {
+                        $_SESSION['CodeName'] = 'Gaël';
+                        return true;
+                    }else {
+                        return false;
+                    }
                 }
+            } catch (ReflectionException $e) {
+                echo $e->getMessage();
             }
         }
         return false;
     }
-
-
 
 }

@@ -18,7 +18,11 @@ $missions = $manager->getAll();
             <?php if (isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="?action=Profil">Profil</a></li>
-                <li><a href="?action=MissionForm">Créer mission</a></li>
+                <li><a href="?action=
+                <?php $missionForm = 'MissionForm';
+                echo urlencode($missionForm);
+                    ?>
+                ">Créer mission</a></li>
                 <li><a href="?action=List">Missions</a></li>
                 <div class="dropdown">
                     <button class="dropBtn">Détail mission</button>
@@ -45,10 +49,12 @@ $missions = $manager->getAll();
             <?php endif; ?>
         </ul>
     </nav>
+
 </header>
-<div>
-    <h1><?php echo $title; ?></h1>
+<div class="image-home">
+    <img class="image-bann" src="Public/images/home-banner.jpg" alt="Image home banner">
 </div>
+
 <main>
     <section>
         <?php echo $content; ?>

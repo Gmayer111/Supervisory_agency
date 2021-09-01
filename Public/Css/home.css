@@ -1,3 +1,24 @@
+.btnCR {
+    display: flex;
+    justify-content: center;
+}
+
+.btnReturn {
+    text-decoration: none;
+    padding: 30px;
+    border: 3px solid black;
+    border-radius: 100%;
+}
+
+h1 {
+    background: -webkit-linear-gradient(180deg, rgb(81, 17, 17) 0%, rgb(5, 56, 191) 47%, rgb(48, 53, 2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+}
+
 
 .image-home {
     display: flex;
@@ -9,7 +30,7 @@ img {
     height: 300px;
 }
 
-h1, h2 {
+h2 {
     text-align: center;
 }
 

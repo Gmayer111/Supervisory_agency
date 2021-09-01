@@ -33,7 +33,6 @@ $missions = $manager->getAll();?>
                 <div>
                     <label for="description">Description</label>
                 </div>
-
                 <div>
                 <textarea
                     name="description"
@@ -52,7 +51,7 @@ $missions = $manager->getAll();?>
             </div>
 
             <div class="container blockTwo">
-                <div>
+                <div class="formPosition">
                     <label for="type">Type de mission</label>
                     <select name="type" id="type">
                         <option value="">Sélectionnez votre action</option>
@@ -71,15 +70,15 @@ $missions = $manager->getAll();?>
                         <option value="Echec">Echec</option>
                     </select>
                 </div>-->
-                <div>
+                <div class="formPosition">
                     <label for="competence">Compétences requises</label>
                     <input type="text" id="competence" name="competence" placeholder="Entrez le nom de la planque" required>
                 </div>
-                <div>
+                <div class="formPosition">
                     <label for="startDate">Début de la mission</label>
                     <input type="date" id="startDate" name="startDate" placeholder="Entrez la date de début de mission" required>
                 </div>
-                <div>
+                <div class="formPosition">
                     <label for="endDate">Fin de la mission</label>
                     <input type="date" id="endDate" name="endDate" placeholder="Entrez la date de fin de mission" required>
                 </div>

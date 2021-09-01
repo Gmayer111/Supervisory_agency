@@ -50,18 +50,23 @@ class AdminManager
         $codeName = validDatas($_POST['codeName']);
         $firstname = validDatas($_POST['firstName']);
         $lastname = validDatas($_POST['lastName']);
-        $password = validDatas($_POST['password']);
+        $password = password_hash(validDatas($_POST['password']), PASSWORD_BCRYPT);
         $req = $this->pdo->prepare("
 INSERT INTO intelligence_agency.Admins
-    (firstname, lastname, password, codeName)
+    (firstname, lastname, codeName, password)
     VALUES 
            ('$codeName', '$firstname', '$lastname', '$password')");
         $req->bindValue($codeName, $admin->getCodeName(), PDO::PARAM_STR);
         $req->bindValue($firstname, $admin->getFirstname(), PDO::PARAM_STR);
         $req->bindValue($lastname, $admin->getLastname(), PDO::PARAM_STR);
-        $req->bindValue($password, $admin->getPassword(), PDO::PARAM_STR);
-        $req->execute();
-        return true;
+        $req->bindValue($password, $admin->getPassword());
+        var_dump($req);
+        if ($req->execute()) {
+            echo 'exec ok';
+            return true;
+
+        }
+        return false;
     }
 
     public function uptdate(AdminsModel $admin)

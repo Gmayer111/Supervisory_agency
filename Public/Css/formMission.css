@@ -1,13 +1,10 @@
-h1 {
-    text-align: center;
-}
-
 form {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     background-color: #cbc2c2;
     padding: 2rem;
+
 }
 
 .btn {
@@ -30,10 +27,11 @@ form {
     margin: 1rem;
 }
 
-select, option, input {
-    margin-left: 10px;
-}
 
+.formPosition {
+    display: flex;
+    justify-content: space-between;
+}
 
 input[type=submit] {
     background-color: red;
@@ -47,14 +45,15 @@ input[type=submit] {
 }
 
 
+
+
 table, th, tr, td {
     margin: 2rem;
     padding: 0.5rem;
-    border: 1px solid black;
 }
 
 th {
-    background-color: #8E8181;
+    background-color: #84817a;
 }
 
 td {
