@@ -13,22 +13,20 @@ class MissionManager
     public function connect(): PDO
     {
         if (getenv('JAWSDB_URL') !== false) {
-            $dbparts = parse_url(getenv('JAWSDB_URL'));
-
-            $hostname = $dbparts['host'];
-            $username = $dbparts['user'];
-            $password = $dbparts['pass'];
-            $database = ltrim($dbparts['path'],'/');
+            $pdo = new PDO("mysql://hjwstw708lf6ejn4:rx4vgsop65xcy472@lyn7gfxo996yjjco.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ifpzr97zxq80tort");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
 
         }else {
             $username = 'root';
             $password = 'root';
             $database = 'intelligence_agency';
             $hostname = 'localhost';
+            $pdo = new PDO("mysql:dbname=$database;host=$hostname", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
         }
-        $pdo = new PDO("mysql:dbname=$database;host=$hostname", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $pdo;
+
     }
 
 
