@@ -26,7 +26,9 @@ class MissionManager
             $database = 'intelligence_agency';
             $hostname = 'localhost';
         }
-        return $pdo = new PDO("mysql:dbname=$database;host=$hostname", $username, $password);
+        $pdo = new PDO("mysql:dbname=$database;host=$hostname", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
     }
 
 
