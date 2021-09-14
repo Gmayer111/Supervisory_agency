@@ -8,29 +8,6 @@ use PDO;
 class MissionManager
 {
 
-    private $pdo;
-
-    public function __construct()
-    {
-        $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPdo()
-    {
-        return $this->pdo;
-    }
-
-    /**
-     * @param mixed $pdo
-     */
-    public function setPdo($pdo): void
-    {
-        $this->pdo = $pdo;
-    }
-
 
     public function create(MissionsModel $mission) :bool
     {
@@ -55,7 +32,8 @@ class MissionManager
         $competence = validDatas($_POST['competence']);
         $startDate = validDatas($_POST['startDate']);
         $endDate = validDatas($_POST['endDate']);
-        $req = $this->pdo->prepare("
+        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
+        $req = $pdo->prepare("
 INSERT INTO intelligence_agency.Missions 
     (codeName, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
