@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    color: #fff200;
 }
 
 
@@ -8,7 +9,6 @@ h1 {
     flex-direction: row;
     justify-content: space-around;
     margin: 2rem;
-    background-color: lightgray;
 }
 
 p {
@@ -40,4 +40,16 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.createA {
+    background-color: #405cc4;
+    color: #F4D9D9;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    padding: 5px 20px;
+    font-size: 16px;
+    box-shadow: 3px 3px 3px black;
 }

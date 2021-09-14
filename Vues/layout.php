@@ -3,12 +3,12 @@ use Managers\MissionManager;
 $manager = new MissionManager();
 $missions = $manager->getAll();
 ?>
-
 <!doctype html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/b5efc1d547.js" crossorigin="anonymous"></script>
     <title><?php echo $title; ?></title>
 </head>
 <body>
@@ -18,11 +18,7 @@ $missions = $manager->getAll();
             <?php if (isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="?action=Profil">Profil</a></li>
-                <li><a href="?action=
-                <?php $missionForm = 'MissionForm';
-                echo urlencode($missionForm);
-                    ?>
-                ">Créer mission</a></li>
+                <li><a href="?action=MissionForm">Créer mission</a></li>
                 <li><a href="?action=List">Missions</a></li>
                 <div class="dropdown">
                     <button class="dropBtn">Détail mission</button>
@@ -32,7 +28,7 @@ $missions = $manager->getAll();
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <a href="?action=Logout" class="btnLogin"><button id="btn-login">Deconnexion</button></a>
+                <a href="?action=Logout" class="btnLogin"><button id="btn-login">Déconnexion</button></a>
             <?php endif; ?>
             <?php if (!isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
@@ -49,12 +45,7 @@ $missions = $manager->getAll();
             <?php endif; ?>
         </ul>
     </nav>
-
 </header>
-<div class="image-home">
-    <img class="image-bann" src="Public/images/home-banner.jpg" alt="Image home banner">
-</div>
-
 <main>
     <section>
         <?php echo $content; ?>

@@ -55,15 +55,6 @@ class ContactManager
         $codeName = validDatas($_POST['codeName']);
         $firstname = validDatas($_POST['firstName']);
         $lastname = validDatas($_POST['lastName']);
-        if ($origin !== $_POST['nationality']) {
-            echo '<script>
-                    $let = confirm("Nationalité différente du pays de la mission")
-                       if ($let) {
-                           document.location.href = "http://localhost/intelligence-agency/?action=ContactForm"
-                       }                     
-                  </script>';
-            die();
-        }
         $nationality = validDatas($_POST['nationality']);
         $dateOfBirth = validDatas($_POST['dateOfBirth']);
         $contact_Mission = $codeNameMission;

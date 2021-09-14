@@ -1,36 +1,45 @@
-form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background-color: #cbc2c2;
-    padding: 2rem;
+h1 {
+    color: #fff200;
+    margin-top: 70px;
+}
 
+.container {
+    display: flex;
+}
+
+.containerLeft {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    width: 75%;
+}
+
+.containerRight {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    width: 25%;
+    height: 500px;
+}
+
+
+.containerFormLeft, .containerFormRight {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerFormLeft > div, .containerFormRight > div  {
+    margin-bottom: 10px;
 }
 
 .btn {
-    padding: 2rem;
-    margin-top: 10px;
+    margin-top: 60px;
 }
 
-.blockTwo, .blockOne {
-    background-color: #F4D9D9;
-}
-
-.blockOne {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-
-}
-
-.container.blockTwo > label, select, label, input {
-    margin: 1rem;
-}
-
-
-.formPosition {
-    display: flex;
-    justify-content: space-between;
+input[type=text] {
+    height: 20px;
+    width: 250px;
+    border-radius: 5px;
 }
 
 input[type=submit] {
@@ -44,22 +53,70 @@ input[type=submit] {
     font-size: 16px;
 }
 
-
-
-
-table, th, tr, td {
-    margin: 2rem;
-    padding: 0.5rem;
+label {
+    color: #d1d8e0;
+    font-size: 0.8em;
 }
 
-th {
-    background-color: #84817a;
+.icon {
+    display: flex;
+    justify-content: center;
 }
 
-td {
-    background-color: #F4D9D9;
-    width: 250px;
+i.fas {
+    font-size: 30px;
+    color: red;
+    margin-left: 100px;
     text-align: center;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+label > i {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: none;
+}
+
+i.fas:hover {
+    color: #26C281;
+    cursor: pointer;
+}
+
+ul ul li {
+    padding: 10px;
+    background: #59ABE3;
+    width: 200px;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    left: -9999px;
+}
+
+/* ~ tild permet d'accéder à toutes les balises adjacentes au input */
+input[type="checkbox"] ~ ul {
+    height: 0;
+    transform: scaleY(0);
+}
+
+input[type="checkbox"]:checked ~ ul {
+    height: 100%;
+    transform-origin: top;
+    transition: transform .2s ease-out;
+    transform: scaleY(1);
+}
+
+input[type="checkbox"]:checked + label > i {
+    background: #26C281;
+    border-bottom: 1px solid #fff;
 }
 
 

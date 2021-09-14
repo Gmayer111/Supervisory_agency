@@ -6,43 +6,21 @@ h1 {
 .container {
     display: flex;
     justify-content: space-around;
-    padding: 2rem;
+    padding: 1rem;
 }
 
-.containerForm > div{
+.containerFormA > div{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
-}
-
-.nationality {
-    font-size: 0.7em;
-    margin: 0;
-    color: #d1d8e0;
-}
-
-.nationalityA {
-    font-size: 0.7em;
-    margin: 0;
-    color: #d35400;
-}
-
-.containerBtn {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    margin-top: 60px;
 }
 
 .btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-label {
-    color: #d1d8e0;
-    font-size: 0.8em;
+    margin-top: 15px;
+    margin-right: 100px;
 }
 
 input[type=text] {
@@ -62,8 +40,20 @@ input[type=submit] {
     font-size: 16px;
 }
 
-.codeList {
-    height: 500px;
+label {
+    color: #d1d8e0;
+    font-size: 0.8em;
+}
+
+.containerForm div input {
+    margin-left: 100px;
+}
+
+div > .containerForm p {
+    color: #d1d8e0;
+    font-size: 0.9em;
+    text-align: center;
+    padding: 3px;
 }
 
 .icon {
@@ -126,7 +116,6 @@ input[type="checkbox"]:checked + label > i {
     background: #26C281;
     border-bottom: 1px solid #fff;
 }
-
 
 
 

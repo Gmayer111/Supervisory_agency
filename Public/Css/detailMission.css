@@ -1,0 +1,64 @@
+body {
+    background: linear-gradient(86deg, rgba(44,62,80,1) 0%, rgba(83,113,159,1) 47%, rgba(44,62,80,1) 82%);
+}
+
+h1 {
+    color: #fff200;
+    margin-top: 40px;
+}
+
+h2 {
+    text-align: center;
+    color: white;
+    font-size: 1.3em;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+table {
+    border-spacing: 1px;
+}
+
+.titleTh {
+    border-radius: 10px 0 0 0;
+}
+
+.titleTd {
+    border-radius: 0 10px 0 0;
+}
+
+.endDateTh {
+    border-radius: 0 0 0 10px;
+}
+
+.endDateTd {
+    border-radius: 0 0 10px 0;
+}
+
+th {
+    background-color: #1823a2;
+    width: 300px;
+    color: #d1d8e0;
+}
+
+td {
+    background-color: lightblue;
+    width: 700px;
+    text-align: center;
+    font-size: 1em;
+    padding: 1rem;
+}
+
+form {
+    margin-top: 10px;
+}
+
+input {
+    margin-bottom: 5px;
+}
+
+

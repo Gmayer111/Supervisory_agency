@@ -11,14 +11,13 @@ class TargetController
 {
     public function formTargetVue()
     {
-        echo require_once 'Vues/Forms/FormTargetVue.php';
+        require_once 'Vues/Forms/FormTargetVue.php';
     }
 
     public function createForm()
     {
         $target = new TargetManager();
         $targetModel = new TargetsModel($_POST);
-
         if ($target->create($targetModel) === true) {
             if ($_POST['next'] === 'Suivant') {
                 header('Location: ?action=ContactForm');
@@ -34,10 +33,12 @@ class TargetController
     public function deleteTarget()
     {
         $targetManager = new TargetManager();
+        $mission = new MissionController();
+
         if ($targetManager->delete($_POST['dtt']) === true) {
-            header('Location: ?action=Detail');
+            $mission->DetailMissionVue();
         }else {
-            header('Location: ?action=Detail');
+            $mission->DetailMissionVue();
         }
     }
 

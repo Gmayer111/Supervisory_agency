@@ -11,19 +11,18 @@ class AdminController
 {
     public function FormAdminVue()
     {
-        echo require_once 'Vues/Forms/FormAdminVue.php';
+        require_once 'Vues/Forms/FormAdminVue.php';
     }
 
     public function createForm()
     {
         $admin = new AdminManager();
         $adminModel = new AdminsModel($_POST);
-        $admin->create($adminModel);
-/*        if ($admin->create($adminModel) === true) {
+        if ($admin->create($adminModel) === true) {
             header('Location: ?action=Profil');
         }else {
             echo 'erreur';
             header('Location: ?action=MissionForm');
-        }*/
+        }
     }
 }

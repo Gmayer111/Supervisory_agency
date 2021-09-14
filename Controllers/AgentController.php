@@ -12,7 +12,7 @@ class AgentController
 
     public function formAgentVue()
     {
-        echo require_once 'Vues/Forms/FormAgentVue.php';
+        require_once 'Vues/Forms/FormAgentVue.php';
     }
 
     public function createForm()
@@ -37,11 +37,12 @@ class AgentController
     public function deleteAgent()
     {
         $agentManager = new AgentManager();
+        $mission = new MissionController();
 
         if ($agentManager->delete($_POST['dta']) === true) {
-            header('Location: ?action=Detail');
+            $mission->DetailMissionVue();
         }else {
-            header('Location: ?action=Detail');
+            $mission->DetailMissionVue();
         }
 
     }

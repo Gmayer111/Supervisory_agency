@@ -6,18 +6,20 @@ use Managers\MissionManager;
 session_start();
 ob_start();
 ?>
-<style><?php echo include_once 'Public/Css/mission.css'?></style>
+<style><?php echo include_once 'Public/Css/detailMission.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
 <?php
 $controller = new MissionController();
 $codeName = $controller->DetailMissionVue();
 $manager = new MissionManager();
 $res = $manager->getAllDatas($codeName);?>
+<h1>Détails de la mission</h1>
 <h2>Nom de code mission : <?php echo ucfirst(strtolower($res['codeName'])) ?></h2>
+<div class="container">
     <table>
         <tr>
-            <th>Titre</th>
-            <td><?php echo $res['title'] ?></td>
+            <th class="titleTh">Titre</th>
+            <td class="titleTd"><?php echo $res['title'] ?></td>
         </tr>
         <tr>
             <th>Description</th>
@@ -42,23 +44,23 @@ $res = $manager->getAllDatas($codeName);?>
                 $pattern = '/,/';
                 $ds = explode(',', $data);
                 if (isset($_SESSION['CodeName'])): ?>
-                <form action="?action=DeleteAgent" method="post">
-                    <label for="dta"></label>
-                    <select name="dta" id="dta">
-                        <option value="">Supprimer un agent</option>
-                        <?php if (!preg_match($pattern, $data)): ?>
-                            <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
-                        <?php endif; ?>
-                        <?php if (preg_match($pattern, $data)): ?>
-                            <?php foreach ($ds as $key => $value): ?>
-                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
-                    <div>
-                        <input type="submit" id="submit" name="submit" value="Confirmer">
-                    </div>
-                </form>
+                    <form action="?action=DeleteAgent&codeName=<?php echo $res['codeName'] ?>" method="post">
+                        <label for="dta"></label>
+                        <select name="dta" id="dta">
+                            <option value="">Supprimer agent</option>
+                            <?php if (!preg_match($pattern, $data)): ?>
+                                <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+                            <?php endif; ?>
+                            <?php if (preg_match($pattern, $data)): ?>
+                                <?php foreach ($ds as $key => $value): ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                        <div>
+                            <input type="submit" id="submit" name="submit" value="Confirmer">
+                        </div>
+                    </form>
                 <?php endif; ?>
             </th>
             <td>
@@ -80,23 +82,23 @@ $res = $manager->getAllDatas($codeName);?>
                 $pattern = '/,/';
                 $ds = explode(',', $data);
                 if (isset($_SESSION['CodeName'])): ?>
-                <form action="?action=DeleteContact" method="post">
-                    <label for="dtc"></label>
-                    <select name="dtc" id="dtc">
-                        <option value="">Supprimer un contact</option>
-                        <?php if (!preg_match($pattern, $data)): ?>
-                            <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
-                        <?php endif; ?>
-                        <?php if (preg_match($pattern, $data)): ?>
-                            <?php foreach ($ds as $key => $value): ?>
-                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
-                    <div>
-                        <input type="submit" id="submit" name="submit" value="Confirmer">
-                    </div>
-                </form>
+                    <form action="?action=DeleteContact&codeName=<?php echo $res['codeName'] ?>" method="post">
+                        <label for="dtc"></label>
+                        <select name="dtc" id="dtc">
+                            <option value="">Supprimer contact</option>
+                            <?php if (!preg_match($pattern, $data)): ?>
+                                <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+                            <?php endif; ?>
+                            <?php if (preg_match($pattern, $data)): ?>
+                                <?php foreach ($ds as $key => $value): ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                        <div>
+                            <input type="submit" id="submit" name="submit" value="Confirmer">
+                        </div>
+                    </form>
                 <?php endif; ?>
             </th>
             <td>
@@ -116,23 +118,23 @@ $res = $manager->getAllDatas($codeName);?>
                 $pattern = '/,/';
                 $ds = explode(',', $data);
                 if (isset($_SESSION['CodeName'])): ?>
-                <form action="?action=DeleteTarget" method="post">
-                    <label for="dtt"></label>
-                    <select name="dtt" id="dtt">
-                        <option value="">Supprimer une cible</option>
-                        <?php if (!preg_match($pattern, $data)): ?>
-                            <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
-                        <?php endif; ?>
-                        <?php if (preg_match($pattern, $data)): ?>
-                            <?php foreach ($ds as $key => $value): ?>
-                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                    </select>
-                    <div>
-                        <input type="submit" id="submit" name="submit" value="Confirmer">
-                    </div>
-                </form>
+                    <form action="?action=DeleteTarget&codeName=<?php echo $res['codeName'] ?>" method="post">
+                        <label for="dtt"></label>
+                        <select name="dtt" id="dtt">
+                            <option value="">Supprimer cible</option>
+                            <?php if (!preg_match($pattern, $data)): ?>
+                                <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
+                            <?php endif; ?>
+                            <?php if (preg_match($pattern, $data)): ?>
+                                <?php foreach ($ds as $key => $value): ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                        <div>
+                            <input type="submit" id="submit" name="submit" value="Confirmer">
+                        </div>
+                    </form>
                 <?php endif; ?>
             </th>
             <td>
@@ -146,29 +148,29 @@ $res = $manager->getAllDatas($codeName);?>
         </tr>
         <tr>
             <th>
-                Planque
+                Planque(s)
                 <?php
                 $data = ucfirst(strtolower($res['ShCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
                 if (isset($_SESSION['CodeName'])): ?>
-                <form action="?action=DeleteSh" method="post">
-                    <label for="dtsh"></label>
-                    <select name="dtsh" id="dtsh">
-                        <option value="">Supprimer une planque</option>
-                        <?php if (!preg_match($pattern, $data)): ?>
-                            <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
-                        <?php endif; ?>
-                        <?php if (preg_match($pattern, $data)):
-                            foreach ($ds as $key => $value): ?>
-                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                            <?php endforeach; ?>
+                    <form action="?action=DeleteSh&codeName=<?php echo $res['codeName'] ?>" method="post">
+                        <label for="dtsh"></label>
+                        <select name="dtsh" id="dtsh">
+                            <option value="">Supprimer planque</option>
+                            <?php if (!preg_match($pattern, $data)): ?>
+                                <option value="<?php echo $data; ?>"><?php echo $data; ?></option>
                             <?php endif; ?>
-                    </select>
-                    <div>
-                        <input type="submit" id="submit" name="submit" value="Confirmer">
-                    </div>
-                </form>
+                            <?php if (preg_match($pattern, $data)):
+                                foreach ($ds as $key => $value): ?>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                        <div>
+                            <input type="submit" id="submit" name="submit" value="Confirmer">
+                        </div>
+                    </form>
                 <?php endif; ?>
             </th>
             <td>
@@ -188,19 +190,19 @@ $res = $manager->getAllDatas($codeName);?>
             <th>
                 Statut de la mission
                 <?php if (isset($_SESSION['CodeName'])): ?>
-                <form action="?action=UpdateMission&codeName=<?php echo $res['codeName']; ?>" method="post">
-                    <label for="uM"></label>
-                    <select name="uM" id="uM">
-                        <option value="">Mettre à jour la mission</option>
-                        <option value="En préparation">En préparation</option>
-                        <option value="En cours">En cours</option>
-                        <option value="Terminée">Terminée</option>
-                        <option value="Echec">Echec</option>
-                    </select>
-                    <div>
-                        <input type="submit" id="submit" name="submit" value="Confirmer">
-                    </div>
-                </form>
+                    <form action="?action=UpdateMission&codeName=<?php echo $res['codeName']; ?>" method="post">
+                        <label for="uM"></label>
+                        <select name="uM" id="uM">
+                            <option value="">Mettre à jour la mission</option>
+                            <option value="En préparation">En préparation</option>
+                            <option value="En cours">En cours</option>
+                            <option value="Terminée">Terminée</option>
+                            <option value="Echec">Echec</option>
+                        </select>
+                        <div>
+                            <input type="submit" id="submit" name="submit" value="Confirmer">
+                        </div>
+                    </form>
                 <?php endif; ?>
             </th>
             <td><?php echo $res['state'] ?></td>
@@ -214,10 +216,12 @@ $res = $manager->getAllDatas($codeName);?>
             <td><?php echo substr($res['startDate'], 0, -9) ?></td>
         </tr>
         <tr>
-            <th>Date de fin</th>
-            <td><?php echo substr($res['endDate'], 0, -9) ?></td>
+            <th class="endDateTh">Date de fin</th>
+            <td class="endDateTd"><?php echo substr($res['endDate'], 0, -9) ?></td>
         </tr>
     </table>
+</div>
+
 <?php
 
 $content = ob_get_clean();

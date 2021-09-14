@@ -6,9 +6,11 @@ if (isset($_SESSION['CodeName'])):
 ?>
 <style><?php  include_once 'Public/Css/profil.css'?></style>
 <style><?php  include_once 'Public/Css/layout.css'?></style>
+    <h1>Profil</h1>
 <div class="container">
+
     <div>
-        <img src="Public/images/profil.jpg" alt="Image du profil" class="profilImg">
+        <img src="Public/images/profil-2.jpg" alt="Image du profil" class="profilImg">
     </div>
     <div class="profilInfo">
         <ul>
@@ -20,7 +22,7 @@ if (isset($_SESSION['CodeName'])):
         </ul>
     </div>
     <div class="adminCreateCont">
-        <a href="?action=AdminForm" class=""><button id="btn-login">Créer un administrateur</button></a>
+        <a href="?action=AdminForm" class=""><button id="btn-login" class="createA">Créer un administrateur</button></a>
     </div>
 </div>
 <?php

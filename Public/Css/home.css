@@ -10,23 +10,44 @@
     border-radius: 100%;
 }
 
+.divH {
+    background: radial-gradient(closest-side, white, #091167);
+    width: 180px;
+    height: 180px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    border-radius: 100%;
+    border: 3px solid black;
+}
+
+
 h1 {
-    background: -webkit-linear-gradient(180deg, rgb(81, 17, 17) 0%, rgb(5, 56, 191) 47%, rgb(48, 53, 2) 100%);
+    background: -webkit-linear-gradient(180deg, rgb(81, 17, 17) 0%, #fff200 47%, rgb(48, 53, 2) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 60px;
     font-weight: bold;
     text-align: center;
+    margin: 0;
+    margin-top: 30px;
+}
+
+.pTitle {
+    font-size: 0.6em;
+    text-align: center;
+    margin: 0;
 }
 
 
 .image-home {
+    margin-top: 8px;
     display: flex;
     justify-content: center;
 }
 
-img {
-    width: 850px;
+.image-bann {
+    width: 100%;
     height: 300px;
 }
 
@@ -42,6 +63,10 @@ h2 {
 .homeText {
     width: 1000px;
     text-align: center;
+}
+
+.text {
+    color: #d1d8e0;
 }
 
 

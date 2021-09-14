@@ -12,7 +12,7 @@ class ContactController
 
     public function FormContactVue()
     {
-        echo require_once 'Vues/Forms/FormContactVue.php';
+        require_once 'Vues/Forms/FormContactVue.php';
     }
 
     public function createForm()
@@ -35,10 +35,12 @@ class ContactController
     public function deleteContact()
     {
         $contactManager = new ContactManager();
+        $mission = new MissionController();
+
         if ($contactManager->delete($_POST['dtc']) === true) {
-            header('Location: ?action=Detail');
+            $mission->DetailMissionVue();
         }else {
-            header('Location: ?action=Detail');
+            $mission->DetailMissionVue();
         }
     }
 }

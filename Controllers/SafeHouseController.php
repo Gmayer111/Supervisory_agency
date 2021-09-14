@@ -12,7 +12,7 @@ class SafeHouseController
 
     public function formSafeHouseVue()
     {
-        echo require_once 'Vues/Forms/FormSafeHouseVue.php';
+         require_once 'Vues/Forms/FormSafeHouseVue.php';
     }
 
     public function createForm()
@@ -35,10 +35,12 @@ class SafeHouseController
     public function deleteSh()
     {
         $safeHouseManager = new SafeHouseManager();
+        $mission = new MissionController();
+
         if ($safeHouseManager->delete($_POST['dtsh']) === true) {
-            header('Location: ?action=Detail');
+            $mission->DetailMissionVue();
         }else {
-            header('Location: ?action=Detail');
+            $mission->DetailMissionVue();
         }
     }
 

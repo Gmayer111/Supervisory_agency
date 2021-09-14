@@ -1,54 +1,79 @@
-h1, h2 {
-    text-align: center;
+body {
+    background: linear-gradient(86deg, rgba(44,62,80,1) 0%, rgba(83,113,159,1) 47%, rgba(44,62,80,1) 82%);
+}
+
+h1 {
+    color: #fff200;
+    margin-top: 40px;
 }
 
 h2 {
-    color: darkred;
+    text-align: center;
+    color: white;
+    font-size: 1.3em;
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+}
 
-table, th, tr, td {
-    margin: 0.5rem;
-    padding: 0.8rem;
-    font-weight: normal;
+table {
+    border-spacing: 1px;
 }
 
 
 th {
-    background-color: cornflowerblue;
-    width: 400px;
+    background-color: #1823a2;
+    color: #d1d8e0;
+    padding: 1rem;
 }
 
 td {
     background-color: lightblue;
-    width: 90vw;
+    width: 200px;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1em;
+    padding: 1rem;
 }
+
+.titleTh {
+    border-radius: 10px 0 0 0;
+}
+
+.stateTh {
+    border-radius: 0 10px 0 0;
+}
+
+
 
 .ledContainer {
     display: flex;
     justify-content: space-around;
+    margin-top: 40px;
 }
 
 .ledSubContain {
     display: flex;
-    justify-content: space-around;
-    background-color: #341f97;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #110456;
     border-radius: 5px;
     padding-top: 2px;
-    width: 450px;
     color: #F4D9D9;
-    font-size: small;
+    font-size: 0.6em;
     text-align: center;
-}
-
-.ledSubContain > div > div {
     margin-left: 10px;
 }
 
+.ledSubContain > div > div {
+    display: flex;
+    justify-content: center;
+}
+
 .ledM {
-    margin-left: 20px;
+
 }
 
 .ledDivTable {
@@ -57,8 +82,8 @@ td {
 }
 
 .led {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     margin-top: 10px;
     border-radius: 100px;
     text-align: center;
