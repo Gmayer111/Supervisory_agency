@@ -61,7 +61,8 @@ INSERT INTO intelligence_agency.Missions
         $state = $_POST['uM'];
         $codeName = $_GET['codeName'];
 
-        $req = $this->pdo->prepare("
+        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
+        $req = $pdo->prepare("
                 UPDATE 
                     intelligence_agency.Missions 
                 SET 
@@ -78,7 +79,8 @@ INSERT INTO intelligence_agency.Missions
 
     public function delete(string $codeName)
     {
-        $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Missions WHERE codeName = :codeName');
+        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
+        $req = $pdo->prepare('DELETE FROM intelligence_agency.Missions WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         $req->execute();
     }
@@ -86,7 +88,8 @@ INSERT INTO intelligence_agency.Missions
 
     public function getAll(): array
     {
-        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY codeName DESC ');
+        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
+        $req = $pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY codeName DESC ');
         $mission = array();
         foreach ($req->fetchAll() as $data) {
             $mission[] = new MissionsModel($data);
@@ -96,7 +99,8 @@ INSERT INTO intelligence_agency.Missions
 
     public function getData(): array
     {
-        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY idun DESC ');
+        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
+        $req = $pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY idun DESC ');
         return $req->fetch();
     }
 
