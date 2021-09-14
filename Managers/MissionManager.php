@@ -9,6 +9,27 @@ class MissionManager
 {
 
 
+
+    public function connect(): PDO
+    {
+        if (getenv('JAWSDB_URL') !== false) {
+            $dbparts = parse_url(getenv('JAWSDB_URL'));
+
+            $hostname = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $database = ltrim($dbparts['path'],'/');
+
+        }else {
+            $username = 'root';
+            $password = 'root';
+            $database = 'intelligence_agency';
+            $hostname = 'localhost';
+        }
+        return $pdo = new PDO("mysql:dbname=$database;host=$hostname", $username, $password);
+    }
+
+
     public function create(MissionsModel $mission) :bool
     {
 
@@ -32,8 +53,7 @@ class MissionManager
         $competence = validDatas($_POST['competence']);
         $startDate = validDatas($_POST['startDate']);
         $endDate = validDatas($_POST['endDate']);
-        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-        $req = $pdo->prepare("
+        $req = $this->connect()->prepare("
 INSERT INTO intelligence_agency.Missions 
     (codeName, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
@@ -61,8 +81,7 @@ INSERT INTO intelligence_agency.Missions
         $state = $_POST['uM'];
         $codeName = $_GET['codeName'];
 
-        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-        $req = $pdo->prepare("
+        $req = $this->connect()->prepare("
                 UPDATE 
                     intelligence_agency.Missions 
                 SET 
@@ -79,8 +98,7 @@ INSERT INTO intelligence_agency.Missions
 
     public function delete(string $codeName)
     {
-        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-        $req = $pdo->prepare('DELETE FROM intelligence_agency.Missions WHERE codeName = :codeName');
+        $req = $this->connect()->prepare('DELETE FROM intelligence_agency.Missions WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         $req->execute();
     }
@@ -88,8 +106,7 @@ INSERT INTO intelligence_agency.Missions
 
     public function getAll(): array
     {
-        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-        $req = $pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY codeName DESC ');
+        $req = $this->connect()->query('SELECT * FROM intelligence_agency.Missions ORDER BY codeName DESC ');
         $mission = array();
         foreach ($req->fetchAll() as $data) {
             $mission[] = new MissionsModel($data);
@@ -99,8 +116,7 @@ INSERT INTO intelligence_agency.Missions
 
     public function getData(): array
     {
-        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-        $req = $pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY idun DESC ');
+        $req = $this->connect()->query('SELECT * FROM intelligence_agency.Missions ORDER BY idun DESC ');
         return $req->fetch();
     }
 
