@@ -12,7 +12,24 @@ class MissionManager
 
     public function __construct()
     {
-        $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+
+        if (getenv('JAWSDB_URL') !== false) {
+            $url = getenv('JAWSDB_URL');
+            $dbparts = parse_url($url);
+
+            $hostname = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $database = ltrim($dbparts['path'],'/');
+        }else {
+            $hostname = 'localhost';
+            $username = 'root';
+            $password = 'root';
+            $database = 'intelligence_agency';
+        }
+
+
+        $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
     }
 
     /**
