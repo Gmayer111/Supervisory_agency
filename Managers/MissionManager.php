@@ -138,7 +138,7 @@ INSERT INTO intelligence_agency.Missions
 
     public function getData(): array
     {
-        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY idun DESC ');
+        $req = $this->pdo->query("SELECT * FROM intelligence_agency.Missions ORDER BY idun DESC ");
         return $req->fetch();
     }
 
