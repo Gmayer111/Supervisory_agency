@@ -23,8 +23,6 @@ class MissionManager
             try {
                 $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                echo 'Connected successfully';
-                var_dump($conn);
                 return $this->$conn;
             }catch (PDOException $e) {
                 echo 'Connected failed :' . $e->getMessage();
