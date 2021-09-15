@@ -4,6 +4,7 @@ namespace Managers;
 
 use Models\MissionsModel;
 use PDO;
+use PDOException;
 
 class MissionManager
 {
@@ -19,8 +20,13 @@ class MissionManager
             $username = $dbparts['user'];
             $password = $dbparts['pass'];
             $database = ltrim($dbparts['path'],'/');
-
-
+            try {
+                $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                echo 'Connected successfully';
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
         }else {
             $username = 'root';
             $password = 'root';
