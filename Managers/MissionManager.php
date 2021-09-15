@@ -23,7 +23,7 @@ class MissionManager
             $password = $dbparts['pass'];
             $database = ltrim($dbparts['path'],'/');
             try {
-                $this->setPdo(new PDO("mysql://hjwstw708lf6ejn4:rx4vgsop65xcy472@lyn7gfxo996yjjco.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ifpzr97zxq80tort"));
+                $this->setPdo(new PDO("mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'"));
                 var_dump($database);
                 echo 'Connected successfully :';
             }catch (PDOException $e) {
