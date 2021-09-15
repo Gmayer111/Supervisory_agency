@@ -127,7 +127,7 @@ INSERT INTO intelligence_agency.Missions
 
     public function getAll(): array
     {
-        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Missions ORDER BY codeName DESC ');
+        $req = $this->pdo->query("SELECT * FROM intelligence_agency.Missions ORDER BY codeName DESC");
         var_dump($req->errorInfo());
         $mission = array();
         foreach ($req->fetchAll() as $data) {
