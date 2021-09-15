@@ -21,7 +21,7 @@ class MissionManager
             $hostname = $dbparts['host'];
             $username = $dbparts['user'];
             $password = $dbparts['pass'];
-            $database = ltrim($dbparts['path'],'/');
+            $database = $dbparts['path'];
             try {
                 $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
                 var_dump($url);
