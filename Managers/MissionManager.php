@@ -9,9 +9,9 @@ use PDOException;
 class MissionManager
 {
 
+    private $pdo;
 
-
-    public function connect(): PDO
+    public function __construct()
     {
         if (getenv('JAWSDB_URL') !== false) {
             $url = getenv('JAWSDB_URL');
@@ -21,23 +21,32 @@ class MissionManager
             $password = $dbparts['pass'];
             $database = ltrim($dbparts['path'],'/');
             try {
-                $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                return $this->$conn;
+                $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
+                echo 'Connected successfully :';
             }catch (PDOException $e) {
                 echo 'Connected failed :' . $e->getMessage();
             }
         }else {
-            $username = 'root';
-            $password = 'root';
-            $database = 'intelligence_agency';
-            $hostname = 'localhost';
+            $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
         }
-        $pdo = new PDO("mysql:dbname=$database;host=$hostname", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $pdo;
+
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
+    /**
+     * @param mixed $pdo
+     */
+    public function setPdo($pdo): void
+    {
+        $this->pdo = $pdo;
+    }
 
     public function create(MissionsModel $mission) :bool
     {
