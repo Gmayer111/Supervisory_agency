@@ -14,9 +14,9 @@ class MissionManager
     public function __construct()
     {
 
-
+        $url = getenv('JAWSDB_URL');
         if (getenv('JAWSDB_URL') !== false) {
-            $url = getenv('JAWSDB_URL');
+
             $dbparts = parse_url($url);
             $hostname = $dbparts['host'];
             $username = $dbparts['user'];
@@ -24,8 +24,8 @@ class MissionManager
             $database = ltrim($dbparts['path'],'/');
             try {
                 $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
-                var_dump($database);
-                echo 'Connected successfully :';
+                var_dump($url);
+                echo 'Connected successfully';
             }catch (PDOException $e) {
                 echo 'Connected failed :' . $e->getMessage();
             }
