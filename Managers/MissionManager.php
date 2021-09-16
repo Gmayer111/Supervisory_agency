@@ -24,6 +24,8 @@ class MissionManager
             try {
                 $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
                 echo 'database :';
+                var_dump($dbparts);
+                echo '<br>';
                 var_dump($database);
                 echo 'Connected successfully';
             }catch (PDOException $e) {
