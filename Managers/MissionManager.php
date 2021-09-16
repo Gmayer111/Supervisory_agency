@@ -117,7 +117,7 @@ INSERT INTO intelligence_agency.Missions
 
     public function delete(string $codeName)
     {
-        $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Missions WHERE codeName = :codeName');
+        $req = $this->pdo->prepare('DELETE FROM Missions WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         $req->execute();
     }
@@ -135,16 +135,14 @@ INSERT INTO intelligence_agency.Missions
 
     public function getData(): array
     {
-        $req = $this->pdo->query("SELECT * FROM intelligence_agency.Missions ORDER BY idun DESC ");
+        $req = $this->pdo->query("SELECT * FROM Missions ORDER BY idun DESC ");
         return $req->fetch();
     }
 
     public function getAllDatas(string $codeName):array
     {
 
-
-            $stmt = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-            $req = $stmt->query("
+            $req = $this->pdo->query("
 SELECT  
        Missions.*,
        AgentCodeName,
@@ -152,32 +150,32 @@ SELECT
        ContactCodeName,
        ShCodeName
 FROM 
-     intelligence_agency.Missions
+     Missions
     LEFT JOIN 
          (SELECT  
                agent_Mission, GROUP_CONCAT(codeName) AS AgentCodeName
-         FROM intelligence_agency.Agents
+         FROM Agents
              GROUP BY agent_Mission) as amACN 
 ON Missions.codeName = agent_Mission
 
     LEFT JOIN 
          (SELECT  
                target_Mission, GROUP_CONCAT(codeName) AS TargetCodeName
-         FROM intelligence_agency.Targets
+         FROM Targets
              GROUP BY target_Mission) as tMACN 
 ON Missions.codeName = target_Mission
 
     LEFT JOIN 
          (SELECT  
                contact_Mission, GROUP_CONCAT(codeName) AS ContactCodeName
-         FROM intelligence_agency.Contacts
+         FROM Contacts
              GROUP BY contact_Mission) as cMACN 
 ON Missions.codeName = contact_Mission
 
     LEFT JOIN 
          (SELECT  
                sf_Mission, GROUP_CONCAT(code) AS ShCodeName
-         FROM intelligence_agency.Safe_houses
+         FROM Safe_houses
              GROUP BY sf_Mission) as sMACN 
 ON Missions.codeName = sf_Mission
 
