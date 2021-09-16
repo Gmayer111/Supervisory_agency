@@ -86,8 +86,10 @@ INSERT INTO Missions
         $req->bindValue($startDate, $mission->getStartDate(), PDO::PARAM_STR);
         var_dump($req);
         if ($req->execute()) {
+            echo 'ok';
             return true;
         }else {
+            echo 'pas ok';
             return false;
         }
     }
