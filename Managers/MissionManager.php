@@ -64,31 +64,29 @@ class MissionManager
 
 
         $codeName = validDatas($_POST['codeName']);
-        $idun = 1;
         $title = validDatas($_POST['title']);
         $description = addslashes(validDatas($_POST['description'])) ;
         $country = validDatas($_POST['country']);
         $type = validDatas($_POST['type']);
-        $state = 'En préparation';
         $competence = validDatas($_POST['competence']);
         $startDate = validDatas($_POST['startDate']);
         $endDate = validDatas($_POST['endDate']);
         $req = $this->pdo->prepare("
-INSERT INTO Missions 
-    (Missions.codeName, Missions.idun, Missions.title, Missions.description, Missions.country, Missions.type, Missions.state, Missions.competence, Missions.startDate, Missions.endDate)
+INSERT INTO missions 
+    (codeName, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
-           ('$codeName', ':idun','$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
+           ('$codeName', '$title', '$description', '$country', '$type', 'En préparation', '$competence', '$startDate', '$endDate')");
         $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
-        $req->bindValue(':idun', $idun, PDO::PARAM_INT);
         $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
         $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
         $req->bindValue($country, $mission->getCountry(), PDO::PARAM_STR);
         $req->bindValue($type, $mission->getType(), PDO::PARAM_STR);
-        $req->bindValue($state, $mission->getState(), PDO::PARAM_STR);
+        $req->bindValue('En préparation', $mission->getState(), PDO::PARAM_STR);
         $req->bindValue($competence, $mission->getCompetence(), PDO::PARAM_STR);
         $req->bindValue($startDate, $mission->getStartDate(), PDO::PARAM_STR);
         $req->bindValue($endDate, $mission->getEndDate(), PDO::PARAM_STR);
-        var_dump($req);
+        var_dump($req->errorInfo());
+
         if ($req->execute()) {
             return true;
         }else {
