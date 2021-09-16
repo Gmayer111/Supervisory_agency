@@ -76,8 +76,9 @@ class MissionManager
 INSERT INTO Missions 
     (codeName, idun, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
-           ('$codeName', '1','$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
+           ('$codeName', ':idun','$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
         $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
+        $req->bindValue(':idun', '1', $mission->getIdun(), PDO::PARAM_INT);
         $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
         $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
         $req->bindValue($country, $mission->getCountry(), PDO::PARAM_STR);

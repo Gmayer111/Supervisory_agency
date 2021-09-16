@@ -7,6 +7,7 @@ class MissionsModel
 {
 
     private string $codeName;
+    private int $idun;
     private string $title;
     private string $description;
     private string $country;
@@ -51,6 +52,24 @@ class MissionsModel
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getIdun(): int
+    {
+        return $this->idun;
+    }
+
+    /**
+     * @param int $idun
+     */
+    public function setIdun(int $idun): void
+    {
+        $this->idun = $idun;
+    }
+
+
 
     /**
      * @return string
