@@ -68,25 +68,24 @@ class MissionManager
         $description = addslashes(validDatas($_POST['description'])) ;
         $country = validDatas($_POST['country']);
         $type = validDatas($_POST['type']);
+        $state = 'En préparation';
         $competence = validDatas($_POST['competence']);
         $startDate = validDatas($_POST['startDate']);
         $endDate = validDatas($_POST['endDate']);
         $req = $this->pdo->prepare("
-INSERT INTO missions 
+INSERT INTO Missions 
     (codeName, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
-           ('$codeName', '$title', '$description', '$country', '$type', 'En préparation', '$competence', '$startDate', '$endDate')");
-        $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
-        $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
-        $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
-        $req->bindValue($country, $mission->getCountry(), PDO::PARAM_STR);
-        $req->bindValue($type, $mission->getType(), PDO::PARAM_STR);
-        $req->bindValue('En préparation', $mission->getState(), PDO::PARAM_STR);
-        $req->bindValue($competence, $mission->getCompetence(), PDO::PARAM_STR);
-        $req->bindValue($startDate, $mission->getStartDate(), PDO::PARAM_STR);
-        $req->bindValue($endDate, $mission->getEndDate(), PDO::PARAM_STR);
-        var_dump($req->errorInfo());
-
+           (':codeName', ':title', ':description', ':country', ':type', ':state', ':competence', ':startDate', ':endDate')");
+        $req->bindValue(':codeName', $codeName, $mission->getCodeName(), PDO::PARAM_STR);
+        $req->bindValue(':title', $title, $mission->getTitle(), PDO::PARAM_STR);
+        $req->bindValue(':description', $description, $mission->getDescription(), PDO::PARAM_STR);
+        $req->bindValue(':country', $country, $mission->getCountry(), PDO::PARAM_STR);
+        $req->bindValue(':type', $type, $mission->getType(), PDO::PARAM_STR);
+        $req->bindValue(':state', $state, $mission->getState(), PDO::PARAM_STR);
+        $req->bindValue(':competence', $competence, $mission->getCompetence(), PDO::PARAM_STR);
+        $req->bindValue(':startDate', $startDate, $mission->getStartDate(), PDO::PARAM_STR);
+        $req->bindValue(':endDate', $endDate, $mission->getEndDate(), PDO::PARAM_STR);
         if ($req->execute()) {
             return true;
         }else {
