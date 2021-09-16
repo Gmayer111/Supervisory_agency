@@ -23,11 +23,6 @@ class MissionManager
             $database = ltrim($dbparts['path'],'/');
             try {
                 $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
-                echo 'database :';
-                var_dump($dbparts);
-                echo '<br>';
-                echo '<br>';
-                var_dump($database);
                 echo 'Connected successfully';
             }catch (PDOException $e) {
                 echo 'Connected failed :' . $e->getMessage();
@@ -131,7 +126,6 @@ INSERT INTO intelligence_agency.Missions
     public function getAll(): array
     {
         $req = $this->pdo->query("SELECT * FROM ifpzr97zxq80tort.Missions ORDER BY codeName DESC");
-        var_dump($req->errorInfo());
         $mission = array();
         foreach ($req->fetchAll() as $data) {
             $mission[] = new MissionsModel($data);
