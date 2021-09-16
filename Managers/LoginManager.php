@@ -4,11 +4,57 @@ namespace Managers;
 
 use Models\AdminsModel;
 use PDO;
+use PDOException;
 use ReflectionClass;
 use ReflectionException;
 
 class LoginManager
 {
+
+    private $pdo;
+
+    public function __construct()
+    {
+
+        if (getenv('JAWSDB_URL') !== false) {
+
+            $dbparts = parse_url(getenv('JAWSDB_URL'));
+            $hostname = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $database = ltrim($dbparts['path'],'/');
+            try {
+                $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+        }else {
+            try {
+                $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+
+        }
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
+    /**
+     * @param mixed $pdo
+     */
+    public function setPdo($pdo): void
+    {
+        $this->pdo = $pdo;
+    }
+
 
     public function login(): bool
     {
@@ -28,8 +74,7 @@ class LoginManager
 
         $codeName = validData($_POST['CodeName']);
 
-        $pdo = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-        $stmt = $pdo->prepare('SELECT * FROM intelligence_agency.Admins WHERE codeName = :codeName');
+        $stmt = $this->pdo->prepare('SELECT * FROM Admins WHERE codeName = :codeName');
         $stmt->bindValue(':codeName', $codeName);
         if ($stmt->execute()) {
             $reflector = new ReflectionClass(AdminsModel::class);

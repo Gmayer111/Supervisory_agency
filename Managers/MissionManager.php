@@ -72,7 +72,7 @@ class MissionManager
         $startDate = validDatas($_POST['startDate']);
         $endDate = validDatas($_POST['endDate']);
         $req = $this->pdo->prepare("
-INSERT INTO intelligence_agency.Missions 
+INSERT INTO Missions 
     (codeName, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
            ('$codeName', '$title', '$description', '$country', '$type', 'En préparation', '$competence', '$startDate', '$endDate')");
@@ -101,7 +101,7 @@ INSERT INTO intelligence_agency.Missions
 
         $req = $this->pdo->prepare("
                 UPDATE 
-                    intelligence_agency.Missions 
+                    Missions 
                 SET 
                     state = '$state'
                 WHERE codeName = '$codeName'

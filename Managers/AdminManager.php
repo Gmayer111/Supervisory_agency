@@ -4,6 +4,7 @@ namespace Managers;
 
 use Models\AdminsModel;
 use PDO;
+use PDOException;
 
 class AdminManager
 {
@@ -12,7 +13,23 @@ class AdminManager
 
     public function __construct()
     {
-        $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+
+        if (getenv('JAWSDB_URL') !== false) {
+
+            $dbparts = parse_url(getenv('JAWSDB_URL'));
+            $hostname = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $database = ltrim($dbparts['path'],'/');
+            try {
+                $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+        }else {
+            $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+        }
+
     }
 
     /**
@@ -52,7 +69,7 @@ class AdminManager
         $lastname = validDatas($_POST['lastName']);
         $password = password_hash(validDatas($_POST['password']), PASSWORD_BCRYPT);
         $req = $this->pdo->prepare("
-INSERT INTO intelligence_agency.Admins
+INSERT INTO Admins
     (firstname, lastname, codeName, password)
     VALUES 
            ('$codeName', '$firstname', '$lastname', '$password')");
@@ -73,7 +90,7 @@ INSERT INTO intelligence_agency.Admins
     {
         $req = $this->pdo->prepare('
 UPDATE 
-    intelligence_agency.Admins
+    Admins
 SET
     codeName = :codeName, firstname = :firstName, lastname = :lastName, password = :password
 WHERE codeName = :codeName
@@ -87,7 +104,7 @@ WHERE codeName = :codeName
 
     public function delete(string $codeName)
     {
-        $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Admins WHERE codeName = :codeName');
+        $req = $this->pdo->prepare('DELETE FROM Admins WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         $req->execute();
     }
@@ -95,7 +112,7 @@ WHERE codeName = :codeName
     public function getByCodeName(string $codeName): AdminsModel
     {
         $codeName = (string)$codeName;
-        $req = $this->pdo->prepare('SELECT * FROM intelligence_agency.Admins WHERE codeName = :codeName');
+        $req = $this->pdo->prepare('SELECT * FROM Admins WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         $data = $req->fetch();
         return new AdminsModel($data);
@@ -104,7 +121,7 @@ WHERE codeName = :codeName
     public function getAll(): array
     {
 
-        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Admins ORDER BY codeName DESC ');
+        $req = $this->pdo->query('SELECT * FROM Admins ORDER BY codeName DESC ');
         $admin = array();
         foreach ($req->fetchAll() as $data) {
             $admin[] = new AdminsModel($data);

@@ -4,6 +4,7 @@ namespace Managers;
 
 use Models\AgentsModel;
 use PDO;
+use PDOException;
 
 class AgentManager
 {
@@ -12,7 +13,28 @@ class AgentManager
 
     public function __construct()
     {
-        $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+
+        if (getenv('JAWSDB_URL') !== false) {
+
+            $dbparts = parse_url(getenv('JAWSDB_URL'));
+            $hostname = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $database = ltrim($dbparts['path'],'/');
+            try {
+                $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+        }else {
+            try {
+                $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+
+        }
+
     }
 
     /**
@@ -59,7 +81,7 @@ class AgentManager
         $dateOfBirth = validDatas($_POST['dateOfBirth']);
         $agent_Mission = $codeNameMission;
         $req = $this->pdo->prepare("
-INSERT INTO intelligence_agency.Agents 
+INSERT INTO Agents 
     (codeName, firstname, lastname, nationality, competenceOne, competenceTwo, competenceThree, dateOfBirth, agent_Mission)
     VALUES 
            ('$codeName', '$firstname', '$lastname', '$nationality', '$competenceOne', '$competenceTwo', '$competenceThree', '$dateOfBirth', '$agent_Mission')");
@@ -82,7 +104,7 @@ INSERT INTO intelligence_agency.Agents
     {
         $req = $this->pdo->prepare('
 UPDATE 
-    intelligence_agency.Agents
+    Agents
 SET 
     codeName = :codeName, firstname = :firstName, lastname = :lastName, nationality = :nationality, competenceOne = :competenceOne, competenceTwo = :competenceTwo, competenceThree = :competenceThree, dateOfBirth = :dateOfBirth
     WHERE codeName = :codeName
@@ -101,7 +123,7 @@ SET
 
     public function delete(string $codeName):bool
     {
-        $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Agents WHERE codeName = :codeName');
+        $req = $this->pdo->prepare('DELETE FROM Agents WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         if ($req->execute()) {
             return true;
@@ -113,7 +135,7 @@ SET
     public function getByCodeName(string $codeName): AgentsModel
     {
         $codeName = (string)$codeName;
-        $req = $this->pdo->prepare('SELECT * FROM intelligence_agency.Agents WHERE codeName = :codeName');
+        $req = $this->pdo->prepare('SELECT * FROM Agents WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         $data = $req->fetch();
         return new AgentsModel($data);
@@ -122,7 +144,7 @@ SET
     public function getAll(): array
     {
 
-        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Agents ORDER BY codeName DESC ');
+        $req = $this->pdo->query('SELECT * FROM Agents ORDER BY codeName DESC ');
         $agent = array();
         foreach ($req->fetchAll() as $data) {
             $agent[] = new AgentsModel($data);
@@ -132,8 +154,7 @@ SET
 
     public function getData(): array
     {
-        $stmt = new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root');
-        $r = $stmt->query('SELECT * FROM intelligence_agency.Agents ORDER BY id DESC ');
+        $r = $this->pdo->query('SELECT * FROM Agents ORDER BY id DESC ');
         return $r->fetch();
     }
 }

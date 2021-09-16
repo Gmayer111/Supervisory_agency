@@ -4,6 +4,7 @@ namespace Managers;
 
 use PDO;
 use Models\SafeHousesModel;
+use PDOException;
 
 class SafeHouseManager
 {
@@ -12,7 +13,28 @@ class SafeHouseManager
 
     public function __construct()
     {
-        $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+
+        if (getenv('JAWSDB_URL') !== false) {
+
+            $dbparts = parse_url(getenv('JAWSDB_URL'));
+            $hostname = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $database = ltrim($dbparts['path'],'/');
+            try {
+                $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+        }else {
+            try {
+                $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+
+        }
+
     }
 
     /**
@@ -36,10 +58,7 @@ class SafeHouseManager
     {
 
         $missionManager = new MissionManager();
-
-        $localisation = $missionManager->getData()[4];
         $codeNameMission = $missionManager->getData()[0];
-
 
         function validDatas($data)
         {
@@ -54,21 +73,12 @@ class SafeHouseManager
 
 
         $code = validDatas($_POST['code']);
-        if ($localisation !== $_POST['country']) {
-            echo '<script>
-                    $let = confirm("La planque doit se trouver dans le pays de la mission")
-                       if ($let) {
-                           document.location.href = "http://localhost/intelligence-agency/?action=SafeHouseForm"
-                       }
-                  </script>';
-            die();
-        }
         $country = validDatas($_POST['country']);
         $type = validDatas($_POST['type']);
         $address = validDatas($_POST['address']);
         $shMission = $codeNameMission;
         $req = $this->pdo->prepare("
-INSERT INTO intelligence_agency.Safe_houses
+INSERT INTO Safe_houses
     (code, address, country, type, sf_Mission)
     VALUES 
            ('$code', '$address', '$country', '$type', '$shMission')");
@@ -84,7 +94,7 @@ INSERT INTO intelligence_agency.Safe_houses
     {
         $req = $this->pdo->prepare('
 UPDATE 
-    intelligence_agency.Safe_houses 
+    Safe_houses 
 SET 
     code = :code, country = :country, type = :type, address = :address
     WHERE code = :code
@@ -98,7 +108,7 @@ SET
 
     public function delete(string $code):bool
     {
-        $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Safe_houses WHERE code = :code');
+        $req = $this->pdo->prepare('DELETE FROM Safe_houses WHERE code = :code');
         $req->bindValue(':code', $code, PDO::PARAM_STR);
         if ($req->execute()) {
             return true;
@@ -110,7 +120,7 @@ SET
     public function getByCodeName(string $code): SafeHousesModel
     {
         $code = (string)$code;
-        $req = $this->pdo->prepare('SELECT * FROM intelligence_agency.Safe_houses WHERE code = :code');
+        $req = $this->pdo->prepare('SELECT * FROM Safe_houses WHERE code = :code');
         $req->bindValue(':code', $code, PDO::PARAM_STR);
         $data = $req->fetch();
         return new SafeHousesModel($data);
@@ -119,7 +129,7 @@ SET
     public function getAll(): array
     {
 
-        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Safe_houses ORDER BY code DESC ');
+        $req = $this->pdo->query('SELECT * FROM Safe_houses ORDER BY code DESC ');
         $safeHouse = array();
         foreach ($req->fetchAll() as $data) {
             $safeHouse[] = new SafeHousesModel($data);

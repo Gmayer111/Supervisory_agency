@@ -4,6 +4,7 @@ namespace Managers;
 
 use Models\ContactsModel;
 use PDO;
+use PDOException;
 
 class ContactManager
 {
@@ -12,7 +13,28 @@ class ContactManager
 
     public function __construct()
     {
-        $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+
+        if (getenv('JAWSDB_URL') !== false) {
+
+            $dbparts = parse_url(getenv('JAWSDB_URL'));
+            $hostname = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $database = ltrim($dbparts['path'],'/');
+            try {
+                $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+        }else {
+            try {
+                $this->setPdo(new PDO('mysql:dbname=intelligence_agency;host=localhost', 'root', 'root'));
+            }catch (PDOException $e) {
+                echo 'Connected failed :' . $e->getMessage();
+            }
+
+        }
+
     }
 
     /**
@@ -59,7 +81,7 @@ class ContactManager
         $dateOfBirth = validDatas($_POST['dateOfBirth']);
         $contact_Mission = $codeNameMission;
         $req = $this->pdo->prepare("
-INSERT INTO intelligence_agency.Contacts 
+INSERT INTO Contacts 
     (codeName, firstname, lastname, nationality, dateOfBirth, contact_Mission)
     VALUES 
            ('$codeName', '$firstname', '$lastname', '$nationality', '$dateOfBirth', '$contact_Mission')");
@@ -79,7 +101,7 @@ INSERT INTO intelligence_agency.Contacts
     {
         $req = $this->pdo->prepare('
 UPDATE 
-    intelligence_agency.Contacts 
+    Contacts 
 SET 
     codeName = :codeName, firstname = :firstName, lastname = :lastName, nationality = :nationality, dateOfBirth = :dateOfBirth
     WHERE codeName = :codeName
@@ -94,7 +116,7 @@ SET
 
     public function delete(string $codeName):bool
     {
-        $req = $this->pdo->prepare('DELETE FROM intelligence_agency.Contacts WHERE codeName = :codeName');
+        $req = $this->pdo->prepare('DELETE FROM Contacts WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         if ($req->execute()) {
             return true;
@@ -106,7 +128,7 @@ SET
     public function getByCodeName(string $codeName): ContactsModel
     {
         $codeName = (string)$codeName;
-        $req = $this->pdo->prepare('SELECT * FROM intelligence_agency.Contacts WHERE codeName = :codeName');
+        $req = $this->pdo->prepare('SELECT * FROM Contacts WHERE codeName = :codeName');
         $req->bindValue(':codeName', $codeName, PDO::PARAM_STR);
         $data = $req->fetch();
         return new ContactsModel($data);
@@ -115,7 +137,7 @@ SET
     public function getAll(): array
     {
 
-        $req = $this->pdo->query('SELECT * FROM intelligence_agency.Contacts ORDER BY codeName DESC ');
+        $req = $this->pdo->query('SELECT * FROM Contacts ORDER BY codeName DESC ');
         $contact = array();
         foreach ($req->fetchAll() as $data) {
             $contact[] = new ContactsModel($data);
