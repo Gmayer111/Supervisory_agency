@@ -26,6 +26,7 @@ class MissionManager
                 echo 'database :';
                 var_dump($dbparts);
                 echo '<br>';
+                echo '<br>';
                 var_dump($database);
                 echo 'Connected successfully';
             }catch (PDOException $e) {
