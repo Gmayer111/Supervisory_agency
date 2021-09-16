@@ -14,10 +14,9 @@ class MissionManager
     public function __construct()
     {
 
-        $url = getenv('JAWSDB_URL');
         if (getenv('JAWSDB_URL') !== false) {
 
-            $dbparts = parse_url($url);
+            $dbparts = parse_url(getenv('JAWSDB_URL'));
             $hostname = $dbparts['host'];
             $username = $dbparts['user'];
             $password = $dbparts['pass'];
