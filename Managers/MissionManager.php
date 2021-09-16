@@ -22,7 +22,7 @@ class MissionManager
             $password = $dbparts['pass'];
             $database = ltrim($dbparts['path'],'/');
             try {
-                $this->setPdo(new PDO("mysql://hjwstw708lf6ejn4:rx4vgsop65xcy472@lyn7gfxo996yjjco.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ifpzr97zxq80tort"));
+                $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
                 echo 'database :';
                 var_dump($dbparts);
                 echo '<br>';
@@ -130,7 +130,7 @@ INSERT INTO intelligence_agency.Missions
 
     public function getAll(): array
     {
-        $req = $this->pdo->query("SELECT * FROM intelligence_agency.Missions ORDER BY codeName DESC");
+        $req = $this->pdo->query("SELECT * FROM ifpzr97zxq80tort.Missions ORDER BY codeName DESC");
         var_dump($req->errorInfo());
         $mission = array();
         foreach ($req->fetchAll() as $data) {
