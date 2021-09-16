@@ -28,12 +28,12 @@ class MissionController
     {
         $mission = new MissionManager();
         $missionModel = new MissionsModel($_POST);
-        $mission->create($missionModel);
-/*        if ($mission->create($missionModel) === true) {
+
+        if ($mission->create($missionModel) === true) {
             header('Location: ?action=AgentForm');
         }else {
             header('Location: ?action=MissionForm');
-        }*/
+        }
     }
 
     public function updateMission()

@@ -84,12 +84,10 @@ INSERT INTO Missions
         $req->bindValue('En préparation', $mission->getState(), PDO::PARAM_STR);
         $req->bindValue($competence, $mission->getCompetence(), PDO::PARAM_STR);
         $req->bindValue($startDate, $mission->getStartDate(), PDO::PARAM_STR);
-        var_dump($req);
+        $req->bindValue($endDate, $mission->getEndDate(), PDO::PARAM_STR);
         if ($req->execute()) {
-            echo 'ok';
             return true;
         }else {
-            echo 'pas ok';
             return false;
         }
     }
