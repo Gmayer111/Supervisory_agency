@@ -74,9 +74,9 @@ class MissionManager
         $endDate = validDatas($_POST['endDate']);
         $req = $this->pdo->prepare("
 INSERT INTO Missions 
-    (codeName, title, description, country, type, state, competence, startDate, endDate)
+    (codeName, idun, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
-           ('$codeName', '$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
+           ('$codeName', '1','$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
         $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
         $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
         $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
@@ -86,6 +86,8 @@ INSERT INTO Missions
         $req->bindValue($competence, $mission->getCompetence(), PDO::PARAM_STR);
         $req->bindValue($startDate, $mission->getStartDate(), PDO::PARAM_STR);
         $req->bindValue($endDate, $mission->getEndDate(), PDO::PARAM_STR);
+        var_dump($req->errorInfo());
+
         if ($req->execute()) {
             return true;
         }else {
