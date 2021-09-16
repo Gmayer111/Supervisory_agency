@@ -75,7 +75,7 @@ class MissionManager
         $endDate = validDatas($_POST['endDate']);
         $req = $this->pdo->prepare("
 INSERT INTO Missions 
-    (codeName, idun, title, description, country, type, state, competence, startDate, endDate)
+    (Missions.codeName, Missions.idun, Missions.title, Missions.description, Missions.country, Missions.type, Missions.state, Missions.competence, Missions.startDate, Missions.endDate)
     VALUES 
            ('$codeName', '$idun','$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
         $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
