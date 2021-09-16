@@ -22,7 +22,7 @@ class MissionManager
             $password = $dbparts['pass'];
             $database = ltrim($dbparts['path'],'/');
             try {
-                $this->setPdo(new PDO("mysql:host=$hostname;dbname=$database", $username, $password));
+                $this->setPdo(new PDO("mysql://hjwstw708lf6ejn4:rx4vgsop65xcy472@lyn7gfxo996yjjco.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ifpzr97zxq80tort"));
                 echo 'database :';
                 var_dump($dbparts);
                 echo '<br>';
