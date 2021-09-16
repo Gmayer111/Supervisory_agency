@@ -54,24 +54,20 @@ class MissionsModel
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getIdun(): int
+    public function getIdun(): ?int
     {
         return $this->idun;
     }
 
     /**
-     * @param int $idun
+     * @param int|null $idun
      */
-    public function setIdun(int $idun): self
+    public function setIdun(?int $idun): void
     {
         $this->idun = $idun;
-
-        return $this;
     }
-
-
 
     /**
      * @return string
