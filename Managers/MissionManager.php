@@ -72,12 +72,12 @@ class MissionManager
         $competence = validDatas($_POST['competence']);
         $startDate = validDatas($_POST['startDate']);
         $endDate = validDatas($_POST['endDate']);
-        var_dump($_POST);
-        $req = $this->pdo->prepare("
+
+        var_dump($this->pdo->prepare("
 INSERT INTO Missions 
     (codeName, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
-           ('$codeName', '$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
+           ('$codeName', '$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')"));
         $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
         $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
         $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
