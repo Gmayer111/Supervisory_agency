@@ -83,8 +83,8 @@ class AgentManager
         $req = $this->pdo->prepare("
 INSERT INTO Agents 
     (codeName, firstname, lastname, nationality, competenceOne, competenceTwo, competenceThree, dateOfBirth, agent_Mission)
-    VALUES 
-           ('$codeName', '$firstname', '$lastname', '$nationality', '$competenceOne', '$competenceTwo', '$competenceThree', '$dateOfBirth', '$agent_Mission')");
+VALUES 
+    ('$codeName', '$firstname', '$lastname', '$nationality', '$competenceOne', '$competenceTwo', '$competenceThree', '$dateOfBirth', '$agent_Mission')");
         $req->bindValue($codeName, $agent->getCodeName(), PDO::PARAM_STR);
         $req->bindValue($firstname, $agent->getFirstname(), PDO::PARAM_STR);
         $req->bindValue($lastname, $agent->getLastname(), PDO::PARAM_STR);

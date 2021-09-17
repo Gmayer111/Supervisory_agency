@@ -2,6 +2,7 @@
 
 namespace Managers;
 
+use ErrorException;
 use Models\MissionsModel;
 use PDO;
 use PDOException;
@@ -75,22 +76,27 @@ class MissionManager
         $req = $this->pdo->prepare("
 INSERT INTO Missions 
     (codeName, title, description, country, type, state, competence, startDate, endDate)
-    VALUES 
-           ('$codeName', '$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
-        $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
-        $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
-        $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
-        $req->bindValue($country, $mission->getCountry(), PDO::PARAM_STR);
-        $req->bindValue($type, $mission->getType(), PDO::PARAM_STR);
-        $req->bindValue($state, $mission->getState(), PDO::PARAM_STR);
-        $req->bindValue($competence, $mission->getCompetence(), PDO::PARAM_STR);
-        $req->bindValue($startDate, $mission->getStartDate());
-        $req->bindValue($endDate, $mission->getEndDate());
-        if ($req->execute()) {
-            return true;
-        }else {
-            return false;
+VALUES 
+    ('$codeName', '$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
+        try {
+            $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
+            $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
+            $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
+            $req->bindValue($country, $mission->getCountry(), PDO::PARAM_STR);
+            $req->bindValue($type, $mission->getType(), PDO::PARAM_STR);
+            $req->bindValue($state, $mission->getState(), PDO::PARAM_STR);
+            $req->bindValue($competence, $mission->getCompetence(), PDO::PARAM_STR);
+            $req->bindValue($startDate, $mission->getStartDate());
+            $req->bindValue($endDate, $mission->getEndDate());
+            if ($req->execute()) {
+                return true;
+            }else {
+                return false;
+            }
+        }catch (ErrorException $e){
+            echo $e->getMessage();
         }
+
     }
 
     public function uptdate(MissionsModel $mission):bool
