@@ -77,15 +77,15 @@ INSERT INTO Missions
     (codeName, title, description, country, type, state, competence, startDate, endDate)
     VALUES 
            ('$codeName', '$title', '$description', '$country', '$type', '$state', '$competence', '$startDate', '$endDate')");
-        $req->bindParam($codeName, $mission->getCodeName(), PDO::PARAM_STR);
-        $req->bindParam($title, $mission->getTitle(), PDO::PARAM_STR);
-        $req->bindParam($description, $mission->getDescription(), PDO::PARAM_STR);
-        $req->bindParam($country, $mission->getCountry(), PDO::PARAM_STR);
-        $req->bindParam($type, $mission->getType(), PDO::PARAM_STR);
-        $req->bindParam($state, $mission->getState(), PDO::PARAM_STR);
-        $req->bindParam($competence, $mission->getCompetence(), PDO::PARAM_STR);
-        $req->bindParam($startDate, $mission->getStartDate(), PDO::PARAM_STR);
-        $req->bindParam($endDate, $mission->getEndDate(), PDO::PARAM_STR);
+        $req->bindValue($codeName, $mission->getCodeName(), PDO::PARAM_STR);
+        $req->bindValue($title, $mission->getTitle(), PDO::PARAM_STR);
+        $req->bindValue($description, $mission->getDescription(), PDO::PARAM_STR);
+        $req->bindValue($country, $mission->getCountry(), PDO::PARAM_STR);
+        $req->bindValue($type, $mission->getType(), PDO::PARAM_STR);
+        $req->bindValue($state, $mission->getState(), PDO::PARAM_STR);
+        $req->bindValue($competence, $mission->getCompetence(), PDO::PARAM_STR);
+        $req->bindValue($startDate, $mission->getStartDate());
+        $req->bindValue($endDate, $mission->getEndDate());
         if ($req->execute()) {
             return true;
         }else {
