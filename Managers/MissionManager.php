@@ -88,15 +88,10 @@ VALUES
         $req->bindValue($startDate, $mission->getStartDate());
         $req->bindValue($endDate, $mission->getEndDate());
         try {
-            if ($req->execute()) {
-                return true;
-            }else {
-                return false;
-            }
+            $req->execute();
         }catch (ErrorException $e){
             echo $e->getMessage();
         }
-
     }
 
     public function uptdate(MissionsModel $mission):bool
