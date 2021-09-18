@@ -27,6 +27,18 @@ class SafeHousesModel
         }
 
     }
+
+    function validDatas($data)
+    {
+        // Enlève espace inutile
+        $data = trim($data);
+        // Supprime les antislashs
+        $data = stripcslashes($data);
+        // Echappe caractères type < >
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     /**
      * @return string
      */
@@ -41,7 +53,7 @@ class SafeHousesModel
      */
     public function setCode(string $code): self
     {
-        $this->code = $code;
+        $this->code = $this->validDatas($code);
 
         return $this;
     }
@@ -60,7 +72,7 @@ class SafeHousesModel
      */
     public function setAddress(string $address): self
     {
-        $this->address = $address;
+        $this->address = $this->validDatas($address);
 
         return $this;
     }
@@ -79,7 +91,7 @@ class SafeHousesModel
      */
     public function setCountry(string $country): self
     {
-        $this->country = $country;
+        $this->country = $this->validDatas($country);
 
         return $this;
     }
@@ -98,7 +110,7 @@ class SafeHousesModel
      */
     public function setType(string $type): self
     {
-        $this->type = $type;
+        $this->type = $this->validDatas($type);
 
         return $this;
     }

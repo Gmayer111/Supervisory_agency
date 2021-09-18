@@ -59,23 +59,6 @@ class SafeHouseManager
 
         $missionManager = new MissionManager();
         $codeNameMission = $missionManager->getData()[0];
-
-        function validDatas($data)
-        {
-            // Enlève espace inutile
-            $data = trim($data);
-            // Supprime les antislashs
-            $data = stripcslashes($data);
-            // Echappe caractères type < >
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-
-
-        $code = validDatas($_POST['code']);
-        $country = validDatas($_POST['country']);
-        $type = validDatas($_POST['type']);
-        $address = validDatas($_POST['address']);
         $shMission = $codeNameMission;
         $req = $this->pdo->prepare("
 INSERT INTO Safe_houses
@@ -86,8 +69,12 @@ INSERT INTO Safe_houses
         $req->bindValue(':country', $safeHouse->getCountry(), PDO::PARAM_STR);
         $req->bindValue(':type', $safeHouse->getType(), PDO::PARAM_STR);
         $req->bindValue(':address', $safeHouse->getAddress(), PDO::PARAM_STR);
-        $req->execute();
-        return true;
+        $req->bindValue(':shMission', $shMission, PDO::PARAM_STR);
+        if ($req->execute()) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public function uptdate(SafeHousesModel $safeHouse)

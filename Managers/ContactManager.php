@@ -58,38 +58,19 @@ class ContactManager
     {
 
         $missionManager = new MissionManager();
-
-        $origin = $missionManager->getData()[4];
         $codeNameMission = $missionManager->getData()[0];
-
-        function validDatas($data)
-        {
-            // Enlève espace inutile
-            $data = trim($data);
-            // Supprime les antislashs
-            $data = stripcslashes($data);
-            // Echappe caractères type < >
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-
-
-        $codeName = validDatas($_POST['codeName']);
-        $firstname = validDatas($_POST['firstName']);
-        $lastname = validDatas($_POST['lastName']);
-        $nationality = validDatas($_POST['nationality']);
-        $dateOfBirth = validDatas($_POST['dateOfBirth']);
-        $contact_Mission = $codeNameMission;
+        $ct_Mission = $codeNameMission;
         $req = $this->pdo->prepare("
 INSERT INTO Contacts 
     (codeName, firstname, lastname, nationality, dateOfBirth, contact_Mission)
-    VALUES 
-           ('$codeName', '$firstname', '$lastname', '$nationality', '$dateOfBirth', '$contact_Mission')");
-        $req->bindValue($codeName, $contact->getCodeName(), PDO::PARAM_STR);
-        $req->bindValue($firstname, $contact->getFirstname(), PDO::PARAM_STR);
-        $req->bindValue($lastname, $contact->getLastname(), PDO::PARAM_STR);
-        $req->bindValue($nationality, $contact->getNationality(), PDO::PARAM_STR);
-        $req->bindValue($dateOfBirth, $contact->getDateOfBirth(), PDO::PARAM_STR);
+VALUES 
+    (:codeName, :firstname, :lastname, :nationality, :dateOfBirth, :contact_Mission)");
+        $req->bindValue(':codeName', $contact->getCodeName(), PDO::PARAM_STR);
+        $req->bindValue(':firstname', $contact->getFirstname(), PDO::PARAM_STR);
+        $req->bindValue(':lastname', $contact->getLastname(), PDO::PARAM_STR);
+        $req->bindValue(':nationality', $contact->getNationality(), PDO::PARAM_STR);
+        $req->bindValue(':dateOfBirth', $contact->getDateOfBirth(), PDO::PARAM_STR);
+        $req->bindValue(':contact_Mission', $ct_Mission, PDO::PARAM_STR);
         if ($req->execute()) {
             return true;
         }else {
