@@ -33,6 +33,17 @@ class MissionsModel
 
     }
 
+    function validDatas($data)
+    {
+        // Enlève espace inutile
+        $data = trim($data);
+        // Supprime les antislashs
+        $data = stripcslashes($data);
+        // Echappe caractères type < >
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     /**
      * @return string
      */
@@ -47,7 +58,7 @@ class MissionsModel
      */
     public function setCodeName(string $codeName): self
     {
-        $this->codeName = $codeName;
+        $this->codeName = $this->validDatas($codeName);
 
         return $this;
     }
@@ -66,7 +77,7 @@ class MissionsModel
      */
     public function setTitle(string $title): self
     {
-        $this->title = $title;
+        $this->title = $this->validDatas($title);
 
         return $this;
     }
@@ -85,7 +96,7 @@ class MissionsModel
      */
     public function setDescription(string $description): self
     {
-        $this->description = $description;
+        $this->description = $this->validDatas($description);
 
         return $this;
     }
@@ -159,7 +170,7 @@ class MissionsModel
      */
     public function setCompetence(string $competence): self
     {
-        $this->competence = $competence;
+        $this->competence = $this->validDatas($competence);
 
         return $this;
     }

@@ -81,7 +81,11 @@ class SafeHouseManager
 INSERT INTO Safe_houses
     (code, address, country, type, sf_Mission)
     VALUES 
-           ('$code', '$address', '$country', '$type', '$shMission')");
+           (:code, :address, :country, :type, :shMission)");
+        $req->bindValue(':code', $safeHouse->getCode(), PDO::PARAM_STR);
+        $req->bindValue(':country', $safeHouse->getCountry(), PDO::PARAM_STR);
+        $req->bindValue(':type', $safeHouse->getType(), PDO::PARAM_STR);
+        $req->bindValue(':address', $safeHouse->getAddress(), PDO::PARAM_STR);
         $req->execute();
         return true;
     }
