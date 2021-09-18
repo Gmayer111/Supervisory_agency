@@ -35,6 +35,16 @@ class AgentsModel
 
     }
 
+    function validDatas($data)
+    {
+        // Enlève espace inutile
+        $data = trim($data);
+        // Supprime les antislashs
+        $data = stripcslashes($data);
+        // Echappe caractères type < >
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 
     /**
      * @return string
@@ -50,7 +60,7 @@ class AgentsModel
      */
     public function setCodeName(string $codeName): self
     {
-        $this->codeName = $codeName;
+        $this->codeName = $this->validDatas($codeName);
 
         return $this;
     }
@@ -72,7 +82,7 @@ class AgentsModel
      */
     public function setFirstname(string $firstname): self
     {
-        $this->firstname = $firstname;
+        $this->firstname = $this->validDatas($firstname);
 
         return $this;
     }
@@ -91,7 +101,7 @@ class AgentsModel
      */
     public function setLastname(string $lastname): self
     {
-        $this->lastname = $lastname;
+        $this->lastname = $this->validDatas($lastname);
 
         return $this;
     }

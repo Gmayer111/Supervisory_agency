@@ -50,33 +50,11 @@ class MissionManager
 
     public function create(MissionsModel $mission) :bool
     {
-
-/*        function validDatas($data)
-        {
-            // Enlève espace inutile
-            $data = trim($data);
-            // Supprime les antislashs
-            $data = stripcslashes($data);
-            // Echappe caractères type < >
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-
-
-        $codeName = validDatas($_POST['codeName']);
-        $title = validDatas($_POST['title']);
-        $description = addslashes(validDatas($_POST['description'])) ;
-        $country = validDatas($_POST['country']);
-        $type = validDatas($_POST['type']);
-        $state = 'En préparation';
-        $competence = validDatas($_POST['competence']);
-        $startDate = validDatas($_POST['startDate']);
-        $endDate = validDatas($_POST['endDate']);*/
         $req = $this->pdo->prepare("
 INSERT INTO Missions 
     (codeName, title, description, country, type, state, competence, startDate, endDate)
 VALUES 
-    (:codeName, :title, :description, :country, :type, :state = 'En préparation', :competence, :startDate, :endDate)");
+    (:codeName, :title, :description, :country, :type, :state, :competence, :startDate, :endDate)");
         $req->bindValue(':codeName', $mission->getCodeName(), PDO::PARAM_STR);
         $req->bindValue(':title', $mission->getTitle(), PDO::PARAM_STR);
         $req->bindValue(':description', $mission->getDescription(), PDO::PARAM_STR);

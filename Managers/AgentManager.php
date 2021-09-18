@@ -59,40 +59,20 @@ class AgentManager
 
         $missionManager = new MissionManager();
         $codeNameMission = $missionManager->getData()[0];
-
-        function validDatas($data)
-        {
-            // Enlève espace inutile
-            $data = trim($data);
-            // Supprime les antislashs
-            $data = stripcslashes($data);
-            // Echappe caractères type < >
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-
-        $codeName = validDatas($_POST['codeName']);
-        $firstname = validDatas($_POST['firstName']);
-        $lastname = validDatas($_POST['lastName']);
-        $nationality = validDatas($_POST['nationality']);
-        $competenceOne = validDatas($_POST['competenceOne']);
-        $competenceTwo = validDatas($_POST['competenceTwo']);
-        $competenceThree = validDatas($_POST['competenceThree']);
-        $dateOfBirth = validDatas($_POST['dateOfBirth']);
-        $agent_Mission = $codeNameMission;
         $req = $this->pdo->prepare("
 INSERT INTO Agents 
     (codeName, firstname, lastname, nationality, competenceOne, competenceTwo, competenceThree, dateOfBirth, agent_Mission)
 VALUES 
-    ('$codeName', '$firstname', '$lastname', '$nationality', '$competenceOne', '$competenceTwo', '$competenceThree', '$dateOfBirth', '$agent_Mission')");
-        $req->bindValue($codeName, $agent->getCodeName(), PDO::PARAM_STR);
-        $req->bindValue($firstname, $agent->getFirstname(), PDO::PARAM_STR);
-        $req->bindValue($lastname, $agent->getLastname(), PDO::PARAM_STR);
-        $req->bindValue($nationality, $agent->getNationality(), PDO::PARAM_STR);
-        $req->bindValue($competenceOne, $agent->getCompetenceOne(), PDO::PARAM_STR);
-        $req->bindValue($competenceTwo, $agent->getCompetenceTwo(), PDO::PARAM_STR);
-        $req->bindValue($competenceThree, $agent->getCompetenceThree(), PDO::PARAM_STR);
-        $req->bindValue($dateOfBirth, $agent->getDateOfBirth(), PDO::PARAM_STR);
+    (:codeName, :firstname, :lastname, :nationality, :competenceOne, :competenceTwo, :competenceThree, :dateOfBirth, :agent_Mission)");
+        $req->bindValue(':codeName', $agent->getCodeName(), PDO::PARAM_STR);
+        $req->bindValue(':firstname', $agent->getFirstname(), PDO::PARAM_STR);
+        $req->bindValue(':lastname', $agent->getLastname(), PDO::PARAM_STR);
+        $req->bindValue(':nationality', $agent->getNationality(), PDO::PARAM_STR);
+        $req->bindValue(':competenceOne', $agent->getCompetenceOne(), PDO::PARAM_STR);
+        $req->bindValue(':competenceTwo', $agent->getCompetenceTwo(), PDO::PARAM_STR);
+        $req->bindValue(':competenceThree', $agent->getCompetenceThree(), PDO::PARAM_STR);
+        $req->bindValue(':dateOfBirth', $agent->getDateOfBirth(), PDO::PARAM_STR);
+        $req->bindValue(':agent_Mission', $codeNameMission, PDO::PARAM_STR);
         if ($req->execute()) {
             return true;
         }else {
