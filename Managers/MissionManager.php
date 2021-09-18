@@ -82,7 +82,7 @@ VALUES
         $req->bindValue(':description', $mission->getDescription(), PDO::PARAM_STR);
         $req->bindValue(':country', $mission->getCountry(), PDO::PARAM_STR);
         $req->bindValue(':type', $mission->getType(), PDO::PARAM_STR);
-        $req->bindValue(':state', $mission->getState(), PDO::PARAM_STR);
+        $req->bindValue(':state', 'En préparation', PDO::PARAM_STR);
         $req->bindValue(':competence', $mission->getCompetence(), PDO::PARAM_STR);
         $req->bindValue(':startDate', $mission->getStartDate());
         $req->bindValue(':endDate', $mission->getEndDate());

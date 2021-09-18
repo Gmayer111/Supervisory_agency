@@ -149,11 +149,13 @@ class MissionsModel
 
     /**
      * @param string|null $state
+     * @return MissionsModel
      */
-    public function setState(?string $state): void
+    public function setState(string $state): self
     {
         $this->state = $state;
 
+        return $this;
     }
 
     /**
