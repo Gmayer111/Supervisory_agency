@@ -33,6 +33,17 @@ class AdminsModel
 
     }
 
+    function validDatas($data)
+    {
+        // Enlève espace inutile
+        $data = trim($data);
+        // Supprime les antislashs
+        $data = stripcslashes($data);
+        // Echappe caractères type < >
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     /**
      * @return int
      */
@@ -67,7 +78,7 @@ class AdminsModel
      */
     public function setFirstname(string $firstname): self
     {
-        $this->firstname = $firstname;
+        $this->firstname = $this->validDatas($firstname);
 
         return $this;
     }
@@ -86,7 +97,7 @@ class AdminsModel
      */
     public function setLastname(string $lastname): self
     {
-        $this->lastname = $lastname;
+        $this->lastname = $this->validDatas($lastname);
 
         return $this;
     }

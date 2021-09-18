@@ -52,38 +52,21 @@ class AdminManager
     public function create(AdminsModel $admin) :bool
     {
 
-
-        function validDatas($data)
-        {
-            // Enlève espace inutile
-            $data = trim($data);
-            // Supprime les antislashs
-            $data = stripcslashes($data);
-            // Echappe caractères type < >
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-
-        $codeName = validDatas($_POST['codeName']);
-        $firstname = validDatas($_POST['firstName']);
-        $lastname = validDatas($_POST['lastName']);
-        $password = password_hash(validDatas($_POST['password']), PASSWORD_BCRYPT);
         $req = $this->pdo->prepare("
 INSERT INTO Admins
     (firstname, lastname, codeName, password)
     VALUES 
-           ('$codeName', '$firstname', '$lastname', '$password')");
-        $req->bindValue($codeName, $admin->getCodeName(), PDO::PARAM_STR);
-        $req->bindValue($firstname, $admin->getFirstname(), PDO::PARAM_STR);
-        $req->bindValue($lastname, $admin->getLastname(), PDO::PARAM_STR);
-        $req->bindValue($password, $admin->getPassword());
+           (:codeName, :firstname, :lastname, :password)");
+        $req->bindValue(':codeName', $admin->getCodeName(), PDO::PARAM_STR);
+        $req->bindValue(':firstname', $admin->getFirstname(), PDO::PARAM_STR);
+        $req->bindValue(':lastname', $admin->getLastname(), PDO::PARAM_STR);
+        $req->bindValue(':password', $admin->getPassword());
         var_dump($req);
         if ($req->execute()) {
-            echo 'exec ok';
             return true;
-
+        }else {
+            return false;
         }
-        return false;
     }
 
     public function uptdate(AdminsModel $admin)
