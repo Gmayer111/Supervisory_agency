@@ -28,7 +28,9 @@ $missions = $manager->getAll();
                         <?php endforeach; ?>
                     </div>
                 </div>
-                <a href="?action=Logout" class="btnLogin"><button id="btn-login">Déconnexion</button></a>
+                <li><a href="?action=Logout" class="btn-login">Déconnexion</a></li>
+
+
             <?php endif; ?>
             <?php if (!isset($_SESSION['CodeName'])): ?>
                 <li><a href="index.php">Accueil</a></li>
@@ -41,7 +43,7 @@ $missions = $manager->getAll();
                         <?php endforeach; ?>
                     </div>
                 </div>
-            <a href="?action=Login" class="btnLogin btnH"><button id="btn-login">Connexion</button></a>
+                <li><a href="?action=Logout" class="btn-login">Connexion</a></li>
             <?php endif; ?>
         </ul>
     </nav>
