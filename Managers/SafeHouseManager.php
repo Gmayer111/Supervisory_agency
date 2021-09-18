@@ -73,10 +73,10 @@ class SafeHouseManager
 
 
         $code = validDatas($_POST['code']);
+        $address = validDatas($_POST['address']);
         $country = validDatas($_POST['country']);
         $type = validDatas($_POST['type']);
-        $address = validDatas($_POST['address']);
-        $shMission = $codeNameMission;
+        $shMission = 'DUDU';
         $req = $this->pdo->prepare("
 INSERT INTO Safe_houses
     (code, address, country, type, sf_Mission)
@@ -86,6 +86,7 @@ INSERT INTO Safe_houses
         $req->bindValue($country, $safeHouse->getCountry(), PDO::PARAM_STR);
         $req->bindValue($type, $safeHouse->getType(), PDO::PARAM_STR);
         $req->bindValue($address, $safeHouse->getAddress(), PDO::PARAM_STR);
+        $req->bindValue($shMission, $safeHouse->getSfMission(), PDO::PARAM_STR);
         $req->execute();
         return true;
     }
