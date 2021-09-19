@@ -27,8 +27,11 @@ class ContactController
             header('Location: ?action=ContactForm');
         }
             }else {
-        ?> <script>alert('Erreur')</script> <?php
-        echo 'erreur';
+            ?> <script>
+                alert('CodeName déjà emprunté')
+                document.location.href = "http://localhost/intelligence-agency/?action=ContactForm"
+            </script> <?php
+            die();
         }
     }
 

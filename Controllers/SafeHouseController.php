@@ -27,8 +27,11 @@ class SafeHouseController
                 header('Location: ?action=SafeHouseForm');
             }
         }else {
-        ?> <script>alert('Erreur')</script> <?php
-        echo 'erreur';
+            ?> <script>
+                alert('Code déjà emprunté')
+                document.location.href = "http://localhost/intelligence-agency/?action=SafeHouseForm"
+            </script> <?php
+            die();
         }
     }
 

@@ -14,38 +14,42 @@ $missions = $manager->getAll();
 <body>
 <header>
     <nav>
-        <ul class="liste">
-            <?php if (isset($_SESSION['CodeName'])): ?>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="?action=Profil">Profil</a></li>
-                <li><a href="?action=MissionForm">Créer mission</a></li>
-                <li><a href="?action=List">Missions</a></li>
-                <div class="dropdown">
-                    <button class="dropBtn">Détail mission</button>
-                    <div class="dropContent">
-                        <?php foreach ($missions as $mission): ?>
-                        <a href="?action=Detail&codeName=<?php echo $mission->getCodeName() ?>"><?php echo $mission->getCodeName() ?></a>
-                        <?php endforeach; ?>
+        <div></div>
+        <div>
+            <ul class="liste">
+                <?php if (isset($_SESSION['CodeName'])): ?>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="?action=Profil">Profil</a></li>
+                    <li><a href="?action=MissionForm">Créer mission</a></li>
+                    <li><a href="?action=List">Missions</a></li>
+                    <div class="dropdown">
+                        <button class="dropBtn">Détail mission</button>
+                        <div class="dropContent">
+                            <?php foreach ($missions as $mission): ?>
+                                <a href="?action=Detail&codeName=<?php echo $mission->getCodeName() ?>"><?php echo $mission->getCodeName() ?></a>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                </div>
-                <li><a href="?action=Logout" class="btn-login">Déconnexion</a></li>
-
-
-            <?php endif; ?>
-            <?php if (!isset($_SESSION['CodeName'])): ?>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="?action=List">Missions</a></li>
-                <div class="dropdown">
-                    <button class="dropBtn btnH">Détail mission</button>
-                    <div class="dropContent">
-                        <?php foreach ($missions as $mission): ?>
-                            <a href="?action=Detail&codeName=<?php echo $mission->getCodeName() ?>"><?php echo $mission->getCodeName() ?></a>
-                        <?php endforeach; ?>
+                    <li><a href="?action=Logout" class="btn-login">DÉCONNEXION</a></li>
+                <?php endif; ?>
+                <?php if (!isset($_SESSION['CodeName'])): ?>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="?action=List">Missions</a></li>
+                    <div class="dropdown">
+                        <button class="dropBtn btnH">Détail mission</button>
+                        <div class="dropContent">
+                            <?php foreach ($missions as $mission): ?>
+                                <a href="?action=Detail&codeName=<?php echo $mission->getCodeName() ?>"><?php echo $mission->getCodeName() ?></a>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
-                </div>
-                <li><a href="?action=Logout" class="btn-login">Connexion</a></li>
-            <?php endif; ?>
-        </ul>
+                    <li><a href="?action=Logout" class="btn-login">CONNEXION</a></li>
+                <?php endif; ?>
+            </ul>
+        </div>
+        <div>
+
+        </div>
     </nav>
 </header>
 <main>

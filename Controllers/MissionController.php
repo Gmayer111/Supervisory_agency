@@ -32,7 +32,11 @@ class MissionController
         if ($mission->create($missionModel) === true) {
             header('Location: ?action=AgentForm');
         }else {
-            header('Location: ?action=MissionForm');
+            ?> <script>
+                alert('CodeName déjà emprunté')
+                document.location.href = "http://localhost/intelligence-agency/?action=MissionForm"
+            </script> <?php
+            die();
         }
     }
 

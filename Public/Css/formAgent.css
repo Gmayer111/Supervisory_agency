@@ -45,6 +45,11 @@ label {
     font-size: 0.8em;
 }
 
+select {
+    width: 260px;
+    height: 25px;
+}
+
 .containerForm div input {
     margin-left: 100px;
 }

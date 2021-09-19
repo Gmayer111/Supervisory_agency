@@ -23,7 +23,7 @@ $shs = $shManager->getAll();
         <div class="container">
             <div class="containerForm">
                 <div>
-                    <label for="code">Code de la planque</label>
+                    <label for="code">Code de la planque (unique)</label>
                 </div>
                 <div>
                     <input type="text" id="code"  name="code" placeholder="Entrez le code de la planque" value="<?php if (isset($_POST['code'])) {echo $_POST['code'];} ?>">
@@ -38,9 +38,9 @@ $shs = $shManager->getAll();
                     <label for="country">Pays de la planque</label>
                 </div>
                 <div>
-                    <select name="pays">
-                        <option value="France" selected="selected">France </option>
-
+                    <select name="country" id="country">
+                        <option value="" selected="selected">Séléctionnez le pays </option>
+                        <option value="France">France </option>
                         <option value="Afghanistan">Afghanistan </option>
                         <option value="Afrique_Centrale">Afrique_Centrale </option>
                         <option value="Afrique_du_sud">Afrique_du_Sud </option>
@@ -56,7 +56,6 @@ $shs = $shManager->getAll();
                         <option value="Australie">Australie </option>
                         <option value="Autriche">Autriche </option>
                         <option value="Azerbaidjan">Azerbaidjan </option>
-
                         <option value="Bahamas">Bahamas </option>
                         <option value="Bangladesh">Bangladesh </option>
                         <option value="Barbade">Barbade </option>
@@ -75,7 +74,6 @@ $shs = $shManager->getAll();
                         <option value="Bulgarie">Bulgarie </option>
                         <option value="Burkina_Faso">Burkina_Faso </option>
                         <option value="Burundi">Burundi </option>
-
                         <option value="Caiman">Caiman </option>
                         <option value="Cambodge">Cambodge </option>
                         <option value="Cameroun">Cameroun </option>
@@ -96,11 +94,9 @@ $shs = $shManager->getAll();
                         <option value="Cote_d_Ivoire">Côte_d_Ivoire </option>
                         <option value="Croatie">Croatie </option>
                         <option value="Cuba">Cuba </option>
-
                         <option value="Danemark">Danemark </option>
                         <option value="Djibouti">Djibouti </option>
                         <option value="Dominique">Dominique </option>
-
                         <option value="Egypte">Egypte </option>
                         <option value="Emirats_Arabes_Unis">Emirats_Arabes_Unis </option>
                         <option value="Equateur">Equateur </option>
@@ -109,13 +105,11 @@ $shs = $shManager->getAll();
                         <option value="Estonie">Estonie </option>
                         <option value="Etats_Unis">Etats_Unis </option>
                         <option value="Ethiopie">Ethiopie </option>
-
                         <option value="Falkland">Falkland </option>
                         <option value="Feroe">Feroe </option>
                         <option value="Fidji">Fidji </option>
                         <option value="Finlande">Finlande </option>
                         <option value="France">France </option>
-
                         <option value="Gabon">Gabon </option>
                         <option value="Gambie">Gambie </option>
                         <option value="Georgie">Georgie </option>
@@ -133,13 +127,11 @@ $shs = $shManager->getAll();
                         <option value="Guinee equatoriale">Guinee_Equatoriale </option>
                         <option value="Guyana">Guyana </option>
                         <option value="Guyane_Francaise ">Guyane_Francaise </option>
-
                         <option value="Haiti">Haiti </option>
                         <option value="Hawaii">Hawaii </option>
                         <option value="Honduras">Honduras </option>
                         <option value="Hong_Kong">Hong_Kong </option>
                         <option value="Hongrie">Hongrie </option>
-
                         <option value="Inde">Inde </option>
                         <option value="Indonesie">Indonesie </option>
                         <option value="Iran">Iran </option>
@@ -148,19 +140,16 @@ $shs = $shManager->getAll();
                         <option value="Islande">Islande </option>
                         <option value="Israel">Israel </option>
                         <option value="Italie">italie </option>
-
                         <option value="Jamaique">Jamaique </option>
                         <option value="Jan Mayen">Jan Mayen </option>
                         <option value="Japon">Japon </option>
                         <option value="Jersey">Jersey </option>
                         <option value="Jordanie">Jordanie </option>
-
                         <option value="Kazakhstan">Kazakhstan </option>
                         <option value="Kenya">Kenya </option>
                         <option value="Kirghizstan">Kirghizistan </option>
                         <option value="Kiribati">Kiribati </option>
                         <option value="Koweit">Koweit </option>
-
                         <option value="Laos">Laos </option>
                         <option value="Lesotho">Lesotho </option>
                         <option value="Lettonie">Lettonie </option>
@@ -170,7 +159,6 @@ $shs = $shManager->getAll();
                         <option value="Lituanie">Lituanie </option>
                         <option value="Luxembourg">Luxembourg </option>
                         <option value="Lybie">Lybie </option>
-
                         <option value="Macao">Macao </option>
                         <option value="Macedoine">Macedoine </option>
                         <option value="Madagascar">Madagascar </option>
@@ -196,7 +184,6 @@ $shs = $shManager->getAll();
                         <option value="Mongolie">Mongolie </option>
                         <option value="Montserrat">Montserrat </option>
                         <option value="Mozambique">Mozambique </option>
-
                         <option value="Namibie">Namibie </option>
                         <option value="Nauru">Nauru </option>
                         <option value="Nepal">Nepal </option>
@@ -208,11 +195,9 @@ $shs = $shManager->getAll();
                         <option value="Norvege">Norvege </option>
                         <option value="Nouvelle_Caledonie">Nouvelle_Caledonie </option>
                         <option value="Nouvelle_Zelande">Nouvelle_Zelande </option>
-
                         <option value="Oman">Oman </option>
                         <option value="Ouganda">Ouganda </option>
                         <option value="Ouzbekistan">Ouzbekistan </option>
-
                         <option value="Pakistan">Pakistan </option>
                         <option value="Palau">Palau </option>
                         <option value="Palestine">Palestine </option>
@@ -226,9 +211,7 @@ $shs = $shManager->getAll();
                         <option value="Polynesie">Polynesie </option>
                         <option value="Porto_Rico">Porto_Rico </option>
                         <option value="Portugal">Portugal </option>
-
                         <option value="Qatar">Qatar </option>
-
                         <option value="Republique_Dominicaine">Republique_Dominicaine </option>
                         <option value="Republique_Tcheque">Republique_Tcheque </option>
                         <option value="Reunion">Reunion </option>
@@ -236,7 +219,6 @@ $shs = $shManager->getAll();
                         <option value="Royaume_Uni">Royaume_Uni </option>
                         <option value="Russie">Russie </option>
                         <option value="Rwanda">Rwanda </option>
-
                         <option value="Sahara Occidental">Sahara Occidental </option>
                         <option value="Sainte_Lucie">Sainte_Lucie </option>
                         <option value="Saint_Marin">Saint_Marin </option>
@@ -259,7 +241,6 @@ $shs = $shManager->getAll();
                         <option value="Surinam">Surinam </option>
                         <option value="Swaziland">Swaziland </option>
                         <option value="Syrie">Syrie </option>
-
                         <option value="Tadjikistan">Tadjikistan </option>
                         <option value="Taiwan">Taiwan </option>
                         <option value="Tonga">Tonga </option>
@@ -274,26 +255,20 @@ $shs = $shManager->getAll();
                         <option value="Tunisie">Tunisie </option>
                         <option value="Turkmenistan">Turmenistan </option>
                         <option value="Turquie">Turquie </option>
-
                         <option value="Ukraine">Ukraine </option>
                         <option value="Uruguay">Uruguay </option>
-
                         <option value="Vanuatu">Vanuatu </option>
                         <option value="Vatican">Vatican </option>
                         <option value="Venezuela">Venezuela </option>
                         <option value="Vierges_Americaines">Vierges_Americaines </option>
                         <option value="Vierges_Britanniques">Vierges_Britanniques </option>
                         <option value="Vietnam">Vietnam </option>
-
                         <option value="Wake">Wake </option>
                         <option value="Wallis et Futuma">Wallis et Futuma </option>
-
                         <option value="Yemen">Yemen </option>
                         <option value="Yougoslavie">Yougoslavie </option>
-
                         <option value="Zambie">Zambie </option>
                         <option value="Zimbabwe">Zimbabwe </option>
-
                     </select>
                     <p class="country">(Attention le pays doit être similaire au pays de la mission en cours)</p>
                     <p class="countryS" id="MissionValue">Pays de la mission : <?php echo $missions[4]; ?></p>
@@ -302,7 +277,7 @@ $shs = $shManager->getAll();
                     <label for="type">Type de planque</label>
                 </div>
                 <div>
-                    <select name="type" id="type">
+                    <select class="type" name="type" id="type">
                         <option value="">Selectionnez le type de planque</option>
                         <option value="house">Maison</option>
                         <option value="apartment">Appartement</option>

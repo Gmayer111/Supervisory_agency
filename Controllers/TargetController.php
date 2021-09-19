@@ -25,8 +25,11 @@ class TargetController
                 header('Location: ?action=TargetForm');
             }
         }else {
-        ?> <script>alert('Erreur')</script> <?php
-        echo 'erreur';
+        ?> <script>
+                alert('CodeName déjà emprunté')
+                document.location.href = "http://localhost/intelligence-agency/?action=TargetForm"
+            </script> <?php
+            die();
         }
     }
 

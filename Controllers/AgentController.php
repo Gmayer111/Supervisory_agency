@@ -27,8 +27,11 @@ class AgentController
                 header('Location: ?action=AgentForm');
             }
         }else {
-            ?> <script>alert('Erreur')</script> <?php
-            echo 'erreur';
+            ?> <script>
+                alert('CodeName déjà emprunté')
+                document.location.href = "http://localhost/intelligence-agency/?action=AgentForm"
+            </script> <?php
+            die();
         }
     }
 

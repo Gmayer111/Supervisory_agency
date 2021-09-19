@@ -131,7 +131,7 @@ class ContactsModel
      */
     public function setNationality(string $nationality): self
     {
-        $this->nationality = $this->validDatas($nationality);
+        $this->nationality = $nationality;
 
         return $this;
     }
