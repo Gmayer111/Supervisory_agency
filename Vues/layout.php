@@ -9,7 +9,7 @@ $missions = $manager->getAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://kit.fontawesome.com/b5efc1d547.js" crossorigin="anonymous"></script>
-    <link href='http://fonts.googleapis.com/css?family=Fututa' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu Condensed' rel='stylesheet' type='text/css'>
     <title><?php echo $title; ?></title>
 </head>
 <body>
@@ -44,7 +44,7 @@ $missions = $manager->getAll();
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <li><a href="?action=Logout" class="btn-login btnLogC">CONNEXION</a></li>
+                    <li class="logLi"><a href="?action=Logout" class="btn-login btnLogC">CONNEXION</a></li>
                 <?php endif; ?>
             </ul>
         </div>

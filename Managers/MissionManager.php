@@ -81,10 +81,10 @@ VALUES
                 UPDATE 
                     Missions 
                 SET 
-                    state = '$state'
+                    state = :state
                 WHERE codeName = '$codeName'
     ");
-        $req->bindValue($state, $mission->getState(), PDO::PARAM_STR);
+        $req->bindValue(':state', $state, PDO::PARAM_STR);
         if ($req->execute()) {
             return true;
         }else {

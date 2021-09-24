@@ -5,7 +5,7 @@ html {
 body {
     margin: 0;
     -moz-box-sizing: border-box; box-sizing: border-box;
-    font-family: Futura, serif;
+    font-family: Ubuntu Condensed, serif;
     min-height: 100%;
     position: relative;
     padding-bottom: 63px;
@@ -42,17 +42,17 @@ header {
     margin: 0;
     height: 50px;
     box-shadow: 10px 5px 5px #000000;
+    z-index: 3;
 }
 
 .liste li a {
     list-style: none;
     text-decoration: none;
-    line-height: 1em;
+    font-size: 1.1em;
 }
 
 header ul {
     display: flex;
-    align-content: space-between;
     list-style-type: none;
 }
 
@@ -68,9 +68,13 @@ li, a:hover {
     color: #928f8f;
 }
 
+.logLi {
+    margin: 0;
+}
+
 .dropBtn {
-    font-family: Futura, serif;
-    font-size: 1em;
+    font-family: Ubuntu Condensed, serif;
+    font-size: 1.1em;
     color: white;
     text-decoration: none;
     border: none;
@@ -123,7 +127,7 @@ i.fas {
 
 .btnLogC {
     position: relative;
-    left: 275px;
+    left: 250px;
 }
 
 .btnLogD {
