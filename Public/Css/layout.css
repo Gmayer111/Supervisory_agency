@@ -64,6 +64,10 @@ li, a {
     color: white;
 }
 
+li, a:hover {
+    color: #928f8f;
+}
+
 .dropBtn {
     font-family: Futura, serif;
     font-size: 1em;
@@ -117,15 +121,25 @@ i.fas {
     margin: 0;
 }
 
-.btnLogin {
-    margin-left: 30px;
+.btnLogC {
+    position: relative;
+    left: 275px;
+}
+
+.btnLogD {
+    position: relative;
+    left: 70px;
 }
 
 .btn-login {
-    color: #ff0000;
-    margin-left: 100px;
     border: none;
     font-size: 16px;
+    background-color: red;
+    color: #F4D9D9;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px 20px;
 }
 
 
