@@ -84,7 +84,7 @@ class LoginManager
                 while ($user = $stmt->fetchObject(get_class($instance))) {
                     $password = $user->getPassword();
                     if (password_verify(validData($_POST['password']), $password)) {
-                        $_SESSION['CodeName'] = 'Gaël';
+                        $_SESSION['User'] = $user;
                         return true;
                     }else {
                         return false;

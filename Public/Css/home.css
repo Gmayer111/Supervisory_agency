@@ -12,13 +12,27 @@
 
 .divH {
     background: radial-gradient(closest-side, white, #091167);
-    width: 180px;
-    height: 180px;
+    width: 250px;
+    height: 250px;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 15px;
+    margin-top: 30px;
     border-radius: 100%;
-    border: 3px solid black;
+    border: 1px solid black;
+}
+
+.containLine {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 20px;
+    z-index: 3;
+}
+
+.line {
+    width: 3px;
+    height: 70px;
+    background-color: white;
 }
 
 
@@ -26,7 +40,7 @@ h1 {
     background: -webkit-linear-gradient(180deg, rgb(81, 17, 17) 0%, #fff200 47%, rgb(48, 53, 2) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 60px;
+    font-size: 4em;
     font-weight: bold;
     text-align: center;
     margin: 0;
@@ -35,24 +49,29 @@ h1 {
 
 .pTitle {
     font-size: 0.6em;
+    color: #fff200;
     text-align: center;
+    position: relative;
+    top: 50px;
     margin: 0;
 }
 
 
 .image-home {
-    margin-top: 3px;
     display: flex;
     justify-content: center;
+    height: 100%;
 }
 
 .image-bann {
     width: 100%;
-    height: 100%;
+    height: 600px;
 }
 
 h2 {
     text-align: center;
+    color: white;
+    font-size: 2.5em;
 }
 
 .container {
@@ -61,12 +80,15 @@ h2 {
 }
 
 .homeText {
-    width: 1000px;
+    width: 600px;
     text-align: center;
 }
 
 .text {
-    color: #d1d8e0;
+    color: #ffffff;
+    font-size: 1.5em;
+    line-height: 2.9rem;
+
 }
 
 
@@ -76,9 +98,16 @@ h2 {
 }
 
 .link-mission {
-    width: 850px;
-    background-color: #02002C;
-    margin: 1rem;
+    width: 200px;
+    background-color: #091167;
+    position: relative;
+    margin-bottom: 60px;
+    box-shadow: 0 10px 10px 0;
+    transition: transform .2s;
+}
+
+.link-mission:hover {
+    transform: scale(1.1)
 }
 
 .link{

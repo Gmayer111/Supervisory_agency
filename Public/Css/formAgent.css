@@ -1,6 +1,22 @@
+.headerForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #091167;
+    margin: 0;
+    height: 50px;
+    box-shadow: 10px 5px 5px #000000;
+}
+
+.navForm {
+    margin-bottom: 0;
+}
+
+
 h1 {
     color: #fff200;
     margin-top: 70px;
+    font-size: 2em;
 }
 
 .container {
@@ -41,8 +57,7 @@ input[type=submit] {
 }
 
 label {
-    color: #d1d8e0;
-    font-size: 0.8em;
+    color: #ffffff;
 }
 
 select {
@@ -55,8 +70,7 @@ select {
 }
 
 div > .containerForm p {
-    color: #d1d8e0;
-    font-size: 0.9em;
+    color: #ffffff;
     text-align: center;
     padding: 3px;
 }

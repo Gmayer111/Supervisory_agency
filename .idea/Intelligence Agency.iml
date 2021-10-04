@@ -8,5 +8,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-2.2.4" level="application" />
     <orderEntry type="library" name="b5efc1d547" level="application" />
+    <orderEntry type="library" name="Cesium" level="application" />
   </component>
 </module>

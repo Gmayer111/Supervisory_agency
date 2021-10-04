@@ -283,17 +283,22 @@ $missions = $manager->getAll();?>
                     </div>
                     <div>
                         <select name="type" id="type">
-                            <option value="">Sélectionnez votre action</option>
+                            <option value="">Sélectionnez le type de mission</option>
                             <option value="Surveillance">Surveillance</option>
                             <option value="Infiltration">Infiltration</option>
                             <option value="Reconnaissance">Reconnaissance</option>
                         </select>
                     </div>
                     <div>
-                        <label for="competence">Compétences requises</label>
+                        <label for="competence">Compétence requise</label>
                     </div>
                     <div>
-                        <input type="text" id="competence" name="competence" placeholder="Entrez le nom de la planque" required>
+                        <select name="competence" id="competence">
+                            <option value="">Sélectionnez une compétence</option>
+                            <option value="Cyber renseignement">Cyber renseignement</option>
+                            <option value="Décrypteur - décodeur">Décrypteur - décodeur</option>
+                            <option value="Traducteur de conversation">Traducteur de conversation</option>
+                        </select>
                     </div>
                     <div>
                         <label for="startDate">Début de la mission</label>

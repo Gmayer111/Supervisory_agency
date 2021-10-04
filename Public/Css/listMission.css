@@ -2,9 +2,18 @@ body {
     background: linear-gradient(86deg, rgba(44,62,80,1) 0%, rgba(83,113,159,1) 47%, rgba(44,62,80,1) 82%);
 }
 
+.containerUp {
+    display: flex;
+}
+
+.containerUp > div {
+    width: 33vw;
+}
+
 h1 {
     color: #fff200;
     margin-top: 40px;
+    font-size: 2em;
 }
 
 h2 {
@@ -51,35 +60,27 @@ td {
 .ledContainer {
     display: flex;
     justify-content: space-around;
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
 .ledSubContain {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #110456;
+    justify-content: space-between;
+    background-color: rgba(117, 190, 218, 0.0);
     border-radius: 5px;
-    padding-top: 2px;
+    border: 3mm ridge  black;
     color: #F4D9D9;
-    font-size: 0.6em;
+    font-size: 0.8em;
     text-align: center;
-    margin-left: 10px;
+    padding: 5px;
 }
 
 .ledSubContain > div > div {
     display: flex;
     justify-content: center;
+    margin: 17px;
 }
 
-.ledM {
-
-}
-
-.ledDivTable {
-    display: flex;
-    justify-content: center;
-}
 
 .led {
     width: 15px;
@@ -87,6 +88,11 @@ td {
     margin-top: 10px;
     border-radius: 100px;
     text-align: center;
+}
+
+.ledTd {
+    display: flex;
+    justify-content: center;
 }
 
 .ledP {

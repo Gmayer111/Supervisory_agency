@@ -2,6 +2,20 @@ body {
     background: linear-gradient(86deg, rgba(44,62,80,1) 0%, rgba(83,113,159,1) 47%, rgba(44,62,80,1) 82%);
 }
 
+.headerForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #091167;
+    margin: 0;
+    height: 50px;
+    box-shadow: 10px 5px 5px #000000;
+}
+
+.navForm {
+    margin-bottom: 0;
+}
+
 h1 {
     color: #fff200;
     margin-top: 40px;

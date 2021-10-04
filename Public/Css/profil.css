@@ -1,18 +1,36 @@
 h1 {
     text-align: center;
     color: #fff200;
+    font-size: 2.3em;
+    position: relative;
+    bottom: 27px;
+    background-color: #02002c;
 }
 
 
 .container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 2rem;
 }
 
+.imgCreate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 50px;
+    position: relative;
+    left: 70px;
+}
+
 p {
-    color: black;
+    color: #ffffff;
+}
+
+.formContent {
+    display: flex;
+    width: 500px;
+    justify-content: center;
 }
 
 .profilImg {
@@ -20,27 +38,43 @@ p {
     height: 250px;
     border-radius: 50%;
     margin-top: 8px;
+    margin-bottom: 50px;
 }
 
-.profilInfo {
-    margin-top: 30px;
+.profilInfo > ul {
+    width: 200px;
+    margin-top: 40px;
+}
+
+.profilInfo > ul li {
+    list-style: none;
+}
+
+.profilInfo > ul > .liDownSpan {
+    margin-top: 100px;
 }
 
 form {
-    margin: 1rem;
-}
-
-.btn {
-    margin: 1rem;
-    display: flex;
-    justify-content: center;
-}
-
-.adminCreateCont {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
+
+input, label {
+    font-family: "Ubuntu Condensed";
+}
+
+input[type=text] {
+    width: 200px;
+    border-radius: 20px;
+}
+
+input[type=submit] {
+    width: 100px;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
 
 .createA {
     background-color: #405cc4;
@@ -48,8 +82,18 @@ form {
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: none;
-    margin-top: 10px;
     padding: 5px 20px;
     font-size: 16px;
-    box-shadow: 3px 3px 3px black;
+    position: relative;
+    left: 20px;
+    cursor: pointer;
 }
+
+span {
+    color: white;
+    text-align: center;
+    background-color: #26C281;
+    position: absolute;
+}
+
+

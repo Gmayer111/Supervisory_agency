@@ -10,7 +10,9 @@ class AdminsModel
     private string $firstname;
     private string $lastname;
     private string $password;
-    private string $codeName;//login VARCHAR(entre 20 et 50)NOT NULL UNIQUE
+    private string $codeName;
+    private ?string $email = null;
+    private ?string $creationDate = null;
 
     public function __construct(array $data = null)
     {
@@ -141,6 +143,39 @@ class AdminsModel
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string|null $email
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+
+
+    /**
+     * @return string|null
+     */
+    public function getCreationDate(): ?string
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @param string|null $creationDate
+     */
+    public function setCreationDate(?string $creationDate): void
+    {
+        $this->creationDate = $creationDate;
+    }
 
 
 }

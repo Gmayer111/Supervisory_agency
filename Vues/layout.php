@@ -13,12 +13,11 @@ $missions = $manager->getAll();
     <title><?php echo $title; ?></title>
 </head>
 <body>
-<header>
-    <nav>
-        <div></div>
+<header class="headerForm">
+    <nav class="navForm">
         <div>
             <ul class="liste">
-                <?php if (isset($_SESSION['CodeName'])): ?>
+                <?php if (isset($_SESSION['User'])): ?>
                     <li><a href="index.php">ACCUEIL</a></li>
                     <li><a href="?action=Profil">PROFIL</a></li>
                     <li><a href="?action=MissionForm">CRÉER MISSION</a></li>
@@ -33,8 +32,8 @@ $missions = $manager->getAll();
                     </div>
                     <li><a href="?action=Logout" class="btn-login btnLogD">DÉCONNEXION</a></li>
                 <?php endif; ?>
-                <?php if (!isset($_SESSION['CodeName'])): ?>
-                    <li><a href="index.php">ACCUEIL</a></li>
+                <?php if (!isset($_SESSION['User'])): ?>
+                    <li class="liHome"><a href="index.php">ACCUEIL</a></li>
                     <li><a href="?action=List">MISSIONS</a></li>
                     <div class="dropdown">
                         <button class="dropBtn btnH">DÉTAIL MISSION</button>
@@ -53,7 +52,8 @@ $missions = $manager->getAll();
         </div>
     </nav>
 </header>
-<main>
+<main class="logoBg">
+    <div class="backgroundLogo"></div>
     <section>
         <?php echo $content; ?>
     </section>
@@ -61,6 +61,9 @@ $missions = $manager->getAll();
 <footer>
     <div>
         <h3>ASF</h3>
+        <ul class="ulFoot">
+            <li class="liFoot">Politque de confidentialité</li>
+        </ul>
     </div>
 </footer>
 </body>

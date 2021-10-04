@@ -43,7 +43,7 @@ $res = $manager->getAllDatas($codeName);?>
                 $data = ucfirst(strtolower($res['AgentCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
-                if (isset($_SESSION['CodeName'])): ?>
+                if (isset($_SESSION['User'])): ?>
                     <form action="?action=DeleteAgent&codeName=<?php echo $res['codeName'] ?>" method="post">
                         <label for="dta"></label>
                         <select name="dta" id="dta">
@@ -81,7 +81,7 @@ $res = $manager->getAllDatas($codeName);?>
                 $data = ucfirst(strtolower($res['ContactCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
-                if (isset($_SESSION['CodeName'])): ?>
+                if (isset($_SESSION['User'])): ?>
                     <form action="?action=DeleteContact&codeName=<?php echo $res['codeName'] ?>" method="post">
                         <label for="dtc"></label>
                         <select name="dtc" id="dtc">
@@ -117,7 +117,7 @@ $res = $manager->getAllDatas($codeName);?>
                 $data = ucfirst(strtolower($res['TargetCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
-                if (isset($_SESSION['CodeName'])): ?>
+                if (isset($_SESSION['User'])): ?>
                     <form action="?action=DeleteTarget&codeName=<?php echo $res['codeName'] ?>" method="post">
                         <label for="dtt"></label>
                         <select name="dtt" id="dtt">
@@ -153,7 +153,7 @@ $res = $manager->getAllDatas($codeName);?>
                 $data = ucfirst(strtolower($res['ShCodeName']));
                 $pattern = '/,/';
                 $ds = explode(',', $data);
-                if (isset($_SESSION['CodeName'])): ?>
+                if (isset($_SESSION['User'])): ?>
                     <form action="?action=DeleteSh&codeName=<?php echo $res['codeName'] ?>" method="post">
                         <label for="dtsh"></label>
                         <select name="dtsh" id="dtsh">
@@ -189,7 +189,7 @@ $res = $manager->getAllDatas($codeName);?>
         <tr>
             <th>
                 Statut de la mission
-                <?php if (isset($_SESSION['CodeName'])): ?>
+                <?php if (isset($_SESSION['User'])): ?>
                     <form action="?action=UpdateMission&codeName=<?php echo $res['codeName']; ?>" method="post">
                         <label for="uM"></label>
                         <select name="uM" id="uM">

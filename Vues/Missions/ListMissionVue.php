@@ -6,8 +6,46 @@ ob_start();
 ?>
 <style><?php echo include_once 'Public/Css/listMission.css' ?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
-<h1>Détails de la mission</h1>
-<h2>Nom de code mission </h2>
+<div class="containerUp">
+    <div></div>
+    <div>
+        <h1>Détails de la mission</h1>
+        <h2>Nom de code mission </h2>
+    </div>
+    <div>
+        <div class="ledContainer">
+            <div class="ledSubContain">
+                <div>
+                    <div class="ledExt">
+                        <div class="led ledP ledM"></div>
+                    </div>
+                    <p>En <br> préparation</p>
+                </div>
+
+                <div>
+                    <div class="ledExt">
+                        <div class="led ledO"></div>
+                    </div>
+                    <p>En cours</p>
+                </div>
+                <div>
+                    <div class="ledExt">
+                        <div class="led ledF"></div>
+                    </div>
+                    <p>Terminé</p>
+                </div>
+                <div>
+                    <div class="ledExt">
+                        <div class="led ledD"></div>
+                    </div>
+                    <p>Echec</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <div class="container">
 
     <div class="containerForm">
@@ -60,35 +98,7 @@ ob_start();
             </tbody>
         </table>
     </div>
-    <div class="ledContainer">
-        <div class="ledSubContain">
-            <div>
-                <div class="ledExt">
-                    <div class="led ledP ledM"></div>
-                </div>
-                <p>En préparation</p>
-            </div>
 
-            <div>
-                <div class="ledExt">
-                    <div class="led ledO"></div>
-                </div>
-                <p>En cours</p>
-            </div>
-            <div>
-                <div class="ledExt">
-                    <div class="led ledF"></div>
-                </div>
-                <p>Terminé</p>
-            </div>
-            <div>
-                <div class="ledExt">
-                    <div class="led ledD"></div>
-                </div>
-                <p>Echec</p>
-            </div>
-        </div>
-    </div>
 </div>
 <?php
 $content = ob_get_clean();

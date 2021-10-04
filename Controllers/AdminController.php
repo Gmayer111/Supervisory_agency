@@ -5,7 +5,6 @@ namespace Controllers;
 
 
 use Managers\AdminManager;
-use Models\AdminsModel;
 
 class AdminController
 {
@@ -16,13 +15,9 @@ class AdminController
 
     public function createForm()
     {
+
         $admin = new AdminManager();
-        $adminModel = new AdminsModel($_POST);
-        if ($admin->create($adminModel) === true) {
-            header('Location: ?action=Profil');
-        }else {
-            echo 'erreur';
-            header('Location: ?action=MissionForm');
-        }
+        $admin->ajaxConnect();
+
     }
 }

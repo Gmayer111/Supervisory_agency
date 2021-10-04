@@ -1,15 +1,43 @@
+.headerForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #091167;
+    margin: 0;
+    height: 50px;
+    box-shadow: 10px 5px 5px #000000;
+}
+
+.navForm {
+    margin-bottom: 0;
+}
+
+
+h1 {
+    color: #fff200;
+    margin-top: 70px;
+    font-size: 2em;
+}
+
 
 form {
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
     padding: 1rem;
+    margin-bottom: 70px;
 }
 
 .container {
     display: flex;
-    justify-content: space-around;
-    padding: 1rem;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.containerForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
 }
 
 .containerForm > div{
@@ -18,22 +46,9 @@ form {
     margin-bottom: 10px;
 }
 
-.containerForm div input {
-    margin-left: 100px;
-}
-
-.agentInfo {
-    flex-direction: column;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-p {
-    background-color: #F4D9D9;
-}
-
 .btn {
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -46,6 +61,16 @@ input[type=submit] {
     margin-top: 10px;
     padding: 5px 20px;
     font-size: 16px;
+}
+
+input[type=text] {
+    height: 20px;
+    width: 250px;
+    border-radius: 5px;
+}
+
+label {
+    color: white;
 }
 
 
@@ -65,7 +90,14 @@ td {
     text-align: center;
 }
 
-
+span {
+    color: white;
+    text-align: center;
+    background-color: #26C281;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    display: none;
+}
 
 
 
