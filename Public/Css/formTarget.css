@@ -14,8 +14,10 @@
 
 h1 {
     color: #fff200;
-    margin-top: 70px;
+    background-color: #02002c;
     font-size: 2em;
+    position: relative;
+    bottom: 5px;
 }
 
 .container {
@@ -31,15 +33,15 @@ h1 {
 }
 
 .nationality {
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin: 0;
-    color: #d1d8e0;
+    color: #ffffff;
 }
 
 .nationalityA {
-    font-size: 0.7em;
+    font-size: 0.8em;
     margin: 0;
-    color: #d35400;
+    color: #f6660c;
 }
 
 .containerBtn {
@@ -55,8 +57,8 @@ h1 {
     align-items: center;
 }
 
-label {
-    color: #d1d8e0;
+label, p {
+    color: #ffffff;
 }
 
 input[type=text] {
@@ -67,7 +69,7 @@ input[type=text] {
 
 input[type=submit] {
     background-color: red;
-    color: #F4D9D9;
+    color: #ffffff;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: none;
@@ -112,7 +114,9 @@ i.fas:hover {
 
 ul ul li {
     padding: 10px;
-    background: #59ABE3;
+    background-color: rgba(231, 220, 220, 0.5);
+    color: white;
+    text-align: center;
     width: 200px;
     border-radius: 10px;
     margin-bottom: 1em;

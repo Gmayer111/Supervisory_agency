@@ -1,6 +1,10 @@
 <?php
 
 use Managers\AgentManager;
+use Managers\MissionManager;
+
+
+
 
 session_start();
 ob_start();
@@ -8,31 +12,33 @@ ob_start();
 <style><?php echo include_once 'Public/Css/formAgent.css'?></style>
 <style><?php echo include_once 'Public/Css/layout.css'?></style>
 <?php
+$managerM = new MissionManager();
+$missions = $managerM->getData();
 $manager = new AgentManager();
 $agents = $manager->getAll()
 ?>
 <div>
     <h1>Création d'un agent</h1>
-    <form action="?action=CreateAgent" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
+    <form action="?action=CreateAgent" method="POST" onsubmit="return checkValueAgent()">
             <div class="container">
                 <div class="containerFormA">
                     <div>
                         <label for="codeName">Nom de code (unique)</label>
                     </div>
                     <div>
-                        <input type="text" id="codeName"  name="codeName" placeholder="Entrez le nom de code" required>
+                        <input type="text" id="codeName"  name="codeName" placeholder="Entrez le nom de code" value="<?php if (isset($_POST['codeName'])) {echo $_POST['codeName'];} ?>" required>
                     </div>
                     <div>
                         <label for="firstName">Prénom</label>
                     </div>
                     <div>
-                        <input type="text" name="firstName" placeholder="Entrez le prénom" required>
+                        <input type="text" name="firstName" placeholder="Entrez le prénom" value="<?php if (isset($_POST['firstName'])) {echo $_POST['firstName'];} ?>" required>
                     </div>
                     <div>
                         <label for="lastName">Nom</label>
                     </div>
                     <div>
-                        <input type="text" name="lastName" placeholder="Entrez le nom" required>
+                        <input type="text" name="lastName" placeholder="Entrez le nom" value="<?php if (isset($_POST['lastName'])) {echo $_POST['lastName'];} ?>" required>
                     </div>
                     <div>
                         <label for="nationality">Nationalité</label>
@@ -275,59 +281,53 @@ $agents = $manager->getAll()
                         <label for="dateOfBirth">Date de naissance</label>
                     </div>
                     <div>
-                        <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Entrez la date de naissance" required>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" placeholder="Entrez la date de naissance" value="<?php if (isset($_POST['dateOfBirth'])) {echo $_POST['dateOfBirth'];} ?>" required>
                     </div>
                 </div>
                 <div class="containerForm">
-                    <p>Sélectionnez une première compétence :</p>
-                    <div>
-                        <input type="radio" id="Cyber renseignement" name="competenceOne" value="Cyber renseignement" checked>
+                    <div class="comps">
+                        <p>Sélectionnez une première compétence :</p>
+                        <p>(l'agent doit possèder au moins la compétence requise de la mission en cours)</p>
+                        <p id="CompMissionValue">Compétence attendue : <?php echo $missions[7]; ?></p>
+
+                        <input type="radio" id="cyber" name="competenceOne" value="Cyber renseignement" checked>
                         <label for="Cyber renseignement">Cyber renseignement</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="Décrypteur - décodeur" name="competenceOne" value="Décrypteur - décodeur" checked>
+
+                        <input type="radio" id="decrypt" name="competenceOne" value="Décrypteur - décodeur" checked>
                         <label for="Décrypteur - décodeur">Décrypteur - décodeur</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="Traducteur de conversation" name="competenceOne" value="Traducteur de conversation" checked>
-                        <label for="Traducteur de conversation">Traducteur de conversation</label>
+
+                        <input type="radio" id="translate" name="competenceOne" value="Traducteur de conversation" checked>
+                        <label for="Traducteur de conversation" id="translate">Traducteur de conversation</label>
                         <p>Sélectionnez une seconde compétence (optionnel) :</p>
-                    </div>
-                    <div>
+
                         <input type="radio" id="" name="competenceTwo" value="" checked>
                         <label for="">Aucune</label>
-                    </div>
-                    <div>
+
                         <input type="radio" id="Cyber renseignement" name="competenceTwo" value="Cyber renseignement" checked>
                         <label for="Cyber renseignement">Cyber renseignement</label>
-                    </div>
-                    <div>
+
                         <input type="radio" id="Décrypteur - décodeur" name="competenceTwo" value="Décrypteur - décodeur" checked>
                         <label for="Décrypteur - décodeur">Décrypteur - décodeur</label>
-                    </div>
-                    <div>
+
                         <input type="radio" id="Traducteur de conversation" name="competenceTwo" value="Traducteur de conversation" checked>
                         <label for="Traducteur de conversation">Traducteur de conversation</label>
-                    </div>
-                    <div>
+
                         <p>Sélectionnez une troisième compétence (optionnel) :</p>
-                    </div>
-                    <div>
+
                         <input type="radio" id="" name="competenceThree" value="" checked>
                         <label for="">Aucune</label>
-                    </div>
-                    <div>
+
                         <input type="radio" id="opt1" name="competenceThree" value="opt1" checked>
                         <label for="opt1">Cyber renseignement</label>
-                    </div>
-                    <div>
+
                         <input type="radio" id="Décrypteur - décodeur" name="competenceThree" value="Décrypteur - décodeur" checked>
                         <label for="Décrypteur - décodeur">Décrypteur - décodeur</label>
-                    </div>
-                    <div>
+
                         <input type="radio" id="Traducteur de conversation" name="competenceThree" value="Traducteur de conversation" checked>
                         <label for="Traducteur de conversation">Traducteur de conversation</label>
                     </div>
+
+
                     <div class="btn">
                         <div>
                             <input type="submit" id="next" name="next" value="Suivant">
@@ -356,7 +356,8 @@ $agents = $manager->getAll()
                     </div>
                 </div>
             </div>
-        </form>
+        <script src="Public/Javascript/checkValue.js"></script>
+    </form>
 </div>
 <?php
 $content = ob_get_clean();

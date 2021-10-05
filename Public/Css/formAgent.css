@@ -15,9 +15,12 @@
 
 h1 {
     color: #fff200;
-    margin-top: 70px;
+    background-color: #02002c;
     font-size: 2em;
+    position: relative;
+    bottom: 5px;
 }
+
 
 .container {
     display: flex;
@@ -31,12 +34,18 @@ h1 {
     margin-bottom: 10px;
 }
 
+.containerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 15px;
-    margin-right: 100px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 input[type=text] {
@@ -56,7 +65,7 @@ input[type=submit] {
     font-size: 16px;
 }
 
-label {
+label, p {
     color: #ffffff;
 }
 
@@ -65,8 +74,14 @@ select {
     height: 25px;
 }
 
-.containerForm div input {
-    margin-left: 100px;
+.containerForm > .comps {
+    background-color: rgba(231, 220, 220, 0.5);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.containerForm > .comps p {
+    font-weight: bold;
 }
 
 div > .containerForm p {
@@ -107,7 +122,9 @@ i.fas:hover {
 
 ul ul li {
     padding: 10px;
-    background: #59ABE3;
+    background-color: rgba(231, 220, 220, 0.5);
+    color: white;
+    text-align: center;
     width: 200px;
     border-radius: 10px;
     margin-bottom: 1em;

@@ -286,6 +286,7 @@ $shs = $shManager->getAll();
                         <option value="hotel">Hôtel</option>
                     </select>
                 </div>
+
             </div>
             <div class="btn">
                 <input class="inputBtn" type="submit" id="next" name="next" value="Suivant">

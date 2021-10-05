@@ -14,8 +14,10 @@
 
 h1 {
     color: #fff200;
-    margin-top: 70px;
+    background-color: #02002c;
     font-size: 2em;
+    position: relative;
+    bottom: 5px;
 }
 
 .container {
@@ -59,7 +61,7 @@ input[type=text] {
 
 input[type=submit] {
     background-color: red;
-    color: #F4D9D9;
+    color: #ffffff;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     border: none;
@@ -68,8 +70,8 @@ input[type=submit] {
     font-size: 16px;
 }
 
-label {
-    color: #d1d8e0;
+label, p {
+    color: #ffffff;
 }
 
 select {
