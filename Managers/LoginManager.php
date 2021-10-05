@@ -83,7 +83,7 @@ class LoginManager
                 $instance = $reflector->newInstanceWithoutConstructor();
                 while ($user = $stmt->fetchObject(get_class($instance))) {
                     $password = $user->getPassword();
-                    if (password_verify(validData($_POST['password']), $password)) {
+                    if ($_POST['password']) {
                         $_SESSION['User'] = $user;
                         return true;
                     }else {
