@@ -97,6 +97,7 @@ input[type=submit] {
     margin-top: 10px;
     padding: 5px 20px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 select, input[type=date] {
