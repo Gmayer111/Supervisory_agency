@@ -28,7 +28,7 @@ class AgentController
             }
         }else {
             ?> <script>
-                alert('CodeName déjà emprunté')
+                alert('Nom de code déjà utilisé')
                 document.location.href = "http://localhost/intelligence-agency/?action=AgentForm"
             </script> <?php
             die();

@@ -22,7 +22,11 @@ class TargetController
             if ($_POST['next'] === 'Suivant') {
                 header('Location: ?action=ContactForm');
             }else {
-                header('Location: ?action=TargetForm');
+                ?> <script>
+                    alert('Nom de code déjà utilisé')
+                    document.location.href = "http://localhost/intelligence-agency/?action=TargetForm"
+                </script> <?php
+                die();
             }
         }else {
         ?> <script>

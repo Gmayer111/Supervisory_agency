@@ -24,7 +24,11 @@ class ContactController
         if ($_POST['next'] === 'Suivant') {
             header('Location: ?action=SafeHouseForm');
         }else {
-            header('Location: ?action=ContactForm');
+            ?> <script>
+                alert('Nom de code déjà utilisé')
+                document.location.href = "http://localhost/intelligence-agency/?action=ContactForm"
+            </script> <?php
+            die();
         }
             }else {
             ?> <script>

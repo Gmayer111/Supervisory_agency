@@ -24,7 +24,11 @@ class SafeHouseController
             if ($_POST['next'] === 'Suivant') {
             header('Location: ?action=Profil');
             }else {
-                header('Location: ?action=SafeHouseForm');
+                ?> <script>
+                    alert('Code déjà utilisé')
+                    document.location.href = "http://localhost/intelligence-agency/?action=SafeHouseForm"
+                </script> <?php
+                die();
             }
         }else {
             ?> <script>
