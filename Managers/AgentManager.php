@@ -57,6 +57,7 @@ class AgentManager
     public function create(AgentsModel $agent) :bool
     {
 
+        var_dump($_POST);
         $missionManager = new MissionManager();
         $codeNameMission = $missionManager->getData()[0];
         $req = $this->pdo->prepare("

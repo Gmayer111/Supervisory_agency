@@ -71,7 +71,7 @@ VALUES
         }
     }
 
-    public function uptdate(MissionsModel $mission):bool
+    public function uptdate():bool
     {
 
         $state = $_POST['uM'];
@@ -109,6 +109,7 @@ VALUES
         }
         return $mission;
     }
+
 
     public function getData(): array
     {

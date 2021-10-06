@@ -155,6 +155,7 @@ class AgentsModel
 
     /**
      * @param string $competenceOne
+     * @return AgentsModel
      */
     public function setCompetenceOne(string $competenceOne): self
     {
@@ -173,10 +174,13 @@ class AgentsModel
 
     /**
      * @param string $competenceTwo
+     * @return AgentsModel
      */
-    public function setCompetenceTwo(string $competenceTwo): void
+    public function setCompetenceTwo(string $competenceTwo): self
     {
         $this->competenceTwo = $competenceTwo;
+
+        return $this;
     }
 
     /**
@@ -189,10 +193,13 @@ class AgentsModel
 
     /**
      * @param string $competenceThree
+     * @return AgentsModel
      */
-    public function setCompetenceThree(string $competenceThree): void
+    public function setCompetenceThree(string $competenceThree): self
     {
         $this->competenceThree = $competenceThree;
+
+        return $this;
     }
 
     /**

@@ -286,45 +286,37 @@ $agents = $manager->getAll()
                 </div>
                 <div class="containerForm">
                     <div class="comps">
-                        <p>Sélectionnez une première compétence :</p>
                         <p>(l'agent doit possèder au moins la compétence requise de la mission en cours)</p>
                         <p id="CompMissionValue">Compétence attendue : <?php echo $missions[7]; ?></p>
+                        <label for="competenceOne">Sélectionnez une première compétence :</label>
+                        <div>
+                            <select name="competenceOne" id="competenceOne">
+                                <option value="">Sélectionnez une compétence</option>
+                                <option value="Cyber renseignement">Cyber renseignement</option>
+                                <option value="Décrypteur - décodeur">Décrypteur - décodeur</option>
+                                <option value="Traducteur de conversation">Traducteur de conversation</option>
+                            </select>
+                        </div>
+                        <label for="competenceTwo">Sélectionnez une seconde compétence (optionnel) :</label>
+                        <div>
+                            <select name="competenceTwo" id="competenceTwo">
+                                <option value="">Sélectionnez une compétence</option>
+                                <option value="Cyber renseignement">Cyber renseignement</option>
+                                <option value="Décrypteur - décodeur">Décrypteur - décodeur</option>
+                                <option value="Traducteur de conversation">Traducteur de conversation</option>
+                            </select>
+                        </div>
 
-                        <input type="radio" id="cyber" name="competenceOne" value="Cyber renseignement" checked>
-                        <label for="Cyber renseignement">Cyber renseignement</label>
+                        <label for="competenceThree">Sélectionnez une troisième compétence (optionnel) :</label>
 
-                        <input type="radio" id="decrypt" name="competenceOne" value="Décrypteur - décodeur" checked>
-                        <label for="Décrypteur - décodeur">Décrypteur - décodeur</label>
-
-                        <input type="radio" id="translate" name="competenceOne" value="Traducteur de conversation" checked>
-                        <label for="Traducteur de conversation" id="translate">Traducteur de conversation</label>
-                        <p>Sélectionnez une seconde compétence (optionnel) :</p>
-
-                        <input type="radio" id="" name="competenceTwo" value="" checked>
-                        <label for="">Aucune</label>
-
-                        <input type="radio" id="Cyber renseignement" name="competenceTwo" value="Cyber renseignement" checked>
-                        <label for="Cyber renseignement">Cyber renseignement</label>
-
-                        <input type="radio" id="Décrypteur - décodeur" name="competenceTwo" value="Décrypteur - décodeur" checked>
-                        <label for="Décrypteur - décodeur">Décrypteur - décodeur</label>
-
-                        <input type="radio" id="Traducteur de conversation" name="competenceTwo" value="Traducteur de conversation" checked>
-                        <label for="Traducteur de conversation">Traducteur de conversation</label>
-
-                        <p>Sélectionnez une troisième compétence (optionnel) :</p>
-
-                        <input type="radio" id="" name="competenceThree" value="" checked>
-                        <label for="">Aucune</label>
-
-                        <input type="radio" id="opt1" name="competenceThree" value="opt1" checked>
-                        <label for="opt1">Cyber renseignement</label>
-
-                        <input type="radio" id="Décrypteur - décodeur" name="competenceThree" value="Décrypteur - décodeur" checked>
-                        <label for="Décrypteur - décodeur">Décrypteur - décodeur</label>
-
-                        <input type="radio" id="Traducteur de conversation" name="competenceThree" value="Traducteur de conversation" checked>
-                        <label for="Traducteur de conversation">Traducteur de conversation</label>
+                        <div>
+                            <select name="competenceThree" id="competenceThree">
+                                <option value="">Sélectionnez une compétence</option>
+                                <option value="Cyber renseignement">Cyber renseignement</option>
+                                <option value="Décrypteur - décodeur">Décrypteur - décodeur</option>
+                                <option value="Traducteur de conversation">Traducteur de conversation</option>
+                            </select>
+                        </div>
                     </div>
 
 
