@@ -172,7 +172,7 @@ class MissionsModel
      */
     public function setCompetence(string $competence): self
     {
-        $this->competence = $this->validDatas($competence);
+        $this->competence = $competence;
 
         return $this;
     }

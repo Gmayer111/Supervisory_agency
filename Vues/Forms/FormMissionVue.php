@@ -12,7 +12,7 @@ $manager = new MissionManager();
 $missions = $manager->getAll();?>
 <div>
     <h1>Création d'une mission</h1>
-    <form action="?action=CreateMission" method="POST" onsubmit="return checkCodeName()"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
+    <form action="?action=CreateMission" method="POST"> <!--enctype="multipart/form-data" uniquement pour l'upload de fichier-->
         <div class="container">
             <div class="containerLeft">
                 <div class="containerFormLeft">
@@ -20,13 +20,13 @@ $missions = $manager->getAll();?>
                         <label for="codeName">Nom de code (unique)</label>
                     </div>
                     <div>
-                        <input type="text" id="codeNm"  name="codeName" placeholder="Entrez le nom de code" required>
+                        <input type="text" id="codeNm"  name="codeName" placeholder="Entrez le nom de code" value="<?php if (isset($_POST['codeName'])) {echo $_POST['codeName'];} ?>" required>
                     </div>
                     <div>
                         <label for="title">Titre</label>
                     </div>
                     <div>
-                        <input type="text" name="title" placeholder="Entrez le titre" required>
+                        <input type="text" name="title" placeholder="Entrez le titre" value="<?php if (isset($_POST['title'])) {echo $_POST['title'];} ?>" required>
                     </div>
                     <div>
                         <label for="description">Description</label>
@@ -310,6 +310,9 @@ $missions = $manager->getAll();?>
                         <label for="endDate">Fin de la mission</label>
                     </div>
                     <div>
+                        <p id=""></p>
+                    </div>
+                    <div>
                         <input type="date" id="endDate" name="endDate" placeholder="Entrez la date de fin de mission" required>
                     </div>
                     <div class="btn">
@@ -332,7 +335,7 @@ $missions = $manager->getAll();?>
                                 </label>
                                 <ul>
                                     <?php foreach ($missions as $mission): ?>
-                                    <li><?php echo $mission->getCodeName(); ?></li>
+                                    <li id="missionCode"><?php echo $mission->getCodeName(); ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             </li>

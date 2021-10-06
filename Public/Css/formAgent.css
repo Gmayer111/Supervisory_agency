@@ -40,6 +40,20 @@ h1 {
     align-items: center;
 }
 
+.comps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comps p {
+    margin: 0.5em;
+}
+
+.comps div, .comps label {
+    margin-bottom: 1rem;
+}
+
 .btn {
     display: flex;
     flex-direction: column;
