@@ -1,14 +1,11 @@
 <?php
 
-
 use Managers\MissionManager;
 use Managers\SafeHouseManager;
-
 session_start();
 ob_start();
 
 ?>
-
 <style><?php  include_once 'Public/Css/formSh.css'?></style>
 <style><?php  include_once 'Public/Css/layout.css'?></style>
 <?php
