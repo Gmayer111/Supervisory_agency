@@ -9,6 +9,7 @@ $(function ()
             lastName = $('#lastName').val();
             password = $('#password').val();
             email = $('#email').val();
+
             $.post("?action=CreateAdmin", {
                 codeName:codeName,
                 firstName:firstName,

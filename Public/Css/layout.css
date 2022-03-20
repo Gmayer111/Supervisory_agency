@@ -4,7 +4,8 @@ html {
 
 body {
     margin: 0;
-    -moz-box-sizing: border-box; box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     font-family: Ubuntu Condensed, serif;
     min-height: 100%;
     position: relative;
